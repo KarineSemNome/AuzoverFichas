@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Som das Seis — Ficha Online</title>
+<style>
+:root{
+  --ink:#241a14; --paper:#f4ead5; --paper2:#fff9ec; --brown:#6b3f22;
+  --red:#8e2d22; --gold:#c59a45; --line:#b79b70; --muted:#6f6255;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--ink); background:#211914;
+  font-family:Georgia,"Times New Roman",serif;
+  background-image:radial-gradient(circle at 20% 10%,#4a3021 0 2px,transparent 3px),
+                   radial-gradient(circle at 80% 80%,#4a3021 0 2px,transparent 3px);
+}
+.app{max-width:1250px;margin:auto;padding:18px}
+.sheet{
+  background:var(--paper); border:5px solid var(--brown); border-radius:10px;
+  box-shadow:0 15px 50px #0008; overflow:hidden;
+}
+header{
+  padding:22px 24px; text-align:center; color:#fff; background:linear-gradient(#7b291f,#4c2118);
+  border-bottom:4px solid var(--gold);
+}
+header h1{margin:0;font-size:clamp(28px,5vw,52px);letter-spacing:3px;text-transform:uppercase}
+header p{margin:6px 0 0;letter-spacing:2px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:12px;background:#332219}
+button{
+  border:2px solid #8c6a3f;background:#e4d0a7;color:#251b15;padding:9px 13px;
+  border-radius:6px;font:700 14px Georgia;cursor:pointer
+}
+button:hover{filter:brightness(1.06)}
+button.danger{background:#8e2d22;color:#fff;border-color:#5e1d17}
+main{padding:18px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.g2,.g3,.g4{grid-template-columns:1fr}.app{padding:5px}main{padding:10px}}
+.card{
+  background:var(--paper2); border:2px solid var(--line); border-radius:7px;
+  padding:13px; box-shadow:inset 0 0 20px #8d693015;
+}
+.card h2{
+  margin:-13px -13px 12px;padding:8px 10px;background:#dfc38f;color:#402719;
+  font-size:18px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--line)
+}
+label{display:block;font-weight:bold;font-size:12px;text-transform:uppercase;color:#5a4737;margin-bottom:4px}
+input,select,textarea{
+  width:100%;border:1px solid #a99069;background:#fffdf6;color:#211a15;
+  border-radius:4px;padding:8px;font:16px Georgia
+}
+textarea{min-height:85px;resize:vertical}
+.stat{display:grid;grid-template-columns:1fr 70px;align-items:end;gap:7px;margin-bottom:8px}
+.stat input{text-align:center;font-weight:bold;font-size:20px}
+.stat small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.char-image{
+  width:100%; aspect-ratio:1/1; max-width:260px; margin:auto; display:flex;
+  align-items:center; justify-content:center; overflow:hidden;
+  border:3px solid var(--brown); border-radius:7px; background:#ead8b2;
+  background-size:cover; background-position:center;
+}
+.char-image span{font-size:13px;text-align:center;color:#705c46;padding:15px}
+.char-image img{width:100%;height:100%;object-fit:cover}
+.image-actions{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.metric{
+  text-align:center;border:2px solid var(--brown);background:#efe0bd;padding:8px;border-radius:6px
+}
+.metric b{display:block;font-size:25px}
+.points{font-size:12px;color:#6a5541;margin:5px 0 0}
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media(max-width:650px){.skills{grid-template-columns:1fr}}
+.skill{
+  border:1px solid #b99c70;border-radius:5px;padding:9px;background:#fffaf0
+}
+.skill label{display:flex;gap:7px;align-items:flex-start;text-transform:none;font-size:14px;color:#231b15}
+.skill input{width:auto;margin-top:3px}
+.skill b{display:block;color:#72271e}
+.skill p{margin:5px 0 0;font-size:12px;line-height:1.35;color:#584a3c}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{border:1px solid #bda47b;padding:6px}
+.table th{background:#e2c992;text-transform:uppercase;font-size:12px}
+.table td input{padding:5px}
+.rep{position:relative;height:34px;margin:10px 0}
+.rep input[type=range]{position:absolute;inset:0;padding:0}
+.rep-labels{display:flex;justify-content:space-between;font-size:11px;font-weight:bold}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.roll-result{
+  margin-top:10px;background:#2d2019;color:#f5e4bd;border-radius:6px;padding:10px;
+  font-size:18px;text-align:center
+}
+.notice{font-size:12px;color:#665747;line-height:1.4}
+footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2px solid var(--line)}
+@media print{
+  body{background:white}.app{padding:0}.sheet{box-shadow:none;border:0}
+  .toolbar{display:none}button{display:none}.card{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="app"><div class="sheet">
+<header>
+  <h1>O Som das Seis</h1>
+  <p>FICHA ONLINE • AVENTURAS NO VELHO OESTE</p>
+</header>
+<div class="toolbar">
+  <button onclick="saveSheet()">Salvar ficha</button>
+  <button onclick="loadSheet()">Carregar ficha</button>
+  <button onclick="window.print()">Imprimir / PDF</button>
+  <button class="danger" onclick="newSheet()">Limpar ficha</button>
+
+</div>
+
+<main>
+<section class="grid g2">
+  <div class="card">
+    <h2>Identidade</h2>
+    <div class="grid g2">
+      <div>
+        <label>Imagem da personagem</label>
+        <div class="char-image" id="charImage"><span>Nenhuma imagem selecionada</span></div>
+        <div class="image-actions">
+          <button type="button" onclick="document.getElementById('charFile').click()">Escolher imagem</button>
+          <button type="button" onclick="removeCharacterImage()">Remover</button>
+        </div>
+        <input id="charFile" type="file" accept="image/*" hidden onchange="setCharacterImage(event)">
+      </div>
+      <div>
+      <div><label>Nome da personagem</label><input data-k="nome"></div>
+      <div><label>Jogador(a)</label><input data-k="jogador"></div>
+      <div><label>Nível</label><input data-k="nivel" type="number" min="1" value="1"></div>
+      <div><label>XP</label><input data-k="xp" type="number" min="0" value="0"></div>
+      <div><label>Ocupação / conceito</label><input data-k="conceito"></div>
+      <div><label>Idade</label><input data-k="idade"></div>
+    </div>
+    <br>
+    <label>Descrição / aparência</label><textarea data-k="descricao"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>Recursos</h2>
+    <div class="grid g3">
+      <div class="metric"><span>PV máximos</span><b id="pvMax">6</b><small id="pvFormula">6 + Físico × (1d6+2)</small></div>
+      <div class="metric"><span>Ações</span><b id="acoes">1</b><small>por combate</small></div>
+      <div class="metric"><span>Iniciativa</span><b id="iniciativa">1</b><small>base + Coragem</small></div>
+    </div>
+    <br>
+    <div class="grid g3">
+      <div><label>PV atuais</label><input data-k="pvAtual" type="number" value="6"></div>
+      <div><label>Defesa</label><input data-k="defesa" type="number" value="5"></div>
+      <div><label>Dinheiro ($)</label><input data-k="dinheiro" type="number" step="0.01" value="150"></div>
+    </div>
+    <div class="actions">
+      <button onclick="rollD6()">Rolar 1d6</button>
+      <button onclick="rollD3()">Rolar 1d3</button>
+      <button onclick="rollD66()">Rolar 1d66</button>
+    </div>
+    <div id="rollResult" class="roll-result">Pronto para rolar.</div>
+  </div>
+</section>
+
+<section class="card">
+<h2>Atributos</h2>
+<p class="notice">O livro indica 4 pontos para distribuir entre Físico, Intelecto, Coragem e Agilidade. Os valores abaixo alimentam automaticamente PV, Antecedentes, Iniciativa e Ações.</p>
+<div class="grid g4">
+  <div class="stat"><div><label>Físico</label><small>+1d6+2 PV por ponto</small></div><input class="attr" data-k="fisico" type="number" min="0" value="0"></div>
+  <div class="stat"><div><label>Intelecto</label><small>+1 ponto de Antecedente por ponto</small></div><input class="attr" data-k="intelecto" type="number" min="0" value="0"></div>
+  <div class="stat"><div><label>Coragem</label><small>+1 Iniciativa por ponto</small></div><input class="attr" data-k="coragem" type="number" min="0" value="0"></div>
+  <div class="stat"><div><label>Agilidade</label><small>+1 Ação por ponto</small></div><input class="attr" data-k="agilidade" type="number" min="0" value="0"></div>
+</div>
+<p class="points">Pontos de atributos: <b id="attrTotal">0</b> / 4 • Pontos de Antecedente disponíveis: <b id="antTotal">5</b></p>
+</section>
+
+<section class="card">
+<h2>Antecedentes</h2>
+<p class="notice">A ficha utiliza os sete Antecedentes do livro. Na criação, são distribuídos pontos entre eles; o material consultado também indica limite de 2 no primeiro nível.</p>
+<table class="table">
+<thead><tr><th>Antecedente</th><th>Pontos</th><th>Observações</th></tr></thead>
+<tbody id="antecedentes"></tbody>
+</table>
+</section>
+
+<section class="card">
+<h2>Habilidades / Poderes</h2>
+<p class="notice">Escolha as habilidades que sua personagem possui. O primeiro nível começa com duas habilidades, conforme o livro. A caixa de seleção serve também para manter o controle da ficha.</p>
+<div id="skills" class="skills"></div>
+</section>
+
+<section class="grid g2">
+  <div class="card">
+    <h2>Tormento</h2>
+    <div class="grid g2">
+      <div><label>Tipo</label><select data-k="tormentoTipo">
+        <option value="">Escolha...</option><option>Vingança</option><option>Vício</option>
+        <option>Doença</option><option>Fugindo</option><option>Segredo</option><option>Dever</option>
+      </select></div>
+      <div><label>Detalhe</label><input data-k="tormentoDetalhe"></div>
+    </div>
+    <br><button onclick="randomTormento()">Sortear tormento</button>
+    <p id="tormentoSorteado" class="notice"></p>
+  </div>
+  <div class="card">
+    <h2>Reputação</h2>
+    <div class="rep"><input data-k="reputacao" type="range" min="-3" max="3" value="0" oninput="document.getElementById('repValue').textContent=this.value"></div>
+    <div class="rep-labels"><span>Má reputação</span><b id="repValue">0</b><span>Boa reputação</span></div>
+    <br>
+    <label>Reputações conhecidas / efeitos</label><textarea data-k="repNotas"></textarea>
+  </div>
+</section>
+
+<section class="grid g2">
+  <div class="card">
+    <h2>Equipamento</h2>
+    <div class="grid g2">
+      <div><label>Armas</label><textarea data-k="armas" placeholder="Revólver, rifle, faca..."></textarea></div>
+      <div><label>Roupas</label><textarea data-k="roupas"></textarea></div>
+      <div><label>Itens</label><textarea data-k="itens"></textarea></div>
+      <div><label>Munição / recarga</label><textarea data-k="municao"></textarea></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Montaria</h2>
+    <div class="grid g2">
+      <div><label>Nome do animal</label><input data-k="cavaloNome"></div>
+      <div><label>Espécie</label><input data-k="cavaloEspecie" placeholder="Cavalo, mula..."></div>
+      <div><label>Potência</label><input data-k="potencia" type="number" value="1"></div>
+      <div><label>Resistência</label><input data-k="resistencia" type="number" value="2"></div>
+      <div><label>PV da montaria</label><input data-k="pvCavalo" type="number"></div>
+      <div><label>Fidelidade</label><input data-k="fidelidade" type="number" min="0" max="4" value="1"></div>
+    </div>
+    <br><label>Habilidades / observações da montaria</label><textarea data-k="cavaloNotas"></textarea>
+  </div>
+</section>
+
+<section class="card">
+<h2>História e anotações</h2>
+<div class="grid g2">
+  <div><label>Passado / biografia</label><textarea data-k="biografia"></textarea></div>
+  <div><label>Objetivos / futuro</label><textarea data-k="objetivos"></textarea></div>
+  <div><label>Aliados / contatos</label><textarea data-k="aliados"></textarea></div>
+  <div><label>Notas da campanha</label><textarea data-k="notas"></textarea></div>
+</div>
+</section>
+</main>
+<footer>Ficha online inspirada na estrutura e nas regras apresentadas em “O Som das Seis”. Use “Salvar ficha” para guardar uma cópia no navegador.</footer>
+</div></div>
+
+<script>
+const A = [
+["Combate","Atirar, lutar e agir em conflitos."],
+["Labuta","Trabalho pesado, esforço físico, construir e consertar."],
+["Negócios","Negociar, convencer, perceber mentiras e intrigas."],
+["Montaria","Cavalgar, controlar montarias e assuntos de pecuária."],
+["Tradição","Cultura, fauna, flora, plantas, rastros e conhecimentos transmitidos."],
+["Exploração","Percepção, sobrevivência, rastrear e apagar rastros."],
+["Roubo","Furtividade, trapaça, carteado e bater carteiras."],
+["Medicina","Primeiros socorros, cura, remédios e doenças."]
+];
+/* O PDF apresenta sete antecedentes no conjunto de ícones/texto, mas lista também Medicina;
+   por isso a ficha mantém todos os nomes explicitamente encontrados no material. */
+
+const S = [
+["LIGHT MY FIRE","+1 no teste com revólver e +1 no dano por ponto de Agilidade."],
+["LET'S DANCE","Pode fazer dois disparos com uma ação, com -1 no teste de Combate."],
+["FORTUNATE SON","Ao chegar a 0 PV em combate, recupera 3 PV e retorna no turno seguinte; não funciona novamente no mesmo combate."],
+["DON'T STOP BELIEVING","+1 para acertar com armas de longa distância e +1 no dano por ponto de Intelecto."],
+["IMMIGRANT SONG","Ataques desarmados passam de 1d3 para 1d6, somando +1 no dano por ponto de Físico."],
+["GIMME SHELTER","Ataque surpresa com faca ou navalha recebe dano furtivo adicional conforme o nível."],
+["ANOTHER ONE BITES THE DUST","Escolha uma manobra de combate desarmado: Rasteira, Suplex, Briga de Bar, Tapa com as costas da mão ou Kung-Fu."],
+["RIDERS ON THE STORM","+1d6 de dano corpo a corpo por nível para cada 3 PV sacrificados; uma vez por combate."],
+["BORN TO BE WILD","+1 em testes de Antecedente envolvendo furtividade ou percepção."],
+["SMOKE ON THE WATER","+1 para acertar com armas rústicas e +1 dano por ponto de Físico."],
+["UNDER PRESSURE","+1 em testes para resistir a fatores adversos e +1 PV recuperado por ponto de Físico durante descanso."],
+["HEARTBREAKER","Uma vez por sessão, escolha alvo por nível: ele recebe -1 em ações ofensivas contra você; pode transferir a vantagem a um aliado."],
+["BARRACUDA","+1 por nível (máximo 5) em testes para descobrir informações."],
+["SWEET EMOTION","Inspira aliados e concede bônus conforme o nível: ações, PV temporários, testes de ataque e teste de morte."],
+["CRAZY TRAIN","Uma vez por nível, aumenta dano de arma de fogo em até +1d6 por um combate; depois a arma quebra."],
+["CARRY ON MY WAYWARD SON","Por sessão, pode refazer testes falhos; número de tentativas igual ao nível, podendo ajudar outra pessoa."],
+["WAR PIGS","+1 em testes envolvendo explosivos e +1 no dano das bombas por ponto de Intelecto."],
+["ACE OF SPADES","+1 em testes de Roubo para trapacear ou perceber trapaças em jogos."],
+["A HORSE WITH NO NAME","+1 em testes para cavalgar, saltar ou controlar sua própria montaria."],
+["I WANT TO HOLD YOUR HAND","+1d6 PV curados por nível durante tratamentos."],
+["PARANOID","+1 na Iniciativa e nunca é pega desprevenida."],
+["RAMBLE ON","Duas movimentações com uma ação e +1 em testes de fuga."],
+["AQUALUNG","+1 em testes atléticos como nadar, escalar e saltar."],
+["MORE THAN A FEELING","Uma vez por sessão, após teste de Negócios bem-sucedido, pode fazer duas perguntas à Juíza para descobrir informações."],
+];
+const T = [
+["Vingança","pela morte de um parceiro"],["Vingança","pela minha terra roubada"],["Vingança","pela minha tribo"],
+["Vingança","pelo fim da minha gangue"],["Vingança","da gangue inimiga"],["Vingança","pelo amor da minha vida"],
+["Vício","em álcool"],["Vício","em apostas"],["Vício","em adrenalina"],["Vício","em drogas"],["Vício","em algo bizarro"],["Vício","com a minha dívida"],
+["Doença","na pele do rosto"],["Doença","no intestino"],["Doença","nas pernas"],["Doença","nos olhos"],["Doença","nas mãos"],["Doença","na mente"],
+["Fugindo","de um mercenário"],["Fugindo","da lei"],["Fugindo","de uma família poderosa"],["Fugindo","de um culto religioso"],["Fugindo","da gangue inimiga"],["Fugindo","de um casamento"],
+["Segredo","sou um infiltrado da lei"],["Segredo","matei alguém importante"],["Segredo","tenho algo contagioso"],["Segredo","tenho uma grande dívida"],["Segredo","tenho um tesouro comigo"],["Segredo","sou de uma família rica"],
+["Dever","com a família"],["Dever","com Deus"],["Dever","com meu cavalo"],["Dever","pelos meus filhos"],["Dever","com a lei"],["Dever","da minha gangue"]
+];
+
+function el(k){return document.querySelector(`[data-k="${k}"]`)}
+function val(k){return el(k)?.value ?? ""}
+function set(k,v){if(el(k)) el(k).value=v}
+function renderCharacterImage(src){
+  window._characterImage=src;
+  const box=document.getElementById("charImage");
+  box.innerHTML=`<img src="${src}" alt="Imagem da personagem">`;
+}
+function setCharacterImage(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{renderCharacterImage(reader.result);localStorage.setItem("somDasSeisImagem",reader.result)};
+  reader.readAsDataURL(file);
+}
+function removeCharacterImage(){
+  window._characterImage="";
+  localStorage.removeItem("somDasSeisImagem");
+  document.getElementById("charImage").innerHTML="<span>Nenhuma imagem selecionada</span>";
+  document.getElementById("charFile").value="";
+}
+
+function build(){
+  document.getElementById("antecedentes").innerHTML=A.map((x,i)=>`
+    <tr><td><b>${x[0]}</b><br><small>${x[1]}</small></td>
+    <td><input class="ant" data-ant="${i}" type="number" min="0" max="5" value="0"></td>
+    <td><input data-antnote="${i}" placeholder="Notas"></td></tr>`).join("");
+  document.getElementById("skills").innerHTML=S.map((x,i)=>`
+    <div class="skill"><label><input type="checkbox" data-skill="${i}">
+    <span><b>${x[0]}</b><p>${x[1]}</p></span></label></div>`).join("");
+}
+function recalc(){
+  const f=+val("fisico")||0, c=+val("coragem")||0, a=+val("agilidade")||0, i=+val("intelecto")||0;
+  document.getElementById("attrTotal").textContent=f+c+a+i;
+  document.getElementById("acoes").textContent=1+a;
+  document.getElementById("iniciativa").textContent=1+c;
+
+  // PV: a regra do PDF é 6 + 1d6+2 por ponto de Físico.
+  // O valor é rolado automaticamente quando o Físico muda.
+  const oldF=window._lastFisico;
+  if(oldF!==f || !window._pvRolled){
+    let total=6;
+    for(let n=0;n<f;n++) total += roll(6)+2;
+    window._pvRolled=true; window._lastFisico=f;
+    document.getElementById("pvMax").textContent=total;
+    document.getElementById("pvFormula").textContent=`6 + ${f}×(1d6+2) • rolado automaticamente`;
+    set("pvAtual",total);
+  }
+  const antBase=5+i;
+  const used=[...document.querySelectorAll(".ant")].reduce((n,x)=>n+(+x.value||0),0);
+  document.getElementById("antTotal").textContent=Math.max(0,antBase-used);
+  document.getElementById("repValue").textContent=val("reputacao")||0;
+}
+document.addEventListener("input",e=>{
+  if(e.target.classList.contains("attr") || e.target.classList.contains("ant") || e.target.dataset.k==="reputacao") recalc();
+});
+function roll(n){return Math.floor(Math.random()*n)+1}
+function rollD6(){showRoll(`1d6 = ${roll(6)}`)}
+function rollD3(){let r=roll(6);showRoll(`1d3 = ${r<=3?r-0: r-3}`)}
+function rollD66(){showRoll(`1d66 = ${roll(6)}${roll(6)}`)}
+function showRoll(t){document.getElementById("rollResult").textContent=t}
+function randomTormento(){
+  const t=T[Math.floor(Math.random()*T.length)];
+  set("tormentoTipo",t[0]);set("tormentoDetalhe",t[1]);
+  document.getElementById("tormentoSorteado").textContent="Sorteado: "+t[0]+" "+t[1]+".";
+}
+function collect(){
+  const d={};
+  document.querySelectorAll("[data-k]").forEach(x=>d[x.dataset.k]=x.value);
+  d.antecedentes=[...document.querySelectorAll(".ant")].map((x,i)=>({nome:A[i][0],pontos:x.value,nota:document.querySelector(`[data-antnote="${i}"]`).value}));
+  d.habilidades=[...document.querySelectorAll("[data-skill]")].filter(x=>x.checked).map(x=>+x.dataset.skill);
+  return d;
+}
+function apply(d){
+  window._pvRolled=false;
+  Object.entries(d).forEach(([k,v])=>{
+    if(k==="antecedentes"||k==="habilidades")return;
+    if(el(k))el(k).value=v;
+  });
+  (d.antecedentes||[]).forEach((x,i)=>{
+    const p=document.querySelector(`[data-ant="${i}"]`),n=document.querySelector(`[data-antnote="${i}"]`);
+    if(p)p.value=x.pontos||0;if(n)n.value=x.nota||"";
+  });
+  (d.habilidades||[]).forEach(i=>{const x=document.querySelector(`[data-skill="${i}"]`);if(x)x.checked=true});
+  recalc();
+}
+function saveSheet(){
+  localStorage.setItem("somDasSeisFicha",JSON.stringify(collect()));
+  if(window._characterImage) localStorage.setItem("somDasSeisImagem",window._characterImage);
+  showRoll("Ficha salva neste navegador.");
+}
+function loadSheet(){
+  const d=JSON.parse(localStorage.getItem("somDasSeisFicha")||"null");
+  if(d)apply(d);
+  const img=localStorage.getItem("somDasSeisImagem");
+  if(img) renderCharacterImage(img);
+  showRoll(d?"Ficha carregada.":"Nenhuma ficha salva encontrada.");
+}
+function newSheet(){if(confirm("Limpar todos os dados desta ficha?")){localStorage.removeItem("somDasSeisFicha");localStorage.removeItem("somDasSeisImagem");location.reload()}}
+
+build();recalc();loadSheet();
+</script>
+</body>
+</html>
