@@ -6,31 +6,38 @@
 <title>Ficha do Auzover</title>
 <style>
 :root{
-  --ink:#241a14; --paper:#f4ead5; --paper2:#fff9ec; --brown:#6b3f22;
-  --red:#8e2d22; --gold:#c59a45; --line:#b79b70; --muted:#6f6255;
+  --ink:#241a14; --paper:#ead9b8; --paper2:#f8eed8; --brown:#57351f;
+  --red:#76271d; --gold:#c09548; --line:#9b7547; --muted:#6f6255;
 }
 *{box-sizing:border-box}
 body{
-  margin:0; color:var(--ink); background:#211914;
+  margin:0; color:var(--ink); background:#17120e;
   font-family:Georgia,"Times New Roman",serif;
-  background-image:radial-gradient(circle at 20% 10%,#4a3021 0 2px,transparent 3px),
-                   radial-gradient(circle at 80% 80%,#4a3021 0 2px,transparent 3px);
+  background-image:radial-gradient(ellipse at 50% 0%,#60452b 0,transparent 55%),
+    repeating-linear-gradient(135deg,transparent 0 5px,#ffffff04 6px,transparent 7px);
 }
-.app{max-width:1250px;margin:auto;padding:18px}
+body,button,input,select,textarea{font-family:Georgia,"Times New Roman",serif}
+header h1,.card h2,button,label{
+  font-family:"Rockwell Extra Bold",Rockwell,"Courier New",Georgia,serif;
+  font-weight:900;
+}
+header h1{letter-spacing:5px;text-shadow:2px 3px 0 #24150f,0 0 1px #f7e9c9}
+button{text-transform:uppercase;letter-spacing:.5px}
+.app{max-width:1250px;margin:auto;padding:28px 18px}
 .sheet{
-  background:var(--paper); border:5px solid var(--brown); border-radius:10px;
-  box-shadow:0 15px 50px #0008; overflow:hidden;
+  background:var(--paper); border:8px double var(--brown); border-radius:2px;
+  box-shadow:0 18px 60px #000b,inset 0 0 45px #916b3520; overflow:hidden;
 }
 header{
-  padding:22px 24px; text-align:center; color:#fff; background:linear-gradient(#7b291f,#4c2118);
-  border-bottom:4px solid var(--gold);
+  padding:28px 24px; text-align:center; color:#f7e9c9; background:linear-gradient(135deg,#6e281d,#351b13 70%,#51251a);
+  border-bottom:4px solid var(--gold); box-shadow:inset 0 -6px 0 #24150f;
 }
-header h1{margin:0;font-size:clamp(28px,5vw,52px);letter-spacing:3px;text-transform:uppercase}
-header p{margin:6px 0 0;letter-spacing:2px}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:12px;background:#332219}
+header h1{margin:0;font-size:clamp(28px,5vw,52px);letter-spacing:5px;text-transform:uppercase;text-shadow:2px 3px 0 #24150f}
+header p{margin:8px 0 0;letter-spacing:3px;font-size:12px;color:#d8bd87}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;padding:12px;background:#2b1c14;border-bottom:2px solid #9c7138}
 button{
-  border:2px solid #8c6a3f;background:#e4d0a7;color:#251b15;padding:9px 13px;
-  border-radius:6px;font:700 14px Georgia;cursor:pointer
+  border:2px solid #987344;background:linear-gradient(#ead6aa,#c8a66d);color:#251b15;padding:9px 13px;
+  border-radius:2px;font:700 14px Georgia;cursor:pointer;box-shadow:0 2px 0 #17100b
 }
 button:hover{filter:brightness(1.06)}
 button.danger{background:#8e2d22;color:#fff;border-color:#5e1d17}
@@ -42,17 +49,17 @@ main{padding:18px}
 @media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.g2,.g3,.g4{grid-template-columns:1fr}.app{padding:5px}main{padding:10px}}
 .card{
-  background:var(--paper2); border:2px solid var(--line); border-radius:7px;
-  padding:13px; box-shadow:inset 0 0 20px #8d693015;
+  background:var(--paper2); border:2px solid var(--line); border-radius:2px;
+  padding:13px; box-shadow:inset 0 0 24px #8d693025,2px 3px 0 #57351f20;
 }
 .card h2{
-  margin:-13px -13px 12px;padding:8px 10px;background:#dfc38f;color:#402719;
-  font-size:18px;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--line)
+  margin:-13px -13px 12px;padding:9px 10px;background:linear-gradient(90deg,#c9a66e,#e2c894 55%,#c9a66e);color:#402719;
+  font-size:18px;text-transform:uppercase;letter-spacing:2px;border-bottom:2px solid var(--line)
 }
 label{display:block;font-weight:bold;font-size:12px;text-transform:uppercase;color:#5a4737;margin-bottom:4px}
 input,select,textarea{
-  width:100%;border:1px solid #a99069;background:#fffdf6;color:#211a15;
-  border-radius:4px;padding:8px;font:16px Georgia
+  width:100%;border:1px solid #a99069;background:#fff9e9;color:#211a15;
+  border-radius:2px;padding:8px;font:16px Georgia;box-shadow:inset 0 1px 3px #49341c20
 }
 textarea{min-height:85px;resize:vertical}
 .stat{display:grid;grid-template-columns:1fr 70px;align-items:end;gap:7px;margin-bottom:8px}
@@ -94,10 +101,260 @@ textarea{min-height:85px;resize:vertical}
   font-size:18px;text-align:center
 }
 .notice{font-size:12px;color:#665747;line-height:1.4}
+.modal-backdrop{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:18px;background:#120c0bd9}
+.modal-backdrop[hidden]{display:none}
+.modal{width:min(100%,440px);padding:0;background:var(--paper);border:6px double var(--brown);box-shadow:0 18px 60px #000c;text-align:center}
+.modal h2{margin:0;padding:14px;color:#f7e9c9;background:linear-gradient(135deg,#6e281d,#351b13);border-bottom:3px solid var(--gold);letter-spacing:3px}
+.modal p{padding:8px 22px;line-height:1.5}
+.modal-actions{display:flex;justify-content:center;gap:10px;padding:0 18px 18px}
 footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2px solid var(--line)}
 @media print{
   body{background:white}.app{padding:0}.sheet{box-shadow:none;border:0}
   .toolbar{display:none}button{display:none}.card{break-inside:avoid}
+}
+/* Acabamento visual western, com leitura mais leve e melhor espaçamento. */
+:root{
+  --ink:#2b2119; --paper:#e9deca; --paper2:#fffaf1; --brown:#493020;
+  --red:#7b3026; --gold:#c19a5b; --line:#c6ae88; --muted:#766858;
+}
+body{
+  background-color:#171513;
+  background-image:radial-gradient(ellipse at 50% -10%,#614a31 0,transparent 52%),
+    repeating-linear-gradient(135deg,transparent 0 7px,#ffffff04 8px,transparent 9px);
+}
+.app{max-width:1380px;padding:34px 24px}
+.sheet{
+  border:1px solid #a98758;border-radius:12px;
+  box-shadow:0 24px 70px #0009,inset 0 0 36px #916b3518;
+}
+header{
+  padding:34px 24px;background:linear-gradient(135deg,#71352a,#351e18 72%,#51271f);
+  border-bottom:3px solid var(--gold);box-shadow:none;
+}
+header h1{font-size:clamp(30px,5vw,54px);letter-spacing:4px;text-shadow:0 3px 0 #24150f}
+header p{letter-spacing:2.5px}
+.toolbar{gap:10px;padding:13px 20px;background:#261c17;border-bottom:1px solid #654a31}
+button{
+  border:1px solid #ad8952;background:linear-gradient(180deg,#f3e2bf,#dec28f);color:#2b2119;
+  padding:10px 15px;border-radius:6px;font:700 13px Georgia;cursor:pointer;
+  box-shadow:0 2px 0 #110d0a55;transition:transform .15s ease,filter .15s ease,box-shadow .15s ease;
+}
+button:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 4px 8px #110d0a35}
+button.danger{background:linear-gradient(180deg,#98483a,#742c23);color:#fff8ed;border-color:#5e241d}
+main{padding:24px;display:flex;flex-direction:column;gap:18px}
+.grid{gap:16px}
+.intro-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:start}
+.card{
+  background:var(--paper2);border:1px solid var(--line);border-radius:9px;
+  padding:16px;box-shadow:0 3px 10px #3b28130b;
+}
+.card h2{
+  margin:-16px -16px 16px;padding:12px 16px;
+  background:linear-gradient(100deg,#ddc79e,#f0e2c5 55%,#ddc79e);color:#493020;
+  font-size:16px;letter-spacing:1.6px;border:0;border-bottom:1px solid #c5aa7e;
+  border-radius:8px 8px 0 0;
+}
+label{font-size:11px;letter-spacing:.35px;color:#66513c;margin-bottom:5px}
+input,select,textarea{
+  border:1px solid #d3c2a4;background:#fffdf8;color:#2b2119;
+  border-radius:6px;padding:9px 10px;font:15px Georgia;box-shadow:inset 0 1px 2px #49341c0c;
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#a67a3e;box-shadow:0 0 0 3px #c0954830}
+.intro-grid > .card:first-child .grid.g2 > div:last-child{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:9px 12px;
+}
+.intro-grid > .card:first-child .char-image{max-width:210px;border:2px solid #8a6840;border-radius:9px;background:#efe2c9}
+.intro-grid > .card:first-child textarea{min-height:70px}
+.image-actions{gap:7px}
+.image-actions button{flex:1 1 auto;white-space:nowrap;padding:7px 7px;font-size:10px}
+.intro-grid > .card:nth-child(2) .grid.g4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.stat{
+  grid-template-columns:minmax(0,1fr) 62px;align-items:center;gap:8px;margin:0;
+  padding:10px;border:1px solid #eadcc3;border-radius:7px;background:#fffdf8;
+}
+.stat label{font-size:12px;margin-bottom:2px}
+.stat small{font-size:11px;line-height:1.3}
+.stat input{padding:7px 5px;font-size:19px;border-color:#d8c7a8}
+.points{margin:12px 0 0;padding:10px 12px;border-radius:6px;background:#f4ead8;color:#66513c;line-height:1.5}
+.notice{font-size:13px;color:#756858;line-height:1.55}
+.metric{border:1px solid #d8c5a0;background:#f8eedc;padding:12px;border-radius:8px}
+.metric b{font-size:27px;color:#6f3025;margin:3px 0}
+.table th,.table td{border-color:#dfd0b4;padding:9px}
+.table th{background:#efe2c8;color:#59442f;letter-spacing:.4px}
+.table tbody tr:nth-child(even){background:#fcf5e9}
+.table tbody tr:hover{background:#f4ead8}
+.skill{border:1px solid #e4d4b8;border-radius:7px;padding:11px;background:#fffdf8;transition:border-color .15s ease,transform .15s ease}
+.skill:hover{border-color:#c19a5b;transform:translateY(-1px)}
+.skill b{color:#78352a;letter-spacing:.25px}
+.skill p{font-size:13px;line-height:1.45}
+.roll-result{background:#34251d;border:1px solid #5a4030;border-radius:7px}
+footer{margin-top:4px;padding:18px;color:#766858;border-top:1px solid #c6ae88}
+@media(max-width:900px){.intro-grid{grid-template-columns:1fr}}
+@media(max-width:650px){
+  .app{padding:14px 10px}
+  .intro-grid > .card:first-child .grid.g2 > div:last-child{grid-template-columns:1fr}
+  main{padding:14px;gap:14px}
+  .toolbar{padding:12px;gap:8px}
+  .toolbar button{flex:1 1 calc(50% - 8px)}
+}
+@media(max-width:520px){
+  .app{padding:6px}
+  .sheet{border-radius:8px}
+  header{padding:25px 14px}
+  header h1{letter-spacing:2px}
+  header p{font-size:10px;letter-spacing:1.5px}
+  main{padding:10px}
+  .card{padding:13px}
+  .card h2{margin:-13px -13px 13px;padding:11px 13px}
+  .intro-grid > .card:nth-child(2) .grid.g4{grid-template-columns:1fr}
+  .table{font-size:12px}
+  .table th,.table td{padding:5px}
+}
+@media print{
+  .sheet{border-radius:0}
+  .card{box-shadow:none}
+}
+.dead-toggle{margin-top:14px;background:linear-gradient(180deg,#98483a,#742c23);color:#fff8ed;border-color:#5e241d}
+.dead-toggle[aria-pressed="true"]{background:#34251d;border-color:#34251d}
+.death-overlay{
+  position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:#130d0de8;backdrop-filter:blur(5px);
+}
+.death-overlay[hidden]{display:none}
+body.is-dead{overflow:hidden}
+.death-panel{
+  width:min(100%,430px);padding:30px 26px;text-align:center;color:#f8efdf;
+  background:linear-gradient(145deg,#3a2720,#211916);border:1px solid #a27c4d;
+  border-radius:12px;box-shadow:0 24px 80px #000b;
+}
+.death-mark{
+  display:grid;place-items:center;width:54px;height:54px;margin:0 auto 14px;
+  border:2px solid #b85c4d;border-radius:50%;color:#e39180;font-size:30px;font-weight:bold;
+}
+.death-panel h2{margin:0 0 10px;color:#f5dfbb;letter-spacing:1.5px;text-transform:uppercase}
+.death-panel p{margin:0 0 22px;color:#d5c4ad;line-height:1.55}
+.death-panel button{min-width:190px}
+.skills-tools{display:grid;grid-template-columns:minmax(200px,1fr) auto;gap:5px 14px;align-items:end;margin:16px 0}
+.skills-search-label{grid-column:1/-1;margin:0}
+.skills-count{padding:10px 12px;border:1px solid #dfd0b4;border-radius:6px;background:#f4ead8;color:#66513c;font-size:12px;white-space:nowrap}
+.selected-skills{margin:0 0 14px;padding:14px 16px;border:1px solid #cdb991;border-left:4px solid #8a5338;border-radius:7px;background:#f7f0e4}
+.selected-skills-heading{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.selected-skills h3{margin:0;color:#563b28;font-size:13px;letter-spacing:.7px;text-transform:uppercase}
+.selected-skills p{margin:0;color:#766858;font-size:12px}
+.selected-skills ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.selected-skills li{display:flex;flex-direction:column;gap:3px;padding:9px 10px;border:1px solid #e3d5bd;border-radius:6px;background:#fffdf8}
+.selected-skills li strong{color:#78352a;font-size:12px;letter-spacing:.2px}
+.selected-skills li span{color:#66594a;font-size:12px;line-height:1.4}
+.selected-skills.is-empty{padding:11px 14px}
+@media(max-width:520px){.selected-skills ul{grid-template-columns:1fr}.selected-skills-heading{align-items:flex-start;flex-direction:column;gap:4px}}
+#skills.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.skill-group{min-width:0;border:1px solid #d7c4a1;border-radius:8px;background:#f8f0e2;overflow:hidden}
+.skill-group summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 14px;color:#563b28;font-weight:bold;cursor:pointer;list-style:none}
+.skill-group summary::-webkit-details-marker{display:none}
+.skill-group summary::after{content:"＋";font-size:16px;color:#8b6540}
+.skill-group[open] summary::after{content:"−"}
+.skill-group summary:hover{background:#f1e3c9}
+.skill-group-title{letter-spacing:.7px;text-transform:uppercase;font-size:13px}
+.skill-group-count{margin-left:auto;color:#766858;font-size:11px;font-weight:normal;white-space:nowrap}
+.skill-list{display:grid;grid-template-columns:1fr;gap:7px;padding:0 9px 9px}
+.skill-list .skill{margin:0}
+.skill[hidden],.skill-group[hidden]{display:none}
+.skill label{margin:0;cursor:pointer}
+.skill input{flex:0 0 auto;width:16px;height:16px;accent-color:#78352a}
+@media(max-width:700px){#skills.skills{grid-template-columns:1fr}}
+@media(max-width:520px){
+  .skills-tools{grid-template-columns:1fr}
+  .skills-search-label{grid-column:auto}
+  .skills-count{justify-self:start}
+}
+.sheet-navigation{display:flex;align-items:stretch;background:#f1e5cf;border-bottom:1px solid #c6ae88}
+.sheet-tabs{display:flex;flex:1 1 auto;min-width:0;gap:4px;padding:10px 20px 0;overflow-x:auto}
+.sheet-tab{
+  flex:0 0 auto;padding:12px 18px;border:0;border-bottom:3px solid transparent;border-radius:6px 6px 0 0;
+  background:transparent;color:#725b41;box-shadow:none;font:700 13px Georgia;letter-spacing:.4px;text-transform:uppercase;
+}
+.sheet-tab:hover{transform:none;background:#eadcc2;box-shadow:none}
+.sheet-tab.is-active{border-bottom-color:#7b3026;background:#fffaf1;color:#6d2d24}
+.sheet-tab:focus-visible{outline:2px solid #a67a3e;outline-offset:-3px}
+.tab-content{padding-top:20px}
+.tab-panel{display:flex;flex-direction:column;gap:18px;min-width:0}
+.tab-panel[hidden]{display:none}
+.dead-toggle{
+  align-self:center;flex:0 0 auto;margin:7px 18px 7px 10px;padding:10px 15px;
+  border:2px solid #54241e;border-radius:5px;background:linear-gradient(180deg,#98483a,#742c23);
+  color:#fff4df;font-family:Georgia,serif;font-size:12px;letter-spacing:1px;
+  box-shadow:inset 0 0 0 1px #d69a6a55,0 2px 0 #2b1712;text-shadow:0 1px #391b17;
+}
+.dead-toggle::before{content:"✦ ";color:#e8c477}
+.dead-toggle:hover{background:linear-gradient(180deg,#aa5543,#7b2b22)}
+.dead-toggle[aria-pressed="true"]{background:linear-gradient(180deg,#4a2922,#2c1b17);border-color:#6e4736;color:#e9d9bf}
+.identity-vitals{margin-top:14px;padding:12px;border:1px solid #c6ad81;border-radius:7px;background:linear-gradient(135deg,#f2e5cb,#e8d5b1)}
+.identity-vitals-heading{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:9px;color:#563b28;text-transform:uppercase;letter-spacing:1px;font:bold 12px Georgia,serif}
+.identity-vitals-heading small{color:#806646;font-size:10px;letter-spacing:.5px;text-transform:none}
+.identity-vitals .metric{background:#fff8e9;border-color:#c5a46e}
+.identity-vitals input{background:#fffdf8}
+.identity-vitals .vital-values{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:12px}
+.pv-box{
+  display:flex;min-width:0;min-height:138px;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;padding:12px;border:2px solid;border-radius:9px;text-align:center;
+}
+.identity-vitals .metric.pv-max-box{background:#e2eeee;border-color:#477775;color:#183f40}
+.identity-vitals .metric.pv-current-box{background:#f2e0d8;border-color:#944d3c;color:#55251d}
+.pv-box .pv-title{display:block;margin:0;font-size:12px;font-weight:900;letter-spacing:1px}
+.pv-max-box .pv-title{color:#245b5b}
+.pv-current-box .pv-title{color:#713024}
+.pv-box b,.pv-box input{display:block;width:100%;margin:0;color:inherit;text-align:center;font-size:clamp(25px,3vw,34px);font-weight:900;line-height:1.1}
+.pv-box b{font-family:"Rockwell Extra Bold",Rockwell,Georgia,serif}
+.pv-box input{height:48px;padding:4px 8px;border:2px solid currentColor;border-radius:6px;background:#fffaf4;box-shadow:inset 0 1px 2px #25170c18}
+.pv-max-box small,.pv-current-box small{max-width:100%;color:inherit;font-size:11px;line-height:1.25;opacity:.88}
+.pv-box input:focus-visible{outline:3px solid #241a14;outline-offset:2px}
+#panel-character{width:min(100%,1120px);align-self:center}
+#panel-character .intro-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:20px}
+.character-stats-column{display:flex;min-width:0;flex-direction:column;gap:18px}
+.attributes-card .grid.g4{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.attributes-card .stat{min-width:0}
+.resource-card .grid.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.resource-card .actions{justify-content:center}
+.level-bonuses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.level-bonus{padding:15px;border:1px solid #cdb991;border-left:4px solid #9b7547;border-radius:8px;background:#fbf5e9}
+.level-bonus.is-current{border-color:#9a5a36;border-left-color:#7b3026;background:#f4e4ca;box-shadow:0 3px 10px #50311616}
+.level-bonus h3{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 9px;color:#563b28;font-size:14px;letter-spacing:.5px;text-transform:uppercase}
+.level-bonus h3 small{padding:4px 7px;border-radius:99px;background:#e9dcc4;color:#695137;font-size:10px;letter-spacing:0;text-transform:none;white-space:nowrap}
+.level-bonus.is-current h3 small{background:#78352a;color:#fff8ed}
+.level-bonus ul{margin:0;padding-left:19px;color:#554638;line-height:1.55}
+.level-bonus li+li{margin-top:3px}
+@media(max-width:650px){.level-bonuses{grid-template-columns:1fr}}
+.sheet-status{align-self:center;margin-left:auto;color:#f2dfbd;font-size:12px;line-height:1.4}
+.dice-buttons{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.dice-buttons button,.roll-table-button{background:linear-gradient(180deg,#a92020,#821b1b);border:1px solid #5f1717;color:#fff5dc;font-weight:900;letter-spacing:.5px}
+.dice-buttons button:hover,.roll-table-button:hover{background:linear-gradient(180deg,#bc3030,#8d1c1c)}
+.critical-tables{align-items:start}
+.dice-table-card h2{background:linear-gradient(90deg,#a92020,#821b1b);color:#fff4d8;border-color:#5f1717}
+.roll-table-button{display:block;margin:0 auto 13px}
+.dice-table{display:grid;gap:4px;margin:0;padding:0;list-style:none}
+.dice-table li{
+  position:relative;display:flex;align-items:center;min-height:38px;
+  padding:7px 12px 7px 50px;border-radius:20px;background:#eee8c7;color:#241a14;
+  font-size:14px;font-weight:bold;line-height:1.35;
+}
+.dice-table li:nth-child(even){background:#929284}
+.dice-table li::before{
+  content:attr(data-roll);position:absolute;left:0;top:0;bottom:0;display:grid;place-items:center;
+  width:40px;border-right:4px solid #a51f1f;color:#aa2020;font-size:16px;font-weight:900;
+}
+.dice-table li.is-rolled{outline:3px solid #c09548;background:#f1d38c;color:#291c10}
+.dice-table li.is-rolled::after{content:"RESULTADO";margin-left:auto;padding:3px 6px;border-radius:4px;background:#7b3026;color:#fff8ed;font-size:9px;letter-spacing:.5px;white-space:nowrap}
+.drunkenness-card{max-width:850px}
+@media(max-width:650px){.sheet-status{flex:1 0 100%;margin:2px 0 0}.dice-table li{font-size:13px;padding-right:9px}}
+@media(max-width:650px){.dead-toggle{margin-right:10px;padding:9px 11px;font-size:11px}}
+@media(max-width:520px){.sheet-tabs{padding:8px 6px 0}.sheet-tab{padding:11px 11px;font-size:10px}.dead-toggle{margin:6px 7px 6px 4px;padding:8px 8px;font-size:10px;letter-spacing:.5px}}
+@media(max-width:900px){#panel-character .intro-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.attributes-card .grid.g4{grid-template-columns:minmax(0,1fr)}}
+@media print{
+  .sheet-navigation{display:none}
+  .tab-panel[hidden]{display:flex !important}
+  .tab-panel{break-after:page}
 }
 </style>
 </head>
@@ -105,18 +362,31 @@ footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2p
 <div class="app"><div class="sheet">
 <header>
   <h1>O Som das Seis</h1>
-  <p>FICHA ONLINE • AVENTURAS NO VELHO OESTE</p>
+  <p>FICHA ONLINE DO AUZOVER NO FAROESTE</p>
 </header>
 <div class="toolbar">
   <button onclick="saveSheet()">Salvar ficha</button>
   <button onclick="loadSheet()">Carregar ficha</button>
   <button onclick="window.print()">Imprimir / PDF</button>
   <button class="danger" onclick="newSheet()">Limpar ficha</button>
-
+  <span id="sheetStatus" class="sheet-status" role="status" aria-live="polite">Ficha pronta.</span>
 </div>
 
-<main>
-<section class="grid g2">
+<div class="sheet-navigation">
+<nav class="sheet-tabs" role="tablist" aria-label="Seções da ficha">
+  <button class="sheet-tab is-active" id="tab-character" type="button" role="tab" aria-selected="true" aria-controls="panel-character" tabindex="0" data-tab="panel-character">Personagem</button>
+  <button class="sheet-tab" id="tab-progression" type="button" role="tab" aria-selected="false" aria-controls="panel-progression" tabindex="-1" data-tab="panel-progression">Progressão</button>
+  <button class="sheet-tab" id="tab-adventure" type="button" role="tab" aria-selected="false" aria-controls="panel-adventure" tabindex="-1" data-tab="panel-adventure">Jornada</button>
+  <button class="sheet-tab" id="tab-journal" type="button" role="tab" aria-selected="false" aria-controls="panel-journal" tabindex="-1" data-tab="panel-journal">Diário</button>
+  <button class="sheet-tab" id="tab-bonuses" type="button" role="tab" aria-selected="false" aria-controls="panel-bonuses" tabindex="-1" data-tab="panel-bonuses">Bônus</button>
+  <button class="sheet-tab" id="tab-dice" type="button" role="tab" aria-selected="false" aria-controls="panel-dice" tabindex="-1" data-tab="panel-dice">Rolar Dados</button>
+</nav>
+<button id="deadToggle" class="dead-toggle" type="button" aria-pressed="false" onclick="toggleDead()">MORTO</button>
+</div>
+
+<main class="tab-content">
+<section class="tab-panel" id="panel-character" role="tabpanel" aria-labelledby="tab-character">
+<section class="grid g2 intro-grid">
   <div class="card">
     <h2>Identidade</h2>
     <div class="grid g2">
@@ -132,52 +402,65 @@ footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2p
       <div>
       <div><label>Nome da personagem</label><input data-k="nome"></div>
       <div><label>Jogador(a)</label><input data-k="jogador"></div>
-      <div><label>Nível</label><input data-k="nivel" type="number" min="1" value="1"></div>
+      <div><label>Nível</label><input data-k="nivel" type="number" min="1" max="6" value="1"></div>
       <div><label>XP</label><input data-k="xp" type="number" min="0" value="0"></div>
       <div><label>Ocupação / conceito</label><input data-k="conceito"></div>
       <div><label>Idade</label><input data-k="idade"></div>
     </div>
+    </div>
     <br>
     <label>Descrição</label><textarea data-k="descricao"></textarea>
+    <div class="identity-vitals">
+      <div class="identity-vitals-heading"><span>Vitalidade</span><small>Faroeste • pontos de vida</small></div>
+      <div class="grid g2 vital-values">
+        <div class="metric pv-box pv-max-box">
+          <span class="pv-title">PV MÁXIMOS</span>
+          <b id="pvMax">6</b>
+          <small id="pvFormula">Cálculo automático</small>
+        </div>
+        <div class="metric pv-box pv-current-box">
+          <label class="pv-title" for="pvAtual">PV ATUAIS</label>
+          <input id="pvAtual" data-k="pvAtual" type="number" min="0" value="6">
+          <small>Vida restante</small>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
+  <div class="character-stats-column">
+  <div class="card attributes-card">
+    <h2>Atributos</h2>
+    <p class="notice">Distribua os pontos de atributo disponíveis entre Físico, Intelecto, Coragem e Agilidade. O total aumenta com os níveis; cada atributo pode chegar a 5.</p>
+    <div class="grid g4">
+      <div class="stat"><div><label>Físico</label><small>+1d6+2 PV por ponto</small></div><input class="attr" data-k="fisico" type="number" min="0" max="5" value="0"></div>
+      <div class="stat"><div><label>Intelecto</label><small>+1 ponto de Antecedente por ponto</small></div><input class="attr" data-k="intelecto" type="number" min="0" max="5" value="0"></div>
+      <div class="stat"><div><label>Coragem</label><small>+1 Iniciativa por ponto</small></div><input class="attr" data-k="coragem" type="number" min="0" max="5" value="0"></div>
+      <div class="stat"><div><label>Agilidade</label><small>+1 Ação por ponto</small></div><input class="attr" data-k="agilidade" type="number" min="0" max="5" value="0"></div>
+    </div>
+    <p class="points">Pontos de atributos: <b id="attrTotal">0</b> / <span id="attrAllowance">4</span> • Pontos de Antecedente disponíveis: <b id="antTotal">5</b></p>
+  </div>
+
+<section class="card resource-card">
     <h2>Recursos</h2>
-    <div class="grid g3">
-      <div class="metric"><span>PV máximos</span><b id="pvMax">6</b><small id="pvFormula">6 + Físico × (1d6+2)</small></div>
+    <div class="grid g2">
       <div class="metric"><span>Ações</span><b id="acoes">1</b><small>por combate</small></div>
       <div class="metric"><span>Iniciativa</span><b id="iniciativa">1</b><small>base + Coragem</small></div>
     </div>
     <br>
-    <div class="grid g3">
-      <div><label>PV atuais</label><input data-k="pvAtual" type="number" value="6"></div>
+    <div class="grid g2">
       <div><label>Defesa</label><input data-k="defesa" type="number" value="5"></div>
       <div><label>Dinheiro ($)</label><input data-k="dinheiro" type="number" step="0.01" value="150"></div>
     </div>
-    <div class="actions">
-      <button onclick="rollD6()">Rolar 1d6</button>
-      <button onclick="rollD3()">Rolar 1d3</button>
-      <button onclick="rollD66()">Rolar 1d66</button>
-    </div>
-    <div id="rollResult" class="roll-result">Pronto para rolar.</div>
+</section>
   </div>
 </section>
 
-<section class="card">
-<h2>Atributos</h2>
-<p class="notice">4 pontos para distribuir entre Físico, Intelecto, Coragem e Agilidade. Os valores abaixo alimentam automaticamente PV, Antecedentes, Iniciativa e Ações.</p>
-<div class="grid g4">
-  <div class="stat"><div><label>Físico</label><small>+1d6+2 PV por ponto</small></div><input class="attr" data-k="fisico" type="number" min="0" value="0"></div>
-  <div class="stat"><div><label>Intelecto</label><small>+1 ponto de Antecedente por ponto</small></div><input class="attr" data-k="intelecto" type="number" min="0" value="0"></div>
-  <div class="stat"><div><label>Coragem</label><small>+1 Iniciativa por ponto</small></div><input class="attr" data-k="coragem" type="number" min="0" value="0"></div>
-  <div class="stat"><div><label>Agilidade</label><small>+1 Ação por ponto</small></div><input class="attr" data-k="agilidade" type="number" min="0" value="0"></div>
-</div>
-<p class="points">Pontos de atributos: <b id="attrTotal">0</b> / 4 • Pontos de Antecedente disponíveis: <b id="antTotal">5</b></p>
-</section>
+ </section>
 
+<section class="tab-panel" id="panel-progression" role="tabpanel" aria-labelledby="tab-progression" hidden>
 <section class="card">
 <h2>Antecedentes</h2>
-<p class="notice">A ficha utiliza os sete Antecedentes do livro. Na criação, são distribuídos pontos entre eles; o material consultado também indica limite de 2 no primeiro nível.</p>
+<p class="notice">Distribua os pontos de Antecedente disponíveis. Intelecto e os bônus de nível aumentam esse total; cada Antecedente aceita de 0 a 5 pontos.</p>
 <table class="table">
 <thead><tr><th>Antecedente</th><th>Pontos</th><th>Observações</th></tr></thead>
 <tbody id="antecedentes"></tbody>
@@ -187,9 +470,24 @@ footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2p
 <section class="card">
 <h2>Habilidades</h2>
 <p class="notice">Escolha as habilidades que sua personagem possui. O primeiro nível começa com duas habilidades, conforme o livro. A caixa de seleção serve também para manter o controle da ficha.</p>
+<div class="skills-tools">
+  <label class="skills-search-label" for="skillSearch">Buscar habilidade</label>
+  <input id="skillSearch" type="search" placeholder="Digite o nome ou uma palavra da descrição..." oninput="filterSkills(this.value)">
+  <span class="skills-count" id="skillsCount" aria-live="polite">0 habilidades selecionadas</span>
+</div>
+<aside class="selected-skills is-empty" id="selectedSkillsPanel" aria-live="polite">
+  <div class="selected-skills-heading">
+    <h3>Habilidades selecionadas</h3>
+    <p id="selectedSkillsEmpty">Nenhuma habilidade selecionada ainda.</p>
+  </div>
+  <ul id="selectedSkillsList" hidden></ul>
+</aside>
 <div id="skills" class="skills"></div>
 </section>
 
+ </section>
+
+<section class="tab-panel" id="panel-adventure" role="tabpanel" aria-labelledby="tab-adventure" hidden>
 <section class="grid g2">
   <div class="card">
     <h2>Tormento</h2>
@@ -236,6 +534,9 @@ footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2p
   </div>
 </section>
 
+ </section>
+
+<section class="tab-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" hidden>
 <section class="card">
 <h2>História e anotações</h2>
 <div class="grid g2">
@@ -245,9 +546,72 @@ footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2p
   <div><label>Notas da campanha</label><textarea data-k="notas"></textarea></div>
 </div>
 </section>
+ </section>
+
+<section class="tab-panel" id="panel-bonuses" role="tabpanel" aria-labelledby="tab-bonuses" hidden>
+  <section class="card level-bonuses-card">
+    <h2>Bônus por nível</h2>
+    <p class="notice">Confira os bônus iniciais e os ganhos de cada nível até o nível atual da personagem. Os ganhos de atributos, Antecedentes, habilidades e PV máximos são aplicados à ficha.</p>
+    <div id="levelBonuses" class="level-bonuses" aria-live="polite"></div>
+  </section>
+</section>
+
+<section class="tab-panel" id="panel-dice" role="tabpanel" aria-labelledby="tab-dice" hidden>
+  <section class="card dice-card">
+    <h2>Dados de jogo</h2>
+    <p class="notice">Cada d6 sorteia um inteiro de 1 a 6. Em 2d6, dois d6 são rolados separadamente e somados.</p>
+    <div class="dice-buttons">
+      <button type="button" onclick="rollD6()">Rolar 1d6</button>
+      <button type="button" onclick="rollD3()">Rolar 1d3</button>
+      <button type="button" onclick="roll2D6()">Rolar 2d6</button>
+      <button type="button" onclick="rollND6(3)">Rolar 3d6</button>
+      <button type="button" onclick="rollND6(4)">Rolar 4d6</button>
+      <button type="button" onclick="rollND6(5)">Rolar 5d6</button>
+    </div>
+    <div id="rollResult" class="roll-result" role="status" aria-live="polite">Escolha uma rolagem.</div>
+  </section>
+  <section class="grid g2 critical-tables">
+    <article class="card dice-table-card">
+      <h2>Acertos críticos • 1d6</h2>
+      <button type="button" class="roll-table-button" onclick="rollCritical('success')">Rolar acerto crítico</button>
+      <ol id="criticalSuccessTable" class="dice-table" start="1"></ol>
+    </article>
+    <article class="card dice-table-card">
+      <h2>Falhas críticas • 1d6</h2>
+      <button type="button" class="roll-table-button" onclick="rollCritical('failure')">Rolar falha crítica</button>
+      <ol id="criticalFailureTable" class="dice-table" start="1"></ol>
+    </article>
+  </section>
+  <section class="card dice-table-card drunkenness-card">
+    <h2>Nível de Porre • 2d6</h2>
+    <p class="notice">Role dois d6, some os resultados e consulte o efeito correspondente.</p>
+    <button type="button" class="roll-table-button" onclick="rollDrunkenness()">Rolar nível de porre</button>
+    <ol id="drunkennessTable" class="dice-table" start="2"></ol>
+  </section>
+</section>
 </main>
 <footer>Ficha online inspirada na estrutura e nas regras apresentadas em “O Som das Seis”. Use “Salvar ficha” para guardar uma cópia no navegador.</footer>
 </div></div>
+
+<div class="death-overlay" id="deathOverlay" hidden role="alertdialog" aria-modal="true" aria-labelledby="deathTitle" aria-describedby="deathMessage">
+  <section class="death-panel">
+    <div class="death-mark" aria-hidden="true">✕</div>
+    <h2 id="deathTitle">Personagem morto</h2>
+    <p id="deathMessage">Para continuar Jogando, reative a ficha abaixo.</p>
+    <button type="button" class="danger" onclick="toggleDead()">Recriar ficha</button>
+  </section>
+</div>
+
+<div class="modal-backdrop" id="clearModal" hidden>
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="clearModalTitle" aria-describedby="clearModalMessage">
+    <h2 id="clearModalTitle">AVISO!</h2>
+    <p id="clearModalMessage">Tem certeza de que deseja apagar todos os dados desta ficha? Esta ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button type="button" onclick="closeClearModal()">Cancelar</button>
+      <button type="button" class="danger" onclick="confirmNewSheet()">Apagar ficha</button>
+    </div>
+  </section>
+</div>
 
 <script>
 const A = [
@@ -298,10 +662,112 @@ const T = [
 ["Segredo","sou um infiltrado da lei"],["Segredo","matei alguém importante"],["Segredo","tenho algo contagioso"],["Segredo","tenho uma grande dívida"],["Segredo","tenho um tesouro comigo"],["Segredo","sou de uma família rica"],
 ["Dever","com a família"],["Dever","com Deus"],["Dever","com meu cavalo"],["Dever","pelos meus filhos"],["Dever","com a lei"],["Dever","da minha gangue"]
 ];
+const DICE_TABLES={
+  criticalSuccess:[
+    "Dobro do Dano: o resultado final do seu dano é multiplicado por 2.",
+    "Dança Maluca: o inimigo perde seu próximo turno no combate.",
+    "Desarmar: o inimigo não pode mais atirar com aquela arma.",
+    "Vantagem Moral: +1 para ataques até o fim do combate.",
+    "Vantagem Tática: +1 ação no seu turno até o fim do combate.",
+    "Marca da Vingança: o inimigo foge mas jura vingança contra você."
+  ],
+  criticalFailure:[
+    "Seu ataque acerta um aliado ou uma pessoa inocente.",
+    "Sua arma quebra e no caso de porrada, o dano é anulado.",
+    "Guarda aberta: +1 para os inimigos contra você até o fim do combate.",
+    "Pressão: -1 no ataque contra os inimigos até o fim do combate.",
+    "Você está abatida e perde seu próximo turno para se recompor.",
+    "Você cai... igual bosta. E perde duas ações para levantar."
+  ],
+  drunkenness:[
+    "Você chora tal qual um bebê.",
+    "Você quer brigar.",
+    "Você quer se casar.",
+    "Você paga cerveja para todo o saloon.",
+    "Faz amizade eterna com algum objeto.",
+    "Fica com ódio absurdo do cavalo mais perto.",
+    "Você aposta alguma coisa importante.",
+    "Precisa caçar um pássaro.",
+    "Enxerga algo sobrenatural.",
+    "Precisa falar com o Xerife.",
+    "Pelo resto da noite você é uma galinha."
+  ]
+};
+const LEVEL_BONUSES={
+  1:{title:"Bônus iniciais",items:["4 pontos de atributo para distribuir.","5 pontos-base de Antecedente.","2 habilidades iniciais.","6 PV máximos antes dos bônus de Físico."]},
+  2:{items:["+1d6 PV máximos.","+1 ponto de Antecedente."]},
+  3:{items:["+1 ponto de atributo.","+1 habilidade."]},
+  4:{items:["+1 ponto de atributo.","+1 ponto de Antecedente."]},
+  5:{items:["+1d6 PV máximos.","+1 ponto de atributo."]},
+  6:{items:["+1d6 PV máximos.","+1 ponto de atributo.","+1 habilidade.","+1 ponto de Antecedente."]}
+};
+function levelBonusCount(level,bonus){
+  let total=0;
+  for(let current=2;current<=level;current++){
+    if(LEVEL_BONUSES[current].items.includes(bonus))total++;
+  }
+  return total;
+}
+function updateLevelBonuses(){
+  const level=Math.min(6,Math.max(1,+val("nivel")||1));
+  const container=document.getElementById("levelBonuses");
+  container.replaceChildren();
+  for(let current=1;current<=level;current++){
+    const data=LEVEL_BONUSES[current];
+    const card=document.createElement("article");
+    card.className=`level-bonus${current===level?" is-current":""}`;
+    const heading=document.createElement("h3");
+    const title=document.createElement("span");
+    title.textContent=data.title||`Nível ${current}`;
+    const status=document.createElement("small");
+    status.textContent=current===level?"Nível atual":"Já recebido";
+    heading.append(title,status);
+    const list=document.createElement("ul");
+    data.items.forEach(item=>{
+      const row=document.createElement("li");
+      const pvRoll=item==="+1d6 PV máximos."?window._levelPvBonusRolls?.[current]:null;
+      row.textContent=pvRoll?`+1d6 PV máximos (resultado: +${pvRoll}).`:item;
+      list.append(row);
+    });
+    card.append(heading,list);
+    container.append(card);
+  }
+}
+function attributeAllowance(level=Math.min(6,Math.max(1,+val("nivel")||1))){return 4+levelBonusCount(level,"+1 ponto de atributo.")}
+function antecedentAllowance(level=Math.min(6,Math.max(1,+val("nivel")||1))){return 5+(+val("intelecto")||0)+levelBonusCount(level,"+1 ponto de Antecedente.")}
+function skillAllowance(level=Math.min(6,Math.max(1,+val("nivel")||1))){return 2+levelBonusCount(level,"+1 habilidade.")}
 
 function el(k){return document.querySelector(`[data-k="${k}"]`)}
 function val(k){return el(k)?.value ?? ""}
 function set(k,v){if(el(k)) el(k).value=v}
+function clampNumberField(input,min,max){
+  if(!input || input.value==="")return;
+  const number=Number(input.value);
+  if(Number.isFinite(number))input.value=Math.min(max,Math.max(min,number));
+}
+function setDeadState(dead){
+  const wasDead=Boolean(window._sheetDead);
+  window._sheetDead=Boolean(dead);
+  const sheet=document.querySelector(".sheet");
+  const overlay=document.getElementById("deathOverlay");
+  const toggle=document.getElementById("deadToggle");
+  const playerName=val("jogador").trim();
+  document.getElementById("deathMessage").textContent=playerName
+    ? `Foi bom jogar com você, ${playerName}! Seu personagem está morto. Para jogar com um novo, aperte o botão abaixo`
+    : "Foi bom jogar com você! Seu personagem está morto. Para jogar com um novo, aperte o botão abaixo";
+  sheet.inert=window._sheetDead;
+  sheet.setAttribute("aria-hidden",String(window._sheetDead));
+  overlay.hidden=!window._sheetDead;
+  toggle.setAttribute("aria-pressed",String(window._sheetDead));
+  toggle.textContent=window._sheetDead?"Morto (ativado)":"Morto";
+  document.body.classList.toggle("is-dead",window._sheetDead);
+  if(window._sheetDead)overlay.querySelector("button").focus();
+  else if(wasDead)toggle.focus();
+}
+function toggleDead(){
+  setDeadState(!window._sheetDead);
+  localStorage.setItem("somDasSeisMorta",String(window._sheetDead));
+}
 function renderCharacterImage(src){
   window._characterImage=src;
   const box=document.getElementById("charImage");
@@ -326,13 +792,82 @@ function build(){
     <tr><td><b>${x[0]}</b><br><small>${x[1]}</small></td>
     <td><input class="ant" data-ant="${i}" type="number" min="0" max="5" value="0"></td>
     <td><input data-antnote="${i}" placeholder="Notas"></td></tr>`).join("");
-  document.getElementById("skills").innerHTML=S.map((x,i)=>`
-    <div class="skill"><label><input type="checkbox" data-skill="${i}">
-    <span><b>${x[0]}</b><p>${x[1]}</p></span></label></div>`).join("");
+  const groups=[
+    {title:"Combate",items:[0,1,3,4,5,6,7,9,14,16]},
+    {title:"Resistência e apoio",items:[2,10,11,13,19,20]},
+    {title:"Conhecimento e astúcia",items:[8,12,15,17,23]},
+    {title:"Montaria e exploração",items:[18,21,22]}
+  ];
+  document.getElementById("skills").innerHTML=groups.map((group,groupIndex)=>`
+    <details class="skill-group" ${groupIndex===0?"open":""}>
+      <summary><span class="skill-group-title">${group.title}</span><span class="skill-group-count">0/${group.items.length} escolhidas</span></summary>
+      <div class="skill-list">${group.items.map(i=>`
+        <div class="skill" data-skill-card="${i}"><label><input type="checkbox" data-skill="${i}">
+        <span><b>${S[i][0]}</b><p>${S[i][1]}</p></span></label></div>`).join("")}</div>
+    </details>`).join("");
+  renderDiceTable("criticalSuccessTable",DICE_TABLES.criticalSuccess,1);
+  renderDiceTable("criticalFailureTable",DICE_TABLES.criticalFailure,1);
+  renderDiceTable("drunkennessTable",DICE_TABLES.drunkenness,2);
+  updateSkillsCount();
+}
+function renderDiceTable(id,entries,firstValue){
+  const table=document.getElementById(id);
+  table.replaceChildren(...entries.map((text,index)=>{
+    const row=document.createElement("li");
+    row.dataset.roll=String(firstValue+index);
+    row.textContent=text;
+    return row;
+  }));
+}
+function highlightDiceResult(id,value){
+  const table=document.getElementById(id);
+  table.querySelectorAll("li").forEach(row=>row.classList.toggle("is-rolled",+row.dataset.roll===value));
+}
+function updateSkillsCount(){
+  const selected=[...document.querySelectorAll("[data-skill]:checked")].map(input=>+input.dataset.skill);
+  document.getElementById("skillsCount").textContent=`${selected.length}/${skillAllowance()} habilidades selecionadas`;
+  const panel=document.getElementById("selectedSkillsPanel");
+  const list=document.getElementById("selectedSkillsList");
+  const empty=document.getElementById("selectedSkillsEmpty");
+  panel.classList.toggle("is-empty",selected.length===0);
+  empty.hidden=selected.length>0;
+  list.hidden=selected.length===0;
+  list.replaceChildren(...selected.map(index=>{
+    const item=document.createElement("li");
+    const name=document.createElement("strong");
+    const description=document.createElement("span");
+    name.textContent=S[index][0];
+    description.textContent=S[index][1];
+    item.append(name,description);
+    return item;
+  }));
+  document.querySelectorAll(".skill-group").forEach(group=>{
+    const total=group.querySelectorAll("[data-skill]").length;
+    const checked=group.querySelectorAll("[data-skill]:checked").length;
+    group.querySelector(".skill-group-count").textContent=`${checked}/${total} escolhidas`;
+  });
+}
+function filterSkills(query){
+  const term=query.trim().toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+  document.querySelectorAll(".skill-group").forEach(group=>{
+    let matches=0;
+    group.querySelectorAll(".skill").forEach(card=>{
+      const text=card.textContent.toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+      const visible=!term||text.includes(term);
+      card.hidden=!visible;
+      if(visible)matches++;
+    });
+    group.hidden=matches===0;
+    if(term&&matches)group.open=true;
+  });
 }
 function recalc(){
   const f=+val("fisico")||0, c=+val("coragem")||0, a=+val("agilidade")||0, i=+val("intelecto")||0;
+  const level=Math.min(6,Math.max(1,+val("nivel")||1));
+  const previousPvMax=+document.getElementById("pvMax").textContent||6;
+  const previousPvCurrent=+val("pvAtual")||0;
   document.getElementById("attrTotal").textContent=f+c+a+i;
+  document.getElementById("attrAllowance").textContent=attributeAllowance(level);
   document.getElementById("acoes").textContent=1+a;
   document.getElementById("iniciativa").textContent=1+c;
 
@@ -340,26 +875,74 @@ function recalc(){
   // O valor é rolado automaticamente quando o Físico muda.
   const oldF=window._lastFisico;
   if(oldF!==f || !window._pvRolled){
-    let total=6;
-    for(let n=0;n<f;n++) total += roll(6)+2;
+    let physicalTotal=6;
+    for(let n=0;n<f;n++) physicalTotal += roll(6)+2;
+    window._physicalPvTotal=physicalTotal;
     window._pvRolled=true; window._lastFisico=f;
-    document.getElementById("pvMax").textContent=total;
-    document.getElementById("pvFormula").textContent=`6 + ${f}×(1d6+2) • rolado automaticamente`;
-    set("pvAtual",total);
   }
-  const antBase=5+i;
+  window._levelPvBonusRolls=window._levelPvBonusRolls||{};
+  [2,5,6].filter(requiredLevel=>requiredLevel<=level).forEach(requiredLevel=>{
+    if(!window._levelPvBonusRolls[requiredLevel])window._levelPvBonusRolls[requiredLevel]=roll(6);
+  });
+  const levelPvBonus=Object.entries(window._levelPvBonusRolls)
+    .filter(([requiredLevel])=>+requiredLevel<=level)
+    .reduce((total,[,value])=>total+(+value||0),0);
+  const pvMax=window._physicalPvTotal+levelPvBonus;
+  document.getElementById("pvMax").textContent=pvMax;
+  const levelDice=levelBonusCount(level,"+1d6 PV máximos.");
+  document.getElementById("pvFormula").textContent=`Físico + ${levelDice}d6 de nível • automático`;
+  el("pvAtual").max=pvMax;
+  if(pvMax!==previousPvMax&&previousPvCurrent>=previousPvMax)set("pvAtual",pvMax);
+  else set("pvAtual",Math.min(previousPvCurrent,pvMax));
+  clampNumberField(el("pvAtual"),0,pvMax);
+  const antBase=antecedentAllowance(level);
   const used=[...document.querySelectorAll(".ant")].reduce((n,x)=>n+(+x.value||0),0);
   document.getElementById("antTotal").textContent=Math.max(0,antBase-used);
   document.getElementById("repValue").textContent=val("reputacao")||0;
+  updateLevelBonuses();
+  updateSkillsCount();
 }
 document.addEventListener("input",e=>{
-  if(e.target.classList.contains("attr") || e.target.classList.contains("ant") || e.target.dataset.k==="reputacao") recalc();
+  if(e.target.dataset.k==="nivel")clampNumberField(e.target,1,6);
+  if(e.target.classList.contains("attr") || e.target.classList.contains("ant"))clampNumberField(e.target,0,5);
+  if(e.target.dataset.k==="pvAtual")clampNumberField(e.target,0,+document.getElementById("pvMax").textContent||0);
+  if(e.target.classList.contains("attr") || e.target.classList.contains("ant") || e.target.dataset.k==="reputacao" || e.target.dataset.k==="nivel") recalc();
+});
+document.addEventListener("change",e=>{
+  if(!e.target.matches("[data-skill]"))return;
+  if(e.target.checked&&document.querySelectorAll("[data-skill]:checked").length>skillAllowance()){
+    e.target.checked=false;
+    showRoll(`Limite de habilidades neste nível: ${skillAllowance()}.`);
+  }
+  updateSkillsCount();
 });
 function roll(n){return Math.floor(Math.random()*n)+1}
-function rollD6(){showRoll(`1d6 = ${roll(6)}`)}
-function rollD3(){let r=roll(6);showRoll(`1d3 = ${r<=3?r-0: r-3}`)}
-function rollD66(){showRoll(`1d66 = ${roll(6)}${roll(6)}`)}
-function showRoll(t){document.getElementById("rollResult").textContent=t}
+function showRoll(t){document.getElementById("sheetStatus").textContent=t}
+function showDiceResult(t){document.getElementById("rollResult").textContent=t;showRoll(t)}
+function rollD6(){const result=roll(6);showDiceResult(`1d6 → ${result}`);return result}
+function rollD3(){const result=roll(3);showDiceResult(`1d3 → ${result}`);return result}
+function rollND6(count){
+  const dice=Array.from({length:count},()=>roll(6));
+  const total=dice.reduce((sum,result)=>sum+result,0);
+  showDiceResult(`${count}d6 → ${dice.join(" + ")} = ${total}`);
+  return {dice,total};
+}
+function roll2D6(){return rollND6(2)}
+function rollCritical(type){
+  const result=roll(6);
+  const success=type==="success";
+  const effect=DICE_TABLES[success?"criticalSuccess":"criticalFailure"][result-1];
+  highlightDiceResult(success?"criticalSuccessTable":"criticalFailureTable",result);
+  showDiceResult(`${success?"Acerto crítico":"Falha crítica"} (${result}): ${effect}`);
+  return {result,effect};
+}
+function rollDrunkenness(){
+  const {dice,total}=roll2D6();
+  const effect=DICE_TABLES.drunkenness[total-2];
+  highlightDiceResult("drunkennessTable",total);
+  showDiceResult(`Nível de porre (${dice[0]} + ${dice[1]} = ${total}): ${effect}`);
+  return {dice,total,effect};
+}
 function randomTormento(){
   const t=T[Math.floor(Math.random()*T.length)];
   set("tormentoTipo",t[0]);set("tormentoDetalhe",t[1]);
@@ -370,23 +953,37 @@ function collect(){
   document.querySelectorAll("[data-k]").forEach(x=>d[x.dataset.k]=x.value);
   d.antecedentes=[...document.querySelectorAll(".ant")].map((x,i)=>({nome:A[i][0],pontos:x.value,nota:document.querySelector(`[data-antnote="${i}"]`).value}));
   d.habilidades=[...document.querySelectorAll("[data-skill]")].filter(x=>x.checked).map(x=>+x.dataset.skill);
+  d.pvBonusRolls=window._levelPvBonusRolls||{};
+  d.physicalPvTotal=window._physicalPvTotal;
   return d;
 }
 function apply(d){
   window._pvRolled=false;
+  window._levelPvBonusRolls=d.pvBonusRolls||{};
   Object.entries(d).forEach(([k,v])=>{
-    if(k==="antecedentes"||k==="habilidades")return;
+    if(k==="antecedentes"||k==="habilidades"||k==="pvBonusRolls"||k==="physicalPvTotal")return;
+    if(k==="nivel")v=Math.min(6,Math.max(1,+v||1));
+    if(["fisico","intelecto","coragem","agilidade"].includes(k))v=Math.min(5,Math.max(0,+v||0));
     if(el(k))el(k).value=v;
   });
   (d.antecedentes||[]).forEach((x,i)=>{
     const p=document.querySelector(`[data-ant="${i}"]`),n=document.querySelector(`[data-antnote="${i}"]`);
-    if(p)p.value=x.pontos||0;if(n)n.value=x.nota||"";
+    if(p)p.value=Math.min(5,Math.max(0,+x.pontos||0));if(n)n.value=x.nota||"";
   });
+  if(Number.isFinite(+d.physicalPvTotal)){
+    window._physicalPvTotal=+d.physicalPvTotal;
+    window._lastFisico=+val("fisico")||0;
+    window._pvRolled=true;
+  }
   (d.habilidades||[]).forEach(i=>{const x=document.querySelector(`[data-skill="${i}"]`);if(x)x.checked=true});
   recalc();
+  if(d.pvAtual!==undefined)set("pvAtual",Math.min(+d.pvAtual||0,+document.getElementById("pvMax").textContent||0));
+  updateSkillsCount();
 }
 function saveSheet(){
-  localStorage.setItem("somDasSeisFicha",JSON.stringify(collect()));
+  const data=collect();data.morta=Boolean(window._sheetDead);
+  localStorage.setItem("somDasSeisFicha",JSON.stringify(data));
+  localStorage.setItem("somDasSeisMorta",String(window._sheetDead));
   if(window._characterImage) localStorage.setItem("somDasSeisImagem",window._characterImage);
   showRoll("Ficha salva neste navegador.");
 }
@@ -395,9 +992,45 @@ function loadSheet(){
   if(d)apply(d);
   const img=localStorage.getItem("somDasSeisImagem");
   if(img) renderCharacterImage(img);
+  const savedDead=localStorage.getItem("somDasSeisMorta");
+  setDeadState(savedDead===null?Boolean(d?.morta):savedDead==="true");
   showRoll(d?"Ficha carregada.":"Nenhuma ficha salva encontrada.");
 }
-function newSheet(){if(confirm("Limpar todos os dados desta ficha?")){localStorage.removeItem("somDasSeisFicha");localStorage.removeItem("somDasSeisImagem");location.reload()}}
+function newSheet(){document.getElementById("clearModal").hidden=false}
+function closeClearModal(){document.getElementById("clearModal").hidden=true}
+function confirmNewSheet(){localStorage.removeItem("somDasSeisFicha");localStorage.removeItem("somDasSeisImagem");localStorage.removeItem("somDasSeisMorta");location.reload()}
+
+function activateTab(tab,moveFocus=false){
+  const button=typeof tab==="string"?document.querySelector(`[data-tab="${tab}"]`):tab;
+  if(!button)return;
+  document.querySelectorAll(".sheet-tab").forEach(item=>{
+    const active=item===button;
+    item.classList.toggle("is-active",active);
+    item.setAttribute("aria-selected",String(active));
+    item.tabIndex=active?0:-1;
+  });
+  document.querySelectorAll(".tab-panel").forEach(panel=>{
+    panel.hidden=panel.id!==button.dataset.tab;
+  });
+  if(moveFocus)button.focus();
+}
+document.querySelector(".sheet-tabs").addEventListener("click",e=>{
+  const button=e.target.closest(".sheet-tab");
+  if(button)activateTab(button);
+});
+document.querySelector(".sheet-tabs").addEventListener("keydown",e=>{
+  if(!e.target.matches(".sheet-tab"))return;
+  const tabs=[...document.querySelectorAll(".sheet-tab")];
+  const index=tabs.indexOf(e.target);
+  let next=index;
+  if(e.key==="ArrowRight")next=(index+1)%tabs.length;
+  else if(e.key==="ArrowLeft")next=(index-1+tabs.length)%tabs.length;
+  else if(e.key==="Home")next=0;
+  else if(e.key==="End")next=tabs.length-1;
+  else return;
+  e.preventDefault();
+  activateTab(tabs[next],true);
+});
 
 build();recalc();loadSheet();
 </script>
