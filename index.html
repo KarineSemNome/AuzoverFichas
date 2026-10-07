@@ -110,6 +110,7 @@ textarea{min-height:85px;resize:vertical}
 .modal-actions{display:flex;justify-content:center;gap:10px;padding:0 18px 18px}
 footer{padding:15px;text-align:center;color:#665747;font-size:12px;border-top:2px solid var(--line)}
 @media print{
+  #accountGate,.character-manager{display:none!important}
   body{background:white}.app{padding:0}.sheet{box-shadow:none;border:0}
   .toolbar{display:none}button{display:none}.card{break-inside:avoid}
 }
@@ -224,9 +225,161 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#a67a3e;box-sh
 .weapon-option b{color:#8a5135;font-size:15px}
 .weapon-note{margin:10px 14px 13px;font-size:11px}
 .weapon-status{min-height:17px;margin:6px 0 0;color:#766858;font-size:11px}
+.campaign-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.account-gate{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:auto;padding:22px;background:radial-gradient(ellipse at 50% 0%,#66472f,#211814 70%);}
+.account-gate[hidden]{display:none}
+.app{display:none}
+body.is-authenticated .app{display:block}
+.account-gate-card{width:min(100%,440px);padding:30px;border:1px solid #aa8959;border-radius:16px;background:linear-gradient(145deg,#fffaf0,#eee0c6);box-shadow:0 28px 90px #0009;text-align:center}
+.account-brand-mark{display:grid;width:48px;height:48px;place-items:center;margin:0 auto 14px;border:1px solid #c19a5b;border-radius:50%;background:#4b3022;color:#f4d698;font-size:22px}
+.account-eyebrow{margin:0 0 10px;color:#85673f;font-size:10px;font-weight:bold;letter-spacing:1.8px}
+.account-gate-card h1{margin:0;color:#4b3022;font-size:clamp(23px,5vw,31px);letter-spacing:.2px}
+.account-gate-copy{margin:9px 0 22px;color:#74634e;font-size:13px;line-height:1.5}
+.account-gate-form{display:grid;gap:12px;text-align:left}
+.account-gate-form label{margin-bottom:5px}
+.account-gate-submit{width:100%;margin-top:4px;padding:13px;border-color:#3d251c;background:linear-gradient(145deg,#70432d,#43281e);color:#fff4df;font-size:13px}
+.account-gate-link,.account-gate-switch button{padding:3px;border:0;background:none;color:#74432b;font-size:12px;text-decoration:underline;box-shadow:none}
+.account-gate-link:hover,.account-gate-switch button:hover{transform:none;background:none;box-shadow:none}
+.account-gate-status{min-height:18px;margin:13px 0 0;color:#705d45;font-size:12px;line-height:1.45}
+.account-gate-status.is-error{color:#8b3026}
+.account-gate-status.is-success{color:#386044}
+.account-gate-switch{margin:12px 0 0;color:#74634e;font-size:12px}
+.account-gate-hidden{display:none!important}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.character-manager{display:grid;grid-template-columns:1fr;gap:8px;padding:12px 20px;border-bottom:1px solid #c6ae88;background:#f8f0e2}
+.character-manager[hidden]{display:none}
+.character-manager-intro{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#543b28}
+.character-manager-intro strong{font-size:12px;letter-spacing:.6px;text-transform:uppercase}
+.character-manager-intro span,.character-save-status{color:#766858;font-size:11px}
+.character-manager-controls{display:flex;gap:8px;align-items:center}
+.character-manager-controls select{min-width:0;flex:1}
+.character-manager-controls button{flex:0 0 auto;padding:9px 12px;font-size:11px}
+.character-manager-controls .character-create-button{background:linear-gradient(145deg,#70432d,#43281e);color:#fff4df;border-color:#3d251c}
+.character-manager-controls .character-delete-button{background:#f5e6dd;color:#7d3026;border-color:#c99b8f}
+.character-manager-controls .character-delete-button:disabled{opacity:.48;cursor:not-allowed;transform:none;box-shadow:none}
+.character-save-status{min-height:14px}
+@media(max-width:520px){.account-gate-card{padding:24px 18px}.character-manager{padding:10px}.character-manager-controls{display:grid;grid-template-columns:1fr 1fr}.character-manager-controls select{grid-column:1/-1;width:100%}.character-manager-controls button{width:100%}}
+.campaign-layout .card{min-width:0}
+.campaign-wide{grid-column:1/-1}
+.campaign-form{display:grid;gap:10px}
+.campaign-form .grid{gap:10px}
+.campaign-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.campaign-actions button{flex:1 1 auto}
+.campaign-status{min-height:20px;margin:8px 0 0;color:#735c40;font-size:12px;line-height:1.45}
+.campaign-status.is-error{color:#8b3026}
+.campaign-status.is-success{color:#386044}
+.campaign-user-bar,.campaign-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.campaign-user-bar{margin-bottom:12px;padding:11px 13px;border:1px solid #dfceb0;border-radius:7px;background:#f7efdf}
+.campaign-user-bar strong{color:#533b28}
+.campaign-user-bar span{color:#766858;font-size:12px}
+.campaign-profile{margin:0 0 16px;padding:12px;border:1px solid #dfceb0;border-radius:7px;background:#f7efdf}
+.campaign-profile label{margin-bottom:6px}
+.campaign-profile-row{display:flex;gap:8px}
+.campaign-profile-row button{flex:0 0 auto}
+@media(max-width:520px){.campaign-profile-row{flex-direction:column}}
+.campaign-code{display:flex;align-items:center;gap:8px;margin:10px 0;padding:12px;border:1px dashed #a98858;border-radius:8px;background:#fff8e8}
+.campaign-code strong{color:#4b3022;font:bold 20px Georgia,serif;letter-spacing:3px}
+.campaign-code button{margin-left:auto;padding:7px 10px;font-size:10px}
+.campaign-roster,.campaign-roll-feed{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.campaign-member,.campaign-roll-card{padding:11px 12px;border:1px solid #e3d5bd;border-radius:7px;background:#fffdf8}
+.campaign-member{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.campaign-member strong,.campaign-roll-card strong{color:#563b28}
+.campaign-member small,.campaign-roll-card small{color:#80715e;font-size:11px}
+.campaign-member-status{color:#806242;font-size:11px}
+.campaign-roll-card{display:grid;gap:5px}
+.campaign-roll-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.campaign-roll-values{color:#74402d;font-weight:bold;font-variant-numeric:tabular-nums}
+.campaign-roll-detail{color:#665747;font-size:12px;line-height:1.4}
+.campaign-character-data{max-height:420px;overflow:auto;margin:0;padding:14px;border:1px solid #dfceb0;border-radius:7px;background:#f7efdf;color:#49382a;font:12px/1.5 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.campaign-empty{padding:18px;border:1px dashed #d9c7a6;border-radius:7px;color:#847563;font-size:12px;text-align:center}
+.campaign-hidden{display:none!important}
+@media(max-width:700px){.campaign-layout{grid-template-columns:1fr}.campaign-wide{grid-column:auto}}
+.weapon-table-wrap{overflow-x:auto;padding:14px}
+.weapon-table{width:100%;min-width:760px;border-collapse:separate;border-spacing:0;border:1px solid #cdb88f;border-radius:8px;background:#fffaf1;overflow:hidden}
+.weapon-table th,.weapon-table td{padding:9px 10px;border-right:1px solid #dfd1b4;border-bottom:1px solid #dfd1b4;text-align:left;vertical-align:middle}
+.weapon-table th:last-child,.weapon-table td:last-child{border-right:0}
+.weapon-table tbody tr:last-child td{border-bottom:0}
+.weapon-table th{background:linear-gradient(100deg,#493020,#68432c);color:#fff4df;font-size:10px;letter-spacing:.9px;text-transform:uppercase;white-space:nowrap}
+.weapon-table td{color:#49382a;font-size:12px;line-height:1.35}
+.weapon-table tbody tr:nth-child(even){background:#f4ead8}
+.weapon-table tbody tr:hover{background:#efe0c5}
+.weapon-table td:first-child{font-weight:bold;white-space:nowrap}
+.weapon-table .weapon-cost{font-weight:bold;font-variant-numeric:tabular-nums;white-space:nowrap}
+.weapon-buy{padding:6px 9px;background:linear-gradient(180deg,#78402e,#5b3024);border-color:#542b21;color:#fff8ed;font-size:10px;white-space:nowrap}
+.shop-catalog-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:end;margin:14px 0}
+.shop-catalog-tools label{grid-column:1/-1;margin:0}
+.shop-catalog-count{padding:10px 12px;border:1px solid #ddc9a7;border-radius:6px;background:#fffaf1;color:#756858;font-size:11px;white-space:nowrap}
+.shop-category{margin:10px 0;border:1px solid #dfceb0;border-radius:8px;background:#fbf5e9;overflow:hidden}
+.shop-category summary{display:flex;align-items:center;gap:9px;padding:12px 14px;background:linear-gradient(100deg,#f0e3cb,#fbf5e9);color:#563b28;font-weight:bold;cursor:pointer;list-style:none}
+.shop-category summary::-webkit-details-marker{display:none}
+.shop-category summary::after{content:"＋";margin-left:auto;color:#8b6540;font-size:17px}
+.shop-category[open] summary::after{content:"−"}
+.shop-category summary small{color:#81725d;font:11px Georgia,serif}
+.shop-items-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:7px;padding:10px}
+.shop-entry{display:flex;min-width:0;align-items:center;gap:8px;padding:8px 9px;border:1px solid #e1d2b8;border-radius:6px;background:#fffdf8}
+.shop-entry:hover{border-color:#a97d45;background:#fffaf1}
+.shop-entry-info{display:flex;min-width:0;flex:1;flex-direction:column;gap:3px}
+.shop-entry-info strong{color:#49382a;font-size:11px;line-height:1.3}
+.shop-entry-info small{color:#80715e;font-size:10px;line-height:1.3}
+.shop-entry-action{flex:0 0 auto;padding:7px 8px;background:linear-gradient(180deg,#78402e,#5b3024);border-color:#542b21;color:#fff8ed;font-size:9px;white-space:nowrap}
+.shop-entry-action.service-action{background:linear-gradient(180deg,#725a38,#59452b);border-color:#493a25}
+.shop-empty{padding:15px;color:#81725d;font-size:12px;text-align:center}
 .supply-card .item-options{grid-template-columns:repeat(3,minmax(0,1fr))}
+.inventory-shop-content{display:grid;gap:18px;width:min(100%,1120px);align-self:center}
+.inventory-shop-content .supply-card{margin:0}
+.inventory-shop-content .arsenal-card{margin:0}
+.supply-card .arsenal-card{margin:14px 0}
 .supply-card > .custom-item-row{margin-top:15px}
+.money-ledger{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 15px;padding:13px 15px;border:1px solid #c4a46e;border-radius:9px;background:linear-gradient(120deg,#f4e8cc,#fff8e8);color:#5d452b}
+.money-ledger span{font-size:12px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase}
+.money-ledger strong{color:#68451e;font-size:24px;font-variant-numeric:tabular-nums}
+.money-control{min-width:0}
+.money-input-row{display:grid;grid-template-columns:minmax(70px,1fr) 40px 40px;gap:6px;align-items:center}
+.money-adjust-button{height:39px;padding:4px;border-radius:8px;color:#fffaf0;font:bold 21px Georgia,serif;box-shadow:0 2px 4px #25170c24}
+.money-gain{border-color:#426746;background:linear-gradient(145deg,#62865d,#3f6445)}
+.money-loss{border-color:#84392d;background:linear-gradient(145deg,#a34f3b,#743126)}
+.money-modal .money-modal-form{display:grid;gap:8px;padding:0 22px;text-align:left}
+.money-modal .money-modal-form label{margin:4px 0 0}
+.money-modal .money-modal-form input{width:100%}
+.money-adjustment-error{margin:2px 0;color:#8b3026;font-size:12px}
+.money-modal .modal-actions button:last-child{background:linear-gradient(145deg,#70432d,#43281e);color:#fff4df}
+.money-modal .modal-actions .money-confirm-gain{background:linear-gradient(145deg,#62865d,#3f6445);border-color:#35533a;color:#fffaf0}
+.money-modal .modal-actions .money-confirm-loss{background:linear-gradient(145deg,#a34f3b,#743126);border-color:#66281f;color:#fffaf0}
+.inventory-table-wrap{margin-top:12px;overflow-x:auto;border:1px solid #ddc9a7;border-radius:8px;background:#fffdf8}
+.inventory-category-list{display:grid;gap:10px;margin-top:12px}
+.inventory-category{border:1px solid #ddc9a7;border-radius:8px;background:#fffdf8;overflow:hidden}
+.inventory-category summary{display:flex;align-items:center;gap:9px;padding:11px 13px;background:linear-gradient(100deg,#eee0c6,#fbf5e9);color:#563b28;font-weight:bold;cursor:pointer;list-style:none}
+.inventory-category summary::-webkit-details-marker{display:none}
+.inventory-category summary::after{content:"＋";margin-left:auto;color:#8b6540;font-size:17px}
+.inventory-category[open] summary::after{content:"−"}
+.inventory-category summary small{color:#80715e;font:11px Georgia,serif}
+.inventory-category-items{padding:8px}
+.inventory-category-items .inventory-table-wrap{margin:0;border:0}
+.inventory-category-empty{padding:12px 14px;border-top:1px solid #eadcc3;color:#857762;font-size:11px;font-style:italic}
+.inventory-badge{display:inline-flex;align-items:center;gap:5px;margin-left:6px;padding:3px 7px;border:1px solid #e1d0b1;border-radius:999px;background:#f2e6d1;color:#765238;font-size:9px;font-weight:bold;text-transform:uppercase;vertical-align:middle}
+.inventory-table{width:100%;min-width:580px;border-collapse:collapse}
+.inventory-table th,.inventory-table td{padding:8px 10px;border-bottom:1px solid #eadcc3;text-align:left}
+.inventory-table th{background:#eee0c6;color:#62482e;font-size:10px;letter-spacing:.8px;text-transform:uppercase}
+.inventory-table tbody tr:last-child td{border-bottom:0}
+.inventory-table td{color:#49382a;font-size:12px}
+.inventory-table .inventory-quantity{width:76px;padding:6px;text-align:center}
+.inventory-table .inventory-price{font-variant-numeric:tabular-nums;white-space:nowrap}
+.inventory-table .inventory-equipped{width:20px;height:20px;accent-color:#68452f}
+.inventory-table .inventory-remove{padding:6px 9px;border-color:#85392d;background:#84382d;color:#fff8ed;font-size:10px}
+.inventory-empty{padding:18px!important;color:#857762!important;text-align:center!important;font-style:italic}
+.inventory-total{display:flex;justify-content:flex-end;gap:8px;padding:10px 12px;color:#69553d;font-size:12px}
+.inventory-total strong{color:#493020}
+.custom-item-row{grid-template-columns:minmax(0,1fr) 95px 135px auto}
+.custom-item-row label{grid-column:1/-1}
+.roll-result{display:grid;gap:10px;min-height:150px;place-content:center;margin-top:16px;padding:22px;background:radial-gradient(ellipse at top,#5a4130,#2d2019 70%);border:1px solid #785b39;border-radius:12px;color:#f5e4bd;text-align:center;box-shadow:inset 0 1px #ffffff15,0 8px 20px #30201420}
+.roll-result-label{color:#d8bd87;font-size:11px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase}
+.roll-result-dice{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
+.roll-die{display:grid;width:48px;height:48px;place-items:center;border:2px solid #d3b576;border-radius:12px;background:linear-gradient(145deg,#fff6df,#e3c98f);color:#402719;font:bold 26px Georgia,serif;box-shadow:0 4px 0 #17100b77;animation:die-pop .24s ease-out both}
+.roll-result-total{color:#fff8e6;font-size:clamp(19px,3vw,26px);font-weight:bold;font-variant-numeric:tabular-nums}
+.roll-result-detail{max-width:680px;margin:auto;color:#e2d2b8;font-size:13px;line-height:1.5}
+@keyframes die-pop{from{opacity:0;transform:translateY(-8px) rotate(-8deg)}to{opacity:1;transform:translateY(0) rotate(0)}}
 @media(max-width:800px){.equipment-basics{grid-template-columns:repeat(2,minmax(0,1fr))}.supply-card .item-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.shop-catalog-tools{grid-template-columns:1fr}.shop-catalog-tools label{grid-column:auto}.shop-catalog-count{justify-self:start}.shop-items-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.weapon-catalog{grid-template-columns:1fr}.equipment-drawer summary{align-items:flex-start;flex-wrap:wrap}.equipment-drawer summary small{flex:1 0 100%;margin:0}.equipment-drawer summary::after{position:absolute;right:27px}.equipment-basics{grid-template-columns:1fr}.supply-card .item-options{grid-template-columns:1fr}.weapon-options{grid-template-columns:1fr}}
 @media(max-width:520px){.item-options{grid-template-columns:1fr}.custom-item-row{grid-template-columns:1fr}.custom-item-row label{grid-column:auto}.inventory-label{align-items:flex-start;flex-direction:column;gap:3px}}
 .item-picker{margin:0 0 10px;padding:11px;border:1px solid #e4d4b8;border-radius:7px;background:#fbf5e9}
@@ -251,7 +404,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#a67a3e;box-sh
 .skill:hover{border-color:#c19a5b;transform:translateY(-1px)}
 .skill b{color:#78352a;letter-spacing:.25px}
 .skill p{font-size:13px;line-height:1.45}
-.roll-result{background:#34251d;border:1px solid #5a4030;border-radius:7px}
+.roll-result{background:radial-gradient(ellipse at top,#5a4130,#2d2019 70%);border:1px solid #785b39;border-radius:12px}
 footer{margin-top:4px;padding:18px;color:#766858;border-top:1px solid #c6ae88}
 @media(max-width:900px){.intro-grid{grid-template-columns:1fr}}
 @media(max-width:650px){
@@ -441,6 +594,23 @@ body.is-dead{overflow:hidden}
 </style>
 </head>
 <body>
+<section id="accountGate" class="account-gate" aria-labelledby="accountGateTitle">
+  <div class="account-gate-card">
+    <div class="account-brand-mark" aria-hidden="true">✦</div>
+    <p class="account-eyebrow">O SOM DAS SEIS • FICHA ONLINE</p>
+    <h1 id="accountGateTitle">Sua jornada começa aqui</h1>
+    <p id="accountGateDescription" class="account-gate-copy">Crie uma conta ou entre para criar e guardar suas personagens.</p>
+    <form id="accountGateForm" class="account-gate-form" onsubmit="event.preventDefault();submitAccountGate()">
+      <div id="accountGateNicknameField"><label for="accountGateNickname">Apelido público</label><input id="accountGateNickname" type="text" maxlength="32" autocomplete="nickname" placeholder="Ex.: Corvo Vermelho" required></div>
+      <div><label for="accountGateEmail">E-mail</label><input id="accountGateEmail" type="email" autocomplete="username" placeholder="voce@exemplo.com" required></div>
+      <div><label for="accountGatePassword">Senha</label><input id="accountGatePassword" type="password" minlength="6" autocomplete="new-password" placeholder="Pelo menos 6 caracteres" required></div>
+      <button id="accountGateSubmit" class="account-gate-submit" type="submit" disabled>Criar minha conta</button>
+    </form>
+    <button id="accountGateForgot" class="account-gate-link account-gate-hidden" type="button" onclick="resetAccountGatePassword()" disabled>Esqueci minha senha</button>
+    <p id="accountGateStatus" class="account-gate-status" role="status" aria-live="polite">Conectando com segurança…</p>
+    <p class="account-gate-switch"><span id="accountGateSwitchText">Já tem uma conta?</span> <button id="accountGateModeToggle" type="button" onclick="toggleAccountGateMode()" disabled>Entrar</button></p>
+  </div>
+</section>
 <div class="app"><div class="sheet">
 <header>
   <h1>O Som das Seis</h1>
@@ -448,20 +618,33 @@ body.is-dead{overflow:hidden}
 </header>
 <div class="toolbar">
   <button onclick="saveSheet()">Salvar ficha</button>
-  <button onclick="loadSheet()">Carregar ficha</button>
+  <button onclick="loadActiveCharacter()">Carregar ficha</button>
   <button onclick="window.print()">Imprimir / PDF</button>
   <button class="danger" onclick="newSheet()">Limpar ficha</button>
   <span id="sheetStatus" class="sheet-status" role="status" aria-live="polite">Ficha pronta.</span>
 </div>
+
+<section class="character-manager" id="characterManager" hidden>
+  <div class="character-manager-intro"><strong>Minhas personagens</strong><span id="characterLimitLabel">0 de 5 fichas</span></div>
+  <div class="character-manager-controls">
+    <label class="visually-hidden" for="characterSelect">Selecionar ficha</label>
+    <select id="characterSelect" aria-label="Selecionar ficha" onchange="switchCharacter(this.value)"><option value="">Nenhuma ficha</option></select>
+    <button type="button" class="character-create-button" id="createCharacterButton" onclick="createCharacter()">＋ Nova ficha</button>
+    <button type="button" class="character-delete-button" id="deleteCharacterButton" onclick="deleteCurrentCharacter()" disabled>Excluir</button>
+  </div>
+  <span id="characterSaveStatus" class="character-save-status" role="status" aria-live="polite">Entre para acessar suas fichas salvas.</span>
+</section>
 
 <div class="sheet-navigation">
 <nav class="sheet-tabs" role="tablist" aria-label="Seções da ficha">
   <button class="sheet-tab is-active" id="tab-character" type="button" role="tab" aria-selected="true" aria-controls="panel-character" tabindex="0" data-tab="panel-character">Personagem</button>
   <button class="sheet-tab" id="tab-progression" type="button" role="tab" aria-selected="false" aria-controls="panel-progression" tabindex="-1" data-tab="panel-progression">Progressão</button>
   <button class="sheet-tab" id="tab-adventure" type="button" role="tab" aria-selected="false" aria-controls="panel-adventure" tabindex="-1" data-tab="panel-adventure">Jornada</button>
+  <button class="sheet-tab" id="tab-inventory" type="button" role="tab" aria-selected="false" aria-controls="panel-inventory" tabindex="-1" data-tab="panel-inventory">Inventário &amp; Loja</button>
   <button class="sheet-tab" id="tab-journal" type="button" role="tab" aria-selected="false" aria-controls="panel-journal" tabindex="-1" data-tab="panel-journal">Diário</button>
   <button class="sheet-tab" id="tab-bonuses" type="button" role="tab" aria-selected="false" aria-controls="panel-bonuses" tabindex="-1" data-tab="panel-bonuses">Bônus</button>
   <button class="sheet-tab" id="tab-dice" type="button" role="tab" aria-selected="false" aria-controls="panel-dice" tabindex="-1" data-tab="panel-dice">Rolar Dados</button>
+  <button class="sheet-tab" id="tab-campaign" type="button" role="tab" aria-selected="false" aria-controls="panel-campaign" tabindex="-1" data-tab="panel-campaign">Campanha</button>
 </nav>
 <button id="deadToggle" class="dead-toggle" type="button" aria-pressed="false" onclick="toggleDead()">MORTO</button>
 </div>
@@ -474,9 +657,11 @@ body.is-dead{overflow:hidden}
   <button type="button" class="mobile-tab-option is-active" data-mobile-tab="panel-character" aria-current="page" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">♙</span>Personagem</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-progression" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">✦</span>Progressão</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-adventure" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">⚒</span>Jornada</button>
+  <button type="button" class="mobile-tab-option" data-mobile-tab="panel-inventory" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">▣</span>Inventário &amp; Loja</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-journal" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">✎</span>Diário</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-bonuses" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">★</span>Bônus</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-dice" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">⚄</span>Rolar dados</button>
+  <button type="button" class="mobile-tab-option" data-mobile-tab="panel-campaign" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">♜</span>Campanha</button>
 </nav>
 
 <main class="tab-content">
@@ -544,7 +729,7 @@ body.is-dead{overflow:hidden}
     <br>
     <div class="grid g2">
       <div><label>Defesa</label><input data-k="defesa" type="number" value="5"></div>
-      <div><label>Dinheiro ($)</label><input data-k="dinheiro" type="number" step="0.01" value="150"></div>
+      <div class="money-control"><label for="moneyInput">Dinheiro ($)</label><div class="money-input-row"><input id="moneyInput" data-k="dinheiro" type="number" min="0" step="0.01" value="150" oninput="updateInventoryMoney()"><button class="money-adjust-button money-gain" type="button" aria-label="Adicionar dinheiro" onclick="openMoneyAdjustment('gain')">＋</button><button class="money-adjust-button money-loss" type="button" aria-label="Remover dinheiro" onclick="openMoneyAdjustment('loss')">−</button></div></div>
     </div>
 </section>
   </div>
@@ -606,7 +791,7 @@ body.is-dead{overflow:hidden}
 </section>
 
 <section class="card equipment-card">
-  <h2>Armas &amp; armamento</h2>
+  <h2>Arsenal de armas</h2>
   <p class="notice equipment-intro">Registre seu arsenal e consulte as opções por tipo. Clique em uma arma para adicioná-la à ficha.</p>
   <div class="equipment-basics">
     <div><label>Armas da personagem</label><textarea id="weaponList" data-k="armas" placeholder="Selecione no arsenal abaixo ou escreva aqui..."></textarea></div>
@@ -615,67 +800,64 @@ body.is-dead{overflow:hidden}
   </div>
   <p class="weapon-status" id="weaponStatus" aria-live="polite">O arsenal mantém as armas da personagem em uma lista simples.</p>
   <details class="equipment-drawer">
-    <summary><span>📜 Arsenal do Velho Oeste</span><small>16 opções • armas de fogo e corpo a corpo</small></summary>
-    <div class="weapon-catalog">
-      <section class="weapon-group">
-        <h3>Armas de fogo</h3>
-        <div class="weapon-options">
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Carabina de repetição')">Carabina de repetição <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Garrucha')">Garrucha <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Revólver')">Revólver <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Espingarda')">Espingarda <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Espingarda de dois canos')">Espingarda de dois canos <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Metralhadora automática')">Metralhadora automática <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Rifle de precisão')">Rifle de precisão <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Rifle')">Rifle <b>＋</b></button>
-        </div>
-      </section>
-      <section class="weapon-group">
-        <h3>Corpo a corpo &amp; outras</h3>
-        <div class="weapon-options">
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Sabre')">Sabre <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Tomahawk')">Tomahawk <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Lança')">Lança <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Arco e flecha')">Arco e flecha <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Chicote')">Chicote <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Cachimbo montado')">Cachimbo montado <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Machado')">Machado <b>＋</b></button>
-          <button type="button" class="weapon-option" onclick="addWeaponToSheet('Desarmado')">Desarmado <b>＋</b></button>
-        </div>
-      </section>
+    <summary><span>📜 Arsenal do Velho Oeste</span><small>16 itens • custo, munição, recarga e dano</small></summary>
+    <div class="weapon-table-wrap">
+      <table class="weapon-table">
+        <thead><tr><th>Arma / equipamento</th><th>Custo</th><th>Munição</th><th>Recarga</th><th>Dano / efeito</th><th>Adicionar</th></tr></thead>
+        <tbody>
+          <tr><td>Coldre de munição</td><td class="weapon-cost">$4</td><td>—</td><td>—</td><td>Até 16 balas de rifle ou escopeta.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Coldre de munição',4,'','', 'Capacidade: até 16 balas de rifle ou escopeta')">＋ Comprar</button></td></tr>
+          <tr><td>Cinturão de revólver</td><td class="weapon-cost">$3</td><td>—</td><td>—</td><td>Até 24 balas de revólver.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Cinturão de revólver',3,'','', 'Capacidade: até 24 balas de revólver')">＋ Comprar</button></td></tr>
+          <tr><td>Revólver</td><td class="weapon-cost">$6</td><td>6 balas</td><td>2 ações</td><td>1d6 perto e longe.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Revólver',6,'6 balas','2 ações','Dano: 1d6 perto e longe')">＋ Comprar</button></td></tr>
+          <tr><td>Espingarda</td><td class="weapon-cost">$20</td><td>9 balas</td><td>2 ações</td><td>2d6+3 perto e longe.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Espingarda',20,'9 balas','2 ações','Dano: 2d6+3 perto e longe')">＋ Comprar</button></td></tr>
+          <tr><td>Escopeta</td><td class="weapon-cost">$4</td><td>2 balas</td><td>3 ações</td><td>2d6 perto; 1d6 longe.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Escopeta',4,'2 balas','3 ações','Dano: 2d6 perto; 1d6 longe')">＋ Comprar</button></td></tr>
+          <tr><td>Metralhadora montada</td><td class="weapon-cost">$5.000</td><td>1 saraivada</td><td>1 turno</td><td>3d6 em área.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Metralhadora montada',5000,'1 saraivada','1 turno','Dano: 3d6 em área')">＋ Comprar</button></td></tr>
+          <tr><td>Rifle de precisão</td><td class="weapon-cost">$30</td><td>1 bala</td><td>1 ação</td><td>2d6+3; +2 para acertar de perto.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Rifle de precisão',30,'1 bala','1 ação','Dano: 2d6+3; +2 para acertar de perto')">＋ Comprar</button></td></tr>
+          <tr><td>Faca</td><td class="weapon-cost">$2</td><td>—</td><td>—</td><td>1d6.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Faca',2,'','','Dano: 1d6')">＋ Comprar</button></td></tr>
+          <tr><td>Sabre</td><td class="weapon-cost">$5</td><td>—</td><td>—</td><td>1d6.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Sabre',5,'','','Dano: 1d6')">＋ Comprar</button></td></tr>
+          <tr><td>Tomahawk</td><td class="weapon-cost">$1</td><td>—</td><td>—</td><td>1d6+1.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Tomahawk',1,'','','Dano: 1d6+1')">＋ Comprar</button></td></tr>
+          <tr><td>Lança</td><td class="weapon-cost">$4</td><td>—</td><td>—</td><td>1d6+2.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Lança',4,'','','Dano: 1d6+2')">＋ Comprar</button></td></tr>
+          <tr><td>Arco e flecha</td><td class="weapon-cost">$5</td><td>—</td><td>—</td><td>1d6.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Arco e flecha',5,'','','Dano: 1d6')">＋ Comprar</button></td></tr>
+          <tr><td>Chicote</td><td class="weapon-cost">$5</td><td>—</td><td>—</td><td>1d6+1.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Chicote',5,'','','Dano: 1d6+1')">＋ Comprar</button></td></tr>
+          <tr><td>Canhão montado</td><td class="weapon-cost">$2.000</td><td>1 bala</td><td>1 turno</td><td>5d6 em área.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Canhão montado',2000,'1 bala','1 turno','Dano: 5d6 em área')">＋ Comprar</button></td></tr>
+          <tr><td>Molotov</td><td class="weapon-cost">$2</td><td>—</td><td>—</td><td>3d6 em área.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Molotov',2,'','','Dano: 3d6 em área')">＋ Comprar</button></td></tr>
+          <tr><td>Dinamite</td><td class="weapon-cost">$3</td><td>—</td><td>—</td><td>4d6 em área.</td><td><button class="weapon-buy" type="button" onclick="addWeaponToSheet('Dinamite',3,'','','Dano: 4d6 em área')">＋ Comprar</button></td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="notice weapon-note">Preços, munição, ações de recarga e dano podem ser anotados junto ao nome da arma na lista acima.</p>
+    <p class="notice weapon-note">Ao comprar, o custo é descontado do dinheiro. A arma e seus dados de dano são registrados na ficha; munição e recarga também aparecem nas anotações.</p>
   </details>
 </section>
 
 <section class="card supply-card">
-  <h2>Itens &amp; suprimentos</h2>
+  <h2>Inventário &amp; Loja</h2>
   <div class="equipment-heading">
     <div><label>Catálogo de viagem</label><p>Adicione suprimentos ou registre qualquer outro item.</p></div>
     <span class="catalog-stamp">BOTICA &amp; ARMAZÉM</span>
   </div>
-  <div class="item-picker" aria-label="Catálogo de itens">
-    <h3 class="item-category-title"><span aria-hidden="true">✦</span> Remédios &amp; cuidados</h3>
-    <div class="item-options">
-      <button class="item-option" type="button" onclick="addSuggestedItem('Unguento para dor — $15')"><span class="item-icon" aria-hidden="true">✚</span><span class="item-copy"><strong>Unguento para dor</strong><small>Alívio para ferimentos • $15</small></span><b>＋</b></button>
-      <button class="item-option" type="button" onclick="addSuggestedItem('Antídoto para venenos — $30')"><span class="item-icon" aria-hidden="true">⚕</span><span class="item-copy"><strong>Antídoto para venenos</strong><small>Proteção contra venenos • $30</small></span><b>＋</b></button>
-      <button class="item-option" type="button" onclick="addSuggestedItem('Pomada para cavalos — $25')"><span class="item-icon" aria-hidden="true">♞</span><span class="item-copy"><strong>Pomada para cavalos</strong><small>Cuidado para montarias • $25</small></span><b>＋</b></button>
-    </div>
-    <h3 class="item-category-title"><span aria-hidden="true">✦</span> Tônicos &amp; extratos</h3>
-    <div class="item-options">
-      <button class="item-option" type="button" onclick="addSuggestedItem('Neigeline — tônico capilar')"><span class="item-icon" aria-hidden="true">❧</span><span class="item-copy"><strong>Neigeline</strong><small>Tônico capilar</small></span><b>＋</b></button>
-      <button class="item-option" type="button" onclick="addSuggestedItem('Extrato de Coleman — vinho de malte')"><span class="item-icon" aria-hidden="true">◉</span><span class="item-copy"><strong>Extrato de Coleman</strong><small>Vinho de malte</small></span><b>＋</b></button>
-      <button class="item-option" type="button" onclick="addSuggestedItem('Produto anunciado — $10 (nome cortado na imagem)')"><span class="item-icon" aria-hidden="true">$</span><span class="item-copy"><strong>Produto anunciado</strong><small>Preço visível: $10 • nome cortado</small></span><b>＋</b></button>
-    </div>
+  <div class="shop-catalog-tools">
+    <label for="shopSearch">Buscar no catálogo</label>
+    <input id="shopSearch" type="search" placeholder="Ex.: café, cavalo, médico..." oninput="renderShopCatalog(this.value)">
+    <span id="shopCatalogCount" class="shop-catalog-count" aria-live="polite">0 itens</span>
   </div>
+  <div id="shopCatalog" aria-label="Catálogo de itens, serviços e transporte"></div>
+  <section class="card equipment-card arsenal-card">
+    <h2>Arsenal de armas</h2>
+    <p class="notice equipment-intro">Consulte as estatísticas e compre armas diretamente para a categoria Armas do inventário.</p>
+  </section>
   <div class="custom-item-row">
-    <label for="customSheetItem">＋ Outro item</label>
-    <input id="customSheetItem" type="text" placeholder="Ex.: cantil, corda, munição..." onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomItem()}">
+    <label for="customSheetItem">＋ Adicionar item personalizado</label>
+    <input id="customSheetItem" type="text" placeholder="Nome do item" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomItem()}">
+    <input id="customItemPrice" type="number" min="0" step="0.01" value="0" aria-label="Preço unitário" title="Preço unitário" placeholder="Preço">
+    <select id="customItemCategory" aria-label="Categoria do item">
+      <option value="use">Itens de uso</option><option value="weapons">Armas</option><option value="clothing">Roupas</option><option value="ammo">Munição</option>
+    </select>
     <button type="button" onclick="addCustomItem()">Adicionar</button>
   </div>
-  <p class="item-status" id="itemStatus" aria-live="polite">Os itens escolhidos serão adicionados à lista abaixo.</p>
-  <label class="inventory-label" for="sheetItems">Inventário da personagem <span>Edite ou remova as linhas livremente.</span></label>
-  <textarea id="sheetItems" data-k="itens" placeholder="Seu inventário aparecerá aqui..."></textarea>
+  <p class="item-status" id="itemStatus" aria-live="polite">Compras descontam o saldo; diminuir quantidade ou remover representa consumo/perda e não devolve dinheiro.</p>
+  <div class="money-ledger"><span>Dinheiro disponível</span><strong id="inventoryMoney">$ 0,00</strong></div>
+  <label class="inventory-label">Inventário da personagem <span>O custo dos itens é descontado automaticamente do dinheiro.</span></label>
+  <div id="inventorySections" class="inventory-category-list" aria-label="Inventário separado por categoria"></div>
+  <p class="inventory-total"><span>Total de itens:</span><strong id="inventoryCount">0</strong></p>
 </section>
 
 <section class="card">
@@ -692,6 +874,10 @@ body.is-dead{overflow:hidden}
 </section>
 
  </section>
+
+<section class="tab-panel" id="panel-inventory" role="tabpanel" aria-labelledby="tab-inventory" hidden>
+  <div id="inventoryShopContent" class="inventory-shop-content"></div>
+</section>
 
 <section class="tab-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" hidden>
 <section class="card">
@@ -725,7 +911,11 @@ body.is-dead{overflow:hidden}
       <button type="button" onclick="rollND6(4)">Rolar 4d6</button>
       <button type="button" onclick="rollND6(5)">Rolar 5d6</button>
     </div>
-    <div id="rollResult" class="roll-result" role="status" aria-live="polite">Escolha uma rolagem.</div>
+    <div id="rollResult" class="roll-result" role="status" aria-live="polite">
+      <span class="roll-result-label">Aguardando rolagem</span>
+      <strong class="roll-result-total">Escolha uma rolagem</strong>
+      <span class="roll-result-detail">Seus dados e resultados aparecerão aqui.</span>
+    </div>
   </section>
   <section class="grid g2 critical-tables">
     <article class="card dice-table-card">
@@ -744,6 +934,75 @@ body.is-dead{overflow:hidden}
     <p class="notice">Role dois d6, some os resultados e consulte o efeito correspondente.</p>
     <button type="button" class="roll-table-button" onclick="rollDrunkenness()">Rolar nível de porre</button>
     <ol id="drunkennessTable" class="dice-table" start="2"></ol>
+  </section>
+</section>
+
+<section class="tab-panel" id="panel-campaign" role="tabpanel" aria-labelledby="tab-campaign" hidden>
+  <section class="campaign-layout">
+    <article class="card campaign-wide">
+      <h2>Mesa de campanha</h2>
+      <p class="notice">Entre com sua conta para criar uma mesa, convidar jogadores por código e acompanhar as rolagens da sessão em tempo real. As contas e campanhas ficam protegidas pelo Firebase.</p>
+      <div id="campaignAuthPanel" class="campaign-form">
+        <div><label for="campaignNickname">Apelido que aparecerá na mesa</label><input id="campaignNickname" maxlength="32" autocomplete="nickname" placeholder="Ex.: Corvo Vermelho"></div>
+        <div class="grid g2">
+          <div><label for="campaignEmail">E-mail</label><input id="campaignEmail" type="email" autocomplete="username" placeholder="voce@exemplo.com"></div>
+          <div><label for="campaignPassword">Senha</label><input id="campaignPassword" type="password" autocomplete="current-password" placeholder="Sua senha"></div>
+        </div>
+        <div class="campaign-actions">
+          <button type="button" onclick="campaignSignIn()">Entrar</button>
+          <button type="button" onclick="campaignSignUp()">Criar conta</button>
+          <button type="button" onclick="campaignResetPassword()">Esqueci minha senha</button>
+        </div>
+      </div>
+      <div id="campaignUserPanel" class="campaign-hidden">
+        <div class="campaign-user-bar"><div><strong id="campaignUserNickname">Conta conectada</strong><br><span id="campaignCloudStatus">Conectando ao Firestore…</span></div><button type="button" onclick="campaignSignOut()">Sair</button></div>
+        <div class="campaign-profile">
+          <label for="campaignProfileNickname">Seu apelido na mesa</label>
+          <div class="campaign-profile-row"><input id="campaignProfileNickname" maxlength="32" autocomplete="nickname" placeholder="Como os outros verão você"><button type="button" onclick="saveCampaignNickname()">Salvar apelido</button></div>
+        </div>
+        <div id="campaignSavedListPanel" class="campaign-form campaign-hidden"><label for="campaignMyCampaigns">Minhas campanhas</label><select id="campaignMyCampaigns" onchange="openSavedCampaign(this.value)"><option value="">Selecione uma campanha…</option></select></div>
+        <div class="campaign-layout">
+          <section class="card">
+            <h2>Criar campanha</h2>
+            <label for="campaignName">Nome da campanha</label>
+            <input id="campaignName" maxlength="60" placeholder="Ex.: A trilha de Dusty Creek">
+            <div class="campaign-actions"><button type="button" onclick="createCampaign()">Criar mesa como mestre</button></div>
+          </section>
+          <section class="card">
+            <h2>Entrar numa mesa</h2>
+            <label for="campaignJoinCode">Código de convite</label>
+            <input id="campaignJoinCode" maxlength="8" autocomplete="off" placeholder="Ex.: A1B2C3" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')">
+            <div class="campaign-actions"><button type="button" onclick="joinCampaign()">Entrar como jogador</button></div>
+          </section>
+        </div>
+      </div>
+      <p id="campaignStatus" class="campaign-status" role="status" aria-live="polite"></p>
+    </article>
+
+    <article id="campaignCurrentPanel" class="card campaign-hidden">
+      <h2 id="campaignCurrentTitle">Campanha</h2>
+      <p id="campaignCurrentRole" class="notice"></p>
+      <div class="campaign-code"><span>CÓDIGO</span><strong id="campaignCurrentCode">------</strong><button type="button" onclick="copyCampaignCode()">Copiar</button></div>
+      <div class="campaign-actions"><button type="button" onclick="publishCharacterToCampaign()">Enviar ficha atual</button><button type="button" class="danger" onclick="leaveCampaign()">Sair da campanha</button></div>
+      <p id="campaignPublishStatus" class="campaign-status" role="status" aria-live="polite"></p>
+    </article>
+
+    <article id="campaignRosterPanel" class="card campaign-hidden">
+      <div class="campaign-heading"><h2>Personagens da mesa</h2><button type="button" onclick="refreshCampaignCharacters()">Atualizar</button></div>
+      <p class="notice">O mestre pode abrir o retrato salvo por cada jogador e visualizar suas rolagens.</p>
+      <ul id="campaignRoster" class="campaign-roster"><li class="campaign-empty">Carregando personagens…</li></ul>
+    </article>
+
+    <article id="campaignCharacterPreview" class="card campaign-wide campaign-hidden">
+      <div class="campaign-heading"><h2 id="campaignCharacterTitle">Ficha do jogador</h2><button type="button" onclick="closeCharacterPreview()">Fechar</button></div>
+      <pre id="campaignCharacterData" class="campaign-character-data"></pre>
+    </article>
+
+    <article id="campaignRollsPanel" class="card campaign-wide campaign-hidden">
+      <div class="campaign-heading"><h2>Rolagens da sessão</h2><span id="campaignRollCount" class="shop-catalog-count">0 rolagens</span></div>
+      <p class="notice">Os resultados aparecem para o mestre assim que os jogadores rolam os dados enquanto estão na mesa.</p>
+      <ol id="campaignRollFeed" class="campaign-roll-feed"><li class="campaign-empty">Nenhuma rolagem na sessão ainda.</li></ol>
+    </article>
   </section>
 </section>
 </main>
@@ -768,6 +1027,24 @@ body.is-dead{overflow:hidden}
       <button type="button" class="danger" onclick="confirmNewSheet()">Apagar ficha</button>
     </div>
   </section>
+</div>
+
+<div class="modal-backdrop" id="moneyModal" hidden>
+  <form class="modal money-modal" role="dialog" aria-modal="true" aria-labelledby="moneyModalTitle" aria-describedby="moneyModalDescription" onsubmit="event.preventDefault();confirmMoneyAdjustment()">
+    <h2 id="moneyModalTitle">Ajustar dinheiro</h2>
+    <p id="moneyModalDescription">Informe o valor e descreva o motivo da alteração.</p>
+    <div class="money-modal-form">
+      <label for="moneyAdjustmentAmount">Valor ($)</label>
+      <input id="moneyAdjustmentAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Ex.: 25,00" required>
+      <label for="moneyAdjustmentNote">Motivo</label>
+      <input id="moneyAdjustmentNote" type="text" maxlength="100" placeholder="Ex.: recompensa da missão">
+      <p id="moneyAdjustmentError" class="money-adjustment-error" role="alert" hidden></p>
+    </div>
+    <div class="modal-actions">
+      <button type="button" onclick="closeMoneyAdjustment()">Cancelar</button>
+      <button type="button" id="moneyAdjustmentConfirm" onclick="confirmMoneyAdjustment()">Confirmar</button>
+    </div>
+  </form>
 </div>
 
 <script>
@@ -924,6 +1201,7 @@ function setDeadState(dead){
 function toggleDead(){
   setDeadState(!window._sheetDead);
   localStorage.setItem("somDasSeisMorta",String(window._sheetDead));
+  window.queueActiveCharacterSave?.();
 }
 function renderCharacterImage(src){
   window._characterImage=src;
@@ -934,7 +1212,7 @@ function setCharacterImage(e){
   const file=e.target.files[0];
   if(!file)return;
   const reader=new FileReader();
-  reader.onload=()=>{renderCharacterImage(reader.result);localStorage.setItem("somDasSeisImagem",reader.result)};
+  reader.onload=()=>{renderCharacterImage(reader.result);localStorage.setItem("somDasSeisImagem",reader.result);window.queueActiveCharacterSave?.()};
   reader.readAsDataURL(file);
 }
 function removeCharacterImage(){
@@ -942,6 +1220,7 @@ function removeCharacterImage(){
   localStorage.removeItem("somDasSeisImagem");
   document.getElementById("charImage").innerHTML="<span>Nenhuma imagem selecionada</span>";
   document.getElementById("charFile").value="";
+  window.queueActiveCharacterSave?.();
 }
 
 function build(){
@@ -1063,25 +1342,38 @@ document.addEventListener("input",e=>{
   if(e.target.dataset.k==="nivel")clampNumberField(e.target,1,6);
   if(e.target.classList.contains("attr") || e.target.classList.contains("ant"))clampNumberField(e.target,0,5);
   if(e.target.dataset.k==="pvAtual")clampNumberField(e.target,0,+document.getElementById("pvMax").textContent||0);
+  if(e.target.id==="moneyInput")updateInventoryMoney();
   if(e.target.classList.contains("attr") || e.target.classList.contains("ant") || e.target.dataset.k==="reputacao" || e.target.dataset.k==="nivel") recalc();
+  window.queueActiveCharacterSave?.();
 });
 document.addEventListener("change",e=>{
-  if(!e.target.matches("[data-skill]"))return;
+  if(!e.target.matches("[data-skill]")){window.queueActiveCharacterSave?.();return}
   if(e.target.checked&&document.querySelectorAll("[data-skill]:checked").length>skillAllowance()){
     e.target.checked=false;
     showRoll(`Limite de habilidades neste nível: ${skillAllowance()}.`);
   }
   updateSkillsCount();
+  window.queueActiveCharacterSave?.();
 });
 function roll(n){return Math.floor(Math.random()*n)+1}
 function showRoll(t){document.getElementById("sheetStatus").textContent=t}
-function showDiceResult(t){document.getElementById("rollResult").textContent=t;showRoll(t)}
-function rollD6(){const result=roll(6);showDiceResult(`1d6 → ${result}`);return result}
-function rollD3(){const result=roll(3);showDiceResult(`1d3 → ${result}`);return result}
+function showDiceResult(title,dice,total,detail=""){
+  const box=document.getElementById("rollResult");box.replaceChildren();
+  const label=document.createElement("span");label.className="roll-result-label";label.textContent=title;
+  const diceRow=document.createElement("span");diceRow.className="roll-result-dice";
+  dice.forEach((value,index)=>{const die=document.createElement("span");die.className="roll-die";die.style.animationDelay=`${index*45}ms`;die.textContent=value;diceRow.append(die)});
+  const totalLabel=document.createElement("strong");totalLabel.className="roll-result-total";totalLabel.textContent=`Total: ${total}`;
+  box.append(label,diceRow,totalLabel);
+  if(detail){const extra=document.createElement("span");extra.className="roll-result-detail";extra.textContent=detail;box.append(extra)}
+  showRoll(`${title}: ${dice.join(" + ")} = ${total}${detail?` — ${detail}`:""}`);
+  window.dispatchEvent(new CustomEvent("sheet-roll",{detail:{title,dice,total,detail}}));
+}
+function rollD6(){const result=roll(6);showDiceResult("Rolagem de 1d6",[result],result);return result}
+function rollD3(){const result=roll(3);showDiceResult("Rolagem de 1d3",[result],result);return result}
 function rollND6(count){
   const dice=Array.from({length:count},()=>roll(6));
   const total=dice.reduce((sum,result)=>sum+result,0);
-  showDiceResult(`${count}d6 → ${dice.join(" + ")} = ${total}`);
+  showDiceResult(`Rolagem de ${count}d6`,dice,total);
   return {dice,total};
 }
 function roll2D6(){return rollND6(2)}
@@ -1090,57 +1382,275 @@ function rollCritical(type){
   const success=type==="success";
   const effect=DICE_TABLES[success?"criticalSuccess":"criticalFailure"][result-1];
   highlightDiceResult(success?"criticalSuccessTable":"criticalFailureTable",result);
-  showDiceResult(`${success?"Acerto crítico":"Falha crítica"} (${result}): ${effect}`);
+  showDiceResult(success?"Acerto crítico":"Falha crítica",[result],result,effect);
   return {result,effect};
 }
 function rollDrunkenness(){
   const {dice,total}=roll2D6();
   const effect=DICE_TABLES.drunkenness[total-2];
   highlightDiceResult("drunkennessTable",total);
-  showDiceResult(`Nível de porre (${dice[0]} + ${dice[1]} = ${total}): ${effect}`);
+  showDiceResult("Nível de porre • 2d6",dice,total,effect);
   return {dice,total,effect};
+}
+const SHOP_CATALOG=[
+  {category:"Botica & alimentação",inventoryCategory:"use",items:[
+    {name:"Café",price:.5},{name:"Bacon",price:.1},{name:"Refeição",price:.75},{name:"Biscoitos",price:.3},
+    {name:"Unguento para dor",price:15,description:"Alívio para ferimentos"},{name:"Antídoto para venenos",price:30,description:"Proteção contra venenos"},
+    {name:"Pomada para cavalos",price:25,description:"Cuidado para montarias"},{name:"Neigeline — tônico capilar",price:null,description:"Preço não indicado"},
+    {name:"Extrato de Coleman — vinho de malte",price:null,description:"Preço não indicado"}
+  ]},
+  {category:"Armazém & ferramentas",inventoryCategory:"use",items:[
+    {name:"Lanterna",price:.1},{name:"Martelo",price:2},{name:"Pregos (20 unidades)",price:1},{name:"Pá",price:7},{name:"Picareta",price:6},
+    {name:"Forcado",price:3},{name:"Foice",price:2},{name:"Sabão (barra)",price:.5},{name:"Escova",price:.5},{name:"Vassoura",price:10},
+    {name:"Balde",price:3},{name:"Corda (10 m)",price:10},{name:"Jornal",price:.25},{name:"Tônico capilar",price:10},{name:"Banjo",price:12}
+  ]},
+  {category:"Vestuário & lazer",inventoryCategory:"clothing",items:[
+    {name:"Casaco",price:5},{name:"Saia longa",price:3},{name:"Coroas",price:.5},{name:"Chapéu",price:3},{name:"Boina",price:2.5},
+    {name:"Lenço",price:1},{name:"Colete",price:3},{name:"Calças",price:4},{name:"Luvas",price:3},{name:"Meias",price:2},
+    {name:"Botas",price:3},{name:"Sapatos",price:3},{name:"Vestido",price:6},{name:"Corset",price:3},{name:"Roupas finas",price:12},
+    {name:"Perneiras",price:2},{name:"Pijamas",price:1},{name:"Poncho",price:3},{name:"Sombrero",price:4},{name:"Óculos",price:4},
+    {name:"Maquiagem",price:4},{name:"Roupa de gala",price:12},{name:"Sobretudo",price:8},{name:"Leque",price:.5},
+    {name:"Tabaco",price:.5},{name:"Cigarros",price:.25},{name:"Cerveja (garrafa)",price:1},{name:"Vinho (garrafa)",price:3},
+    {name:"Whisky (dose)",price:.5},{name:"Moonshine (garrafa)",price:4},{name:"Conhaque fino",price:50}
+  ]},
+  {category:"Estábulo & transporte",inventoryCategory:"use",items:[
+    {name:"Cavalo",range:[10,500],description:"Escolha o preço conforme o animal"},{name:"Carroça",price:60},{name:"Caravana",price:25},{name:"Mula",price:20},
+    {name:"Curral (semana)",price:10},{name:"Bilhete de trem",price:20},{name:"Sela",price:30},{name:"Bolsa de cavalo",price:8},
+    {name:"Rolos de armas",price:10},{name:"Ração (dia)",price:3},{name:"Canoa",price:10},{name:"Navio (bilhete)",price:150},{name:"Balsa (bilhete)",price:20}
+  ]},
+  {category:"Munição",inventoryCategory:"ammo",items:[
+    {name:"Munição para revólver",price:null,description:"Informe o preço da caixa de balas"},
+    {name:"Munição para espingarda",price:null,description:"Informe o preço da caixa"},
+    {name:"Munição para escopeta",price:null,description:"Informe o preço da caixa"},
+    {name:"Munição para rifle",price:null,description:"Informe o preço da caixa"},
+    {name:"Munição para metralhadora",price:null,description:"Informe o preço da saraivada"},
+    {name:"Flechas",price:null,description:"Informe o preço da aljava"}
+  ]},
+  {category:"Serviços",inventoryCategory:null,items:[
+    {name:"Telégrafo",price:1,service:true},{name:"Carta",price:2,service:true},{name:"Médico",price:6,service:true},{name:"Barbeiro",price:5,service:true},
+    {name:"Banho limpo",price:5,service:true},{name:"Banho usado",price:2,service:true},{name:"Hotel barato",price:10,service:true},{name:"Hotel caro",price:25,service:true},
+    {name:"Entrega (por kg)",price:2,service:true,unit:"kg"},{name:"Penhorista (item)",price:10,service:true},{name:"Pianista (música)",price:5,service:true},
+    {name:"Coveiro (corpo)",price:4,service:true},{name:"Caixão",price:3,service:true},{name:"Circo",price:2,service:true},{name:"Cinema",price:4,service:true},
+    {name:"Ferreiro",range:[3,20],service:true},{name:"Peleiro",price:10,service:true},{name:"Carpinteiro",price:25,service:true},
+    {name:"Chaveiro (chave)",price:20,service:true},{name:"Padre (enterro)",price:25,service:true}
+  ]}
+];
+function normalizeSearch(value){return value.toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function renderShopCatalog(query=""){
+  const host=document.getElementById("shopCatalog"),term=normalizeSearch(query.trim());
+  let count=0;host.replaceChildren();
+  SHOP_CATALOG.forEach(category=>{
+    const matches=category.items.filter(item=>!term||normalizeSearch(`${item.name} ${item.description||""} ${category.category}`).includes(term));
+    if(!matches.length)return;
+    count+=matches.length;
+    const section=document.createElement("details");section.className="shop-category";section.open=Boolean(term)||category.category==="Botica & alimentação";
+    const summary=document.createElement("summary"),title=document.createElement("span"),total=document.createElement("small"),grid=document.createElement("div");
+    title.textContent=category.category;total.textContent=`${matches.length} opções`;summary.append(title,total);grid.className="shop-items-grid";
+    matches.forEach(item=>{
+      const card=document.createElement("div"),info=document.createElement("span"),name=document.createElement("strong"),note=document.createElement("small"),action=document.createElement("button");
+      card.className="shop-entry";info.className="shop-entry-info";name.textContent=item.name;
+      note.textContent=item.range?`${item.service?"Serviço":"Preço"}: ${formatMoney(item.range[0])}–${formatMoney(item.range[1])}`:item.price===null?item.description||"Defina o preço ao adicionar":`${item.description?`${item.description} • `:""}${formatMoney(item.price)}`;
+      action.type="button";action.className=`shop-entry-action${item.service?" service-action":""}`;
+      if(item.range){action.textContent="Definir valor";action.addEventListener("click",()=>chooseCatalogRange(item))}
+      else if(item.price===null){action.textContent="Definir preço";action.addEventListener("click",()=>prepareCustomItem(item.name,0,null,category.inventoryCategory||"use"))}
+      else if(item.service){action.textContent="Pagar";action.addEventListener("click",()=>payForService(item.name,item.price,item.unit))}
+      else{action.textContent="＋ Adicionar";action.addEventListener("click",()=>addSuggestedItem(item.name,item.price,category.inventoryCategory||"use"))}
+      info.append(name,note);card.append(info,action);grid.append(card);
+    });
+    section.append(summary,grid);host.append(section);
+  });
+  document.getElementById("shopCatalogCount").textContent=`${count} ${count===1?"opção":"opções"}`;
+  if(!count){const empty=document.createElement("p");empty.className="shop-empty";empty.textContent="Nenhum item ou serviço encontrado.";host.append(empty)}
+}
+function prepareCustomItem(name,price=0,range=null,category="use"){
+  document.getElementById("customSheetItem").value=name;
+  document.getElementById("customItemPrice").value=price;
+  document.getElementById("customItemCategory").value=category;
+  window._customItemRange=range;
+  window._customItemCategory=category;
+  document.getElementById("itemStatus").textContent=range?`Escolha um preço entre ${formatMoney(range[0])} e ${formatMoney(range[1])}, depois adicione o item.`:"Informe o preço e adicione o item ao inventário.";
+  document.getElementById("customSheetItem").focus();
+}
+function chooseCatalogRange(item){
+  if(item.service){
+    const selected=window.prompt(`Informe o valor de ${item.name} (${formatMoney(item.range[0])} a ${formatMoney(item.range[1])}):`,String(item.range[0]));
+    if(selected===null)return;
+    const amount=Number(selected.replace(",","."));
+    if(!Number.isFinite(amount)||amount<item.range[0]||amount>item.range[1]){document.getElementById("itemStatus").textContent=`O valor precisa ficar entre ${formatMoney(item.range[0])} e ${formatMoney(item.range[1])}.`;return}
+    payForService(item.name,amount);return;
+  }
+  prepareCustomItem(item.name,item.range[0],item.range,item.inventoryCategory||"use");
+}
+function payForService(name,price,unit=""){
+  let quantity=1;
+  if(unit){const response=window.prompt(`Quantos ${unit} deseja pagar?`,"1");if(response===null)return false;quantity=Math.max(1,Math.floor(+response||0));}
+  const moneyInput=document.getElementById("moneyInput"),money=Math.max(0,+moneyInput.value||0),amount=Math.max(0,+price||0)*quantity;
+  if(amount>money){document.getElementById("itemStatus").textContent=`Dinheiro insuficiente para pagar ${name} (${formatMoney(amount)}).`;return false}
+  moneyInput.value=(money-amount).toFixed(2);updateInventoryMoney();
+  document.getElementById("itemStatus").textContent=`Serviço pago: ${name}${unit?` • ${quantity} ${unit}`:""} — ${formatMoney(amount)}.`;
+  window.queueActiveCharacterSave?.();
+  return true;
 }
 function randomTormento(){
   const t=T[Math.floor(Math.random()*T.length)];
   set("tormentoTipo",t[0]);set("tormentoDetalhe",t[1]);
   document.getElementById("tormentoSorteado").textContent="Sorteado: "+t[0]+" "+t[1]+".";
 }
-function addSuggestedItem(item){addItemToSheet(item)}
-function addWeaponToSheet(weapon){
-  const field=document.getElementById("weaponList");
-  const weapons=field.value.split("\n").map(value=>value.trim()).filter(Boolean);
-  const status=document.getElementById("weaponStatus");
-  if(weapons.some(value=>value.toLocaleLowerCase("pt-BR")===weapon.toLocaleLowerCase("pt-BR"))){
-    status.textContent=`${weapon} já está no arsenal.`;
-    return false;
-  }
-  field.value=[...weapons,weapon].join("\n");
-  status.textContent=`${weapon} adicionado ao arsenal.`;
-  field.dispatchEvent(new Event("input",{bubbles:true}));
+window._inventory=[];
+function formatMoney(amount){return "$ "+(Number(amount)||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function updateInventoryMoney(){
+  const money=+document.getElementById("moneyInput").value||0;
+  document.getElementById("inventoryMoney").textContent=formatMoney(money);
+}
+let moneyAdjustmentMode="gain";
+function openMoneyAdjustment(mode){
+  moneyAdjustmentMode=mode==="loss"?"loss":"gain";
+  const modal=document.getElementById("moneyModal"),title=document.getElementById("moneyModalTitle"),confirm=document.getElementById("moneyAdjustmentConfirm"),amount=document.getElementById("moneyAdjustmentAmount"),error=document.getElementById("moneyAdjustmentError");
+  title.textContent=moneyAdjustmentMode==="gain"?"Adicionar dinheiro":"Remover dinheiro";
+  document.getElementById("moneyModalDescription").textContent=moneyAdjustmentMode==="gain"?"Informe quanto a personagem ganhou e de onde veio o dinheiro.":"Informe quanto a personagem perdeu ou gastou e o motivo.";
+  confirm.textContent=moneyAdjustmentMode==="gain"?"Adicionar ao saldo":"Descontar do saldo";
+  confirm.className=moneyAdjustmentMode==="gain"?"money-confirm-gain":"money-confirm-loss";
+  amount.value="";document.getElementById("moneyAdjustmentNote").value="";error.hidden=true;error.textContent="";
+  modal.hidden=false;amount.focus();
+}
+function closeMoneyAdjustment(){document.getElementById("moneyModal").hidden=true}
+function confirmMoneyAdjustment(){
+  const amountField=document.getElementById("moneyAdjustmentAmount"),note=document.getElementById("moneyAdjustmentNote").value.trim(),error=document.getElementById("moneyAdjustmentError");
+  const amount=Number(amountField.value),moneyInput=document.getElementById("moneyInput"),current=Math.max(0,Number(moneyInput.value)||0);
+  if(!Number.isFinite(amount)||amount<=0){error.textContent="Digite um valor maior que zero.";error.hidden=false;amountField.focus();return}
+  if(moneyAdjustmentMode==="loss"&&amount>current){error.textContent=`O saldo atual é ${formatMoney(current)}; o valor removido não pode ultrapassá-lo.`;error.hidden=false;amountField.focus();return}
+  const next=moneyAdjustmentMode==="gain"?current+amount:current-amount;
+  moneyInput.value=next.toFixed(2);updateInventoryMoney();closeMoneyAdjustment();
+  const transaction={type:moneyAdjustmentMode,amount,note,at:new Date().toISOString()};
+  window._moneyHistory=window._moneyHistory||[];window._moneyHistory.push(transaction);
+  showRoll(`${moneyAdjustmentMode==="gain"?"Dinheiro recebido":"Dinheiro perdido"}: ${formatMoney(amount)}${note?` • ${note}`:""}. Saldo: ${formatMoney(next)}.`);
+  window.queueActiveCharacterSave?.();
+}
+const INVENTORY_CATEGORIES={weapons:"Armas",clothing:"Roupas",use:"Itens de uso",ammo:"Munição"};
+function addSuggestedItem(item,price=0,category="use"){
+  category=INVENTORY_CATEGORIES[category]?category:"use";
+  const inventory=window._inventory;
+  const existing=inventory.find(entry=>entry.category===category&&entry.name.toLocaleLowerCase("pt-BR")===item.toLocaleLowerCase("pt-BR"));
+  const unitPrice=existing?existing.price:Math.max(0,+price||0);
+  const moneyInput=document.getElementById("moneyInput");
+  const money=Math.max(0,+moneyInput.value||0);
+  const status=document.getElementById("itemStatus");
+  if(unitPrice>money){status.textContent=`Dinheiro insuficiente para comprar ${item}.`;return false}
+  moneyInput.value=(money-unitPrice).toFixed(2);
+  if(existing)existing.quantity++;
+  else inventory.push({id:createInventoryId(),name:item,category,quantity:1,price:unitPrice,equipped:false});
+  renderInventory();
+  status.textContent=`${item} adicionado${unitPrice?` por ${formatMoney(unitPrice)}`:""}.`;
+  window.queueActiveCharacterSave?.();
   return true;
 }
+function createInventoryId(){return `item-${Date.now()}-${Math.random().toString(36).slice(2,8)}`}
 function addCustomItem(){
   const input=document.getElementById("customSheetItem");
   const item=input.value.trim();
+  const price=Math.max(0,+document.getElementById("customItemPrice").value||0);
   if(!item){input.focus();document.getElementById("itemStatus").textContent="Digite o nome do item para adicioná-lo.";return}
-  if(addItemToSheet(item))input.value="";
+  const range=window._customItemRange;
+  if(range&&(price<range[0]||price>range[1])){document.getElementById("itemStatus").textContent=`O valor de ${item} deve ficar entre ${formatMoney(range[0])} e ${formatMoney(range[1])}.`;return}
+  const category=window._customItemCategory||document.getElementById("customItemCategory").value||"use";
+  if(addSuggestedItem(item,price,category)){input.value="";window._customItemRange=null;window._customItemCategory=null}
 }
-function addItemToSheet(item){
-  const field=document.getElementById("sheetItems");
-  const items=field.value.split("\n").map(value=>value.trim()).filter(Boolean);
+function renderInventory(){
+  const host=document.getElementById("inventorySections");
+  const rows=window._inventory;
+  host.replaceChildren();
+  Object.entries(INVENTORY_CATEGORIES).forEach(([category,title])=>{
+    const entries=rows.filter(entry=>(entry.category||"use")===category),details=document.createElement("details"),summary=document.createElement("summary"),heading=document.createElement("span"),badge=document.createElement("small"),content=document.createElement("div");
+    details.className="inventory-category";details.open=entries.length>0;heading.textContent=title;badge.textContent=`${entries.reduce((total,entry)=>total+(+entry.quantity||0),0)} ${entries.reduce((total,entry)=>total+(+entry.quantity||0),0)===1?"item":"itens"}`;summary.append(heading,badge);content.className="inventory-category-items";
+    if(!entries.length){const empty=document.createElement("div");empty.className="inventory-category-empty";empty.textContent=`Nenhum item em ${title.toLocaleLowerCase("pt-BR")}.`;content.append(empty)}
+    else{
+      const wrap=document.createElement("div"),table=document.createElement("table"),thead=document.createElement("thead"),header=document.createElement("tr"),tbody=document.createElement("tbody");
+      wrap.className="inventory-table-wrap";table.className="inventory-table";
+      ["Item","Quantidade","Preço unit.","Equipado?","Remover"].forEach(label=>{const th=document.createElement("th");th.textContent=label;header.append(th)});thead.append(header);
+      entries.forEach(entry=>{
+        const tr=document.createElement("tr"),name=document.createElement("td"),quantityCell=document.createElement("td"),price=document.createElement("td"),equippedCell=document.createElement("td"),removeCell=document.createElement("td");
+        name.textContent=entry.name;if(entry.notes){const note=document.createElement("small");note.className="inventory-item-note";note.textContent=entry.notes;name.append(document.createElement("br"),note)}
+        const quantity=document.createElement("input");quantity.className="inventory-quantity";quantity.type="number";quantity.min="1";quantity.step="1";quantity.value=entry.quantity;quantity.setAttribute("aria-label",`Quantidade de ${entry.name}`);quantity.addEventListener("change",()=>updateInventoryQuantity(entry.id,quantity.value,quantity));quantityCell.append(quantity);
+        price.className="inventory-price";price.textContent=formatMoney(entry.price);
+        const equipped=document.createElement("input");equipped.className="inventory-equipped";equipped.type="checkbox";equipped.checked=Boolean(entry.equipped);equipped.setAttribute("aria-label",`${entry.equipped?"Desequipar":"Equipar"} ${entry.name}`);equipped.addEventListener("change",()=>{entry.equipped=equipped.checked;window.queueActiveCharacterSave?.()});equippedCell.append(equipped);
+        const remove=document.createElement("button");remove.className="inventory-remove";remove.type="button";remove.textContent="Remover";remove.setAttribute("aria-label",`Remover ${entry.name}`);remove.addEventListener("click",()=>removeInventoryItem(entry.id));removeCell.append(remove);
+        tr.append(name,quantityCell,price,equippedCell,removeCell);tbody.append(tr);
+      });
+      table.append(thead,tbody);wrap.append(table);content.append(wrap);
+    }
+    details.append(summary,content);host.append(details);
+  });
+  document.getElementById("inventoryCount").textContent=rows.reduce((total,entry)=>total+(+entry.quantity||0),0);
+  updateInventoryMoney();
+}
+function updateInventoryQuantity(id,value,field){
+  const entry=window._inventory.find(item=>item.id===id);if(!entry)return;
+  const next=Math.max(1,Math.floor(+value||1)),increase=next-entry.quantity;
+  const cost=increase*entry.price,moneyInput=document.getElementById("moneyInput"),money=Math.max(0,+moneyInput.value||0);
+  if(cost>money){field.value=entry.quantity;document.getElementById("itemStatus").textContent="Dinheiro insuficiente para aumentar essa quantidade.";updateInventoryMoney();return}
+  if(increase>0)moneyInput.value=(money-cost).toFixed(2);
+  entry.quantity=next;field.value=next;
+  window.queueActiveCharacterSave?.();
+  document.getElementById("inventoryCount").textContent=window._inventory.reduce((total,item)=>total+(+item.quantity||0),0);
+  updateInventoryMoney();
+  if(increase>0)document.getElementById("itemStatus").textContent=`${increase} unidade(s) de ${entry.name} comprada(s) por ${formatMoney(cost)}.`;
+}
+function removeInventoryItem(id){
+  const index=window._inventory.findIndex(item=>item.id===id);if(index<0)return;
+  const [removed]=window._inventory.splice(index,1);renderInventory();
+  document.getElementById("itemStatus").textContent=`${removed.name} removido do inventário, sem reembolso.`;
+  window.queueActiveCharacterSave?.();
+}
+function normalizeInventory(data){
+  const inventory=Array.isArray(data.inventario)?data.inventario.map(entry=>({id:entry.id||createInventoryId(),name:String(entry.name||"Item"),category:INVENTORY_CATEGORIES[entry.category]?entry.category:"use",quantity:Math.max(1,+entry.quantity||1),price:Math.max(0,+entry.price||0),equipped:Boolean(entry.equipped),notes:String(entry.notes||"")})):[];
+  const convertLines=(value,category)=>String(value||"").split("\n").map(line=>line.trim()).filter(Boolean).map(line=>{
+    const [rawName,...noteParts]=line.split(" — "),name=rawName.trim(),priceMatch=name.match(/\$\s*(\d+(?:[.,]\d+)?)/),price=priceMatch?+(priceMatch[1].replace(",",".")):0;
+    return{id:createInventoryId(),name:name.replace(/\s*\$\s*\d+(?:[.,]\d+)?/,""),category,quantity:1,price,equipped:false,notes:noteParts.join(" — ")};
+  });
+  const legacy=[...convertLines(data.armas,"weapons"),...convertLines(data.roupas,"clothing"),...convertLines(data.itens,"use")];
+  String(data.municao||"").split("\n").map(line=>line.trim()).filter(Boolean).forEach(line=>{
+    const loaded=line.match(/^(.+?):\s*(\d+)\s+([^;]+)(?:;\s*(.*))?$/);
+    if(loaded){
+      const weapon=loaded[1].trim(),ammoType=loaded[3].trim().replace(/s$/i,"");
+      legacy.push({id:createInventoryId(),name:`${ammoType.charAt(0).toLocaleUpperCase("pt-BR")}${ammoType.slice(1)} de ${weapon}`,category:"ammo",quantity:+loaded[2],price:0,equipped:false,notes:[`Anotação anterior de ${weapon}`,loaded[4]].filter(Boolean).join(" • ")});
+    }else legacy.push(...convertLines(line,"ammo"));
+  });
+  legacy.forEach(entry=>{
+    const key=entry.name.toLocaleLowerCase("pt-BR");
+    if(!inventory.some(existing=>existing.category===entry.category&&existing.name.toLocaleLowerCase("pt-BR")===key))inventory.push(entry);
+  });
+  return inventory;
+}
+function addWeaponToSheet(weapon,cost=0,ammo="",reload="",damage=""){
   const status=document.getElementById("itemStatus");
-  if(items.some(value=>value.toLocaleLowerCase("pt-BR")===item.toLocaleLowerCase("pt-BR"))){
-    status.textContent="Esse item já está na lista.";
+  if(window._inventory.some(entry=>entry.category==="weapons"&&entry.name.toLocaleLowerCase("pt-BR")===weapon.toLocaleLowerCase("pt-BR"))){
+    status.textContent=`${weapon} já está na categoria Armas; a compra não foi repetida.`;
     return false;
   }
-  field.value=[...items,item].join("\n");
-  status.textContent=`${item} adicionado à ficha.`;
-  field.dispatchEvent(new Event("input",{bubbles:true}));
+  if(!addSuggestedItem(weapon,cost,"weapons")){
+    status.textContent=`Dinheiro insuficiente para comprar ${weapon} por ${formatMoney(cost)}.`;return false;
+  }
+  const weaponEntry=window._inventory.find(entry=>entry.category==="weapons"&&entry.name.toLocaleLowerCase("pt-BR")==weapon.toLocaleLowerCase("pt-BR"));
+  if(weaponEntry)weaponEntry.notes=[damage,ammo?`Munição: ${ammo}`:"",reload?`Recarga: ${reload}`:""].filter(Boolean).join(" • ");
+  if(damage.startsWith("Capacidade:")&&weaponEntry)weaponEntry.notes=damage;
+  const ammoMatch=ammo.match(/(\d+)\s+(.+)/);
+  if(ammoMatch){
+    const ammoType=ammoMatch[2].replace(/s$/i,"");
+    const ammoName=`${ammoType.charAt(0).toLocaleUpperCase("pt-BR")}${ammoType.slice(1)} de ${weapon}`;
+    const existingAmmo=window._inventory.find(entry=>entry.category==="ammo"&&entry.name===ammoName);
+    if(existingAmmo)existingAmmo.quantity+=+ammoMatch[1];
+    else window._inventory.push({id:createInventoryId(),name:ammoName,category:"ammo",quantity:+ammoMatch[1],price:0,equipped:false,notes:`Carga inicial da compra de ${weapon}; já incluída no preço da arma.`});
+  }
+  renderInventory();
+  updateInventoryMoney();
+  status.textContent=`${weapon} comprado por ${formatMoney(cost)} e colocado em Armas${ammoMatch?"; munição inicial colocada em Munição":""}.`;
+  window.queueActiveCharacterSave?.();
   return true;
 }
 function collect(){
   const d={};
   document.querySelectorAll("[data-k]").forEach(x=>d[x.dataset.k]=x.value);
+  d.inventario=window._inventory;
   d.antecedentes=[...document.querySelectorAll(".ant")].map((x,i)=>({nome:A[i][0],pontos:x.value,nota:document.querySelector(`[data-antnote="${i}"]`).value}));
   d.habilidades=[...document.querySelectorAll("[data-skill]")].filter(x=>x.checked).map(x=>+x.dataset.skill);
   d.pvBonusRolls=window._levelPvBonusRolls||{};
@@ -1151,7 +1661,7 @@ function apply(d){
   window._pvRolled=false;
   window._levelPvBonusRolls=d.pvBonusRolls||{};
   Object.entries(d).forEach(([k,v])=>{
-    if(k==="antecedentes"||k==="habilidades"||k==="pvBonusRolls"||k==="physicalPvTotal")return;
+    if(k==="antecedentes"||k==="habilidades"||k==="pvBonusRolls"||k==="physicalPvTotal"||k==="inventario"||k==="itens")return;
     if(k==="nivel")v=Math.min(6,Math.max(1,+v||1));
     if(["fisico","intelecto","coragem","agilidade"].includes(k))v=Math.min(5,Math.max(0,+v||0));
     if(el(k))el(k).value=v;
@@ -1166,29 +1676,22 @@ function apply(d){
     window._pvRolled=true;
   }
   (d.habilidades||[]).forEach(i=>{const x=document.querySelector(`[data-skill="${i}"]`);if(x)x.checked=true});
+  window._inventory=normalizeInventory(d);renderInventory();
   recalc();
   if(d.pvAtual!==undefined)set("pvAtual",Math.min(+d.pvAtual||0,+document.getElementById("pvMax").textContent||0));
   updateSkillsCount();
 }
 function saveSheet(){
-  const data=collect();data.morta=Boolean(window._sheetDead);
-  localStorage.setItem("somDasSeisFicha",JSON.stringify(data));
-  localStorage.setItem("somDasSeisMorta",String(window._sheetDead));
-  if(window._characterImage) localStorage.setItem("somDasSeisImagem",window._characterImage);
-  showRoll("Ficha salva neste navegador.");
+  if(window.saveActiveCharacter)window.saveActiveCharacter();
+  else showRoll("Entre na sua conta para salvar esta ficha.");
 }
 function loadSheet(){
-  const d=JSON.parse(localStorage.getItem("somDasSeisFicha")||"null");
-  if(d)apply(d);
-  const img=localStorage.getItem("somDasSeisImagem");
-  if(img) renderCharacterImage(img);
-  const savedDead=localStorage.getItem("somDasSeisMorta");
-  setDeadState(savedDead===null?Boolean(d?.morta):savedDead==="true");
-  showRoll(d?"Ficha carregada.":"Nenhuma ficha salva encontrada.");
+  if(window.loadActiveCharacter)window.loadActiveCharacter();
+  else showRoll("Entre na sua conta para carregar suas fichas.");
 }
 function newSheet(){document.getElementById("clearModal").hidden=false}
 function closeClearModal(){document.getElementById("clearModal").hidden=true}
-function confirmNewSheet(){localStorage.removeItem("somDasSeisFicha");localStorage.removeItem("somDasSeisImagem");localStorage.removeItem("somDasSeisMorta");location.reload()}
+function confirmNewSheet(){closeClearModal();if(window.resetActiveCharacter)window.resetActiveCharacter()}
 
 function activateTab(tab,moveFocus=false){
   const button=typeof tab==="string"?document.querySelector(`[data-tab="${tab}"]`):tab;
@@ -1253,9 +1756,381 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&!document.getElementById("mobileTabsMenu").hidden)closeMobileTabs(true);
+  if(e.key==="Escape"&&!document.getElementById("moneyModal").hidden)closeMoneyAdjustment();
+  if(e.key==="Enter"&&!document.getElementById("moneyModal").hidden&&e.target.id==="moneyAdjustmentNote"){e.preventDefault();confirmMoneyAdjustment()}
 });
 
-build();recalc();loadSheet();
+function initializeInventoryShopTab(){
+  const panel=document.getElementById("inventoryShopContent"),oldEquipment=document.querySelector(".equipment-card"),shop=document.querySelector(".supply-card"),arsenal=document.querySelector(".equipment-drawer"),arsenalCard=shop?.querySelector(".arsenal-card");
+  if(!panel||!shop||!arsenal||!arsenalCard)return;
+  shop.querySelector("h2").textContent="Inventário & Loja";
+  arsenalCard.append(arsenal);
+  oldEquipment?.remove();
+  panel.append(shop);
+}
+build();recalc();loadSheet();renderShopCatalog();initializeInventoryShopTab();
+</script>
+<script type="module">
+const firebaseConfig={
+  apiKey:"AIzaSyCIZ3uoh0BcNy2NTLDeSgLK-KT5vj9IRs8",
+  authDomain:"fichas-do-auzover.firebaseapp.com",
+  projectId:"fichas-do-auzover",
+  storageBucket:"fichas-do-auzover.firebasestorage.app",
+  messagingSenderId:"1022771216683",
+  appId:"1:1022771216683:web:b772239ada68f1f9cf456e",
+  measurementId:"G-LC4F8DEHNW"
+};
+let auth,db,sdk,currentUser=null,activeCampaign=null,activeMembership=null;
+let activeCharacterId=null,characterDocs=[],characterSaveTimer=null,accountGateMode="signup",authResolved=false,accountFinishPromise=null;
+let stopRoster=null,stopRolls=null,stopCampaigns=null;
+const campaignLinks=new Map();
+const $id=id=>document.getElementById(id);
+function accountGateMessage(message,type=""){$id("accountGateStatus").textContent=message;$id("accountGateStatus").className=`account-gate-status${type?` is-${type}`:""}`}
+function setAccountGateMode(mode){
+  accountGateMode=mode;
+  const isSignup=mode==="signup",isProfile=mode==="profile";
+  $id("accountGateNicknameField").classList.toggle("account-gate-hidden",!isSignup&&!isProfile);
+  $id("accountGateEmail").parentElement.classList.toggle("account-gate-hidden",isProfile);
+  $id("accountGatePassword").parentElement.classList.toggle("account-gate-hidden",isProfile);
+  $id("accountGateNickname").required=isSignup||isProfile;
+  $id("accountGateEmail").required=!isProfile;$id("accountGatePassword").required=!isProfile;
+  $id("accountGateSubmit").textContent=isProfile?"Salvar apelido":isSignup?"Criar minha conta":"Entrar";
+  $id("accountGateForgot").classList.toggle("account-gate-hidden",isSignup||isProfile);
+  $id("accountGateSwitchText").textContent=isProfile?"Conta autenticada":isSignup?"Já tem uma conta?":"Ainda não tem uma conta?";
+  $id("accountGateModeToggle").textContent=isProfile?"":isSignup?"Entrar":"Criar conta";
+  $id("accountGateModeToggle").classList.toggle("account-gate-hidden",isProfile);
+  $id("accountGateDescription").textContent=isProfile?"Escolha o apelido que aparecerá nas suas fichas e sessões.":isSignup?"Crie sua conta para criar e guardar até cinco personagens.":"Entre para acessar suas fichas guardadas.";
+  $id("accountGatePassword").autocomplete=isSignup?"new-password":"current-password";
+}
+function toggleAccountGateMode(){setAccountGateMode(accountGateMode==="signup"?"login":"signup");accountGateMessage("")}
+async function submitAccountGate(){
+  if(!sdk||!auth){accountGateMessage("Conectando ao Firebase; tente novamente em instantes.");return}
+  try{
+    if(accountGateMode==="profile"){
+      const nickname=$id("accountGateNickname").value.trim();if(!nickname||nickname.length>32){accountGateMessage("Informe um apelido de até 32 caracteres.","error");return}
+      await sdk.updateProfile(auth.currentUser,{displayName:nickname});await sdk.reload(auth.currentUser);currentUser=auth.currentUser;await finishAccountSignIn(currentUser);return;
+    }
+    if(accountGateMode==="signup"){
+      const nickname=$id("accountGateNickname").value.trim();if(!nickname||nickname.length>32){accountGateMessage("Informe um apelido de até 32 caracteres.","error");return}
+      const credential=await sdk.createUserWithEmailAndPassword(auth,$id("accountGateEmail").value.trim(),$id("accountGatePassword").value);
+      await sdk.updateProfile(credential.user,{displayName:nickname});await sdk.reload(credential.user);currentUser=auth.currentUser;await finishAccountSignIn(currentUser);return;
+    }
+    await sdk.signInWithEmailAndPassword(auth,$id("accountGateEmail").value.trim(),$id("accountGatePassword").value);
+  }catch(error){accountGateMessage(firebaseError(error),"error")}
+}
+async function resetAccountGatePassword(){
+  const email=$id("accountGateEmail").value.trim();if(!email){accountGateMessage("Digite seu e-mail para redefinir a senha.","error");return}
+  try{await sdk.sendPasswordResetEmail(auth,email);accountGateMessage("Se a conta existir, você receberá instruções para redefinir a senha.","success")}catch(error){accountGateMessage(firebaseError(error),"error")}
+}
+async function finishAccountSignIn(user){
+  if(accountFinishPromise)return accountFinishPromise;
+  accountFinishPromise=(async()=>{
+    if(!user.displayName?.trim()){setAccountGateMode("profile");accountGateMessage("Defina um apelido para continuar.");return}
+    currentUser=user;await loadCharacterList();document.body.classList.add("is-authenticated");$id("accountGate").hidden=true;
+    $id("characterManager").hidden=false;$id("sheetStatus").textContent=`Conectado como ${user.displayName}.`;
+    if(!characterDocs.length){await createCharacter(true)}
+    $id("campaignAuthPanel").classList.add("campaign-hidden");$id("campaignUserPanel").classList.remove("campaign-hidden");
+    $id("campaignUserNickname").textContent=user.displayName;$id("campaignProfileNickname").value=user.displayName;$id("campaignNickname").value=user.displayName;
+    $id("campaignCloudStatus").textContent="Conta autenticada; campanhas e fichas sincronizadas.";
+    await refreshCampaignList(localStorage.getItem("somDasSeisCampanhaAtiva")||"");
+  })();
+  try{await accountFinishPromise}finally{accountFinishPromise=null}
+}
+function campaignMessage(message,type=""){
+  const output=$id("campaignStatus");output.textContent=message;output.className=`campaign-status${type?` is-${type}`:""}`;
+}
+function campaignPublishMessage(message,type=""){
+  const output=$id("campaignPublishStatus");output.textContent=message;output.className=`campaign-status${type?` is-${type}`:""}`;
+}
+function firebaseError(error){
+  const messages={"auth/email-already-in-use":"Esse e-mail já possui uma conta.","auth/invalid-email":"Informe um e-mail válido.","auth/weak-password":"A senha precisa ter pelo menos 6 caracteres.","auth/invalid-credential":"E-mail ou senha incorretos.","auth/too-many-requests":"Muitas tentativas. Tente novamente mais tarde.","permission-denied":"O Firebase bloqueou a operação. Confira as regras do Firestore.","unavailable":"Sem conexão com o Firebase no momento."};
+  return messages[error.code]||error.message||"Não foi possível concluir a operação.";
+}
+function getPublicNickname(){return currentUser?.displayName?.trim()||$id("campaignProfileNickname").value.trim()||$id("campaignNickname").value.trim()}
+function requirePublicNickname(){
+  if(getPublicNickname())return true;
+  campaignMessage("Defina um apelido antes de criar ou entrar numa campanha.","error");
+  $id("campaignProfileNickname").focus();return false;
+}
+function stopCampaignListeners(){
+  stopRoster?.();stopRolls?.();stopCampaigns?.();stopRoster=stopRolls=stopCampaigns=null;
+}
+function clearCampaignPanels(){
+  ["campaignCurrentPanel","campaignRosterPanel","campaignRollsPanel","campaignCharacterPreview","campaignSavedListPanel"].forEach(id=>$id(id).classList.add("campaign-hidden"));
+  stopCampaignListeners();activeCampaign=null;activeMembership=null;
+}
+function detachFirebaseCampaign(){
+  stopCampaignListeners();activeCampaign=null;activeMembership=null;currentUser=null;
+  $id("campaignAuthPanel").classList.remove("campaign-hidden");$id("campaignUserPanel").classList.add("campaign-hidden");
+  ["campaignCurrentPanel","campaignRosterPanel","campaignRollsPanel","campaignCharacterPreview","campaignSavedListPanel"].forEach(id=>$id(id).classList.add("campaign-hidden"));
+}
+async function campaignSignUp(){
+  const nickname=$id("campaignNickname").value.trim();
+  if(!nickname){campaignMessage("Escolha um apelido para aparecer na campanha.","error");$id("campaignNickname").focus();return}
+  if(nickname.length>32){campaignMessage("O apelido pode ter até 32 caracteres.","error");return}
+  try{const credential=await sdk.createUserWithEmailAndPassword(auth,$id("campaignEmail").value.trim(),$id("campaignPassword").value);await sdk.updateProfile(credential.user,{displayName:nickname});await sdk.reload(credential.user);currentUser=auth.currentUser;$id("campaignUserNickname").textContent=nickname;$id("campaignProfileNickname").value=nickname;campaignMessage("Conta criada. Seu apelido aparecerá para os jogadores.","success")}catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function campaignSignIn(){
+  try{await sdk.signInWithEmailAndPassword(auth,$id("campaignEmail").value.trim(),$id("campaignPassword").value);campaignMessage("Login realizado.","success")}catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function saveCampaignNickname(){
+  const nickname=$id("campaignProfileNickname").value.trim();
+  if(!nickname){campaignMessage("Digite um apelido para salvar.","error");$id("campaignProfileNickname").focus();return}
+  if(nickname.length>32){campaignMessage("O apelido pode ter até 32 caracteres.","error");return}
+  if(!currentUser){$id("campaignNickname").value=nickname;campaignMessage("O apelido será salvo quando você criar sua conta.");return}
+  try{
+    await sdk.updateProfile(currentUser,{displayName:nickname});await sdk.reload(currentUser);currentUser=auth.currentUser;
+    $id("campaignUserNickname").textContent=getPublicNickname();$id("campaignNickname").value=nickname;
+    const updates=[...campaignLinks.keys()].map(campaignId=>sdk.updateDoc(sdk.doc(db,"campaigns",campaignId,"members",currentUser.uid),{nickname,updatedAt:sdk.serverTimestamp()}).catch(error=>{if(error.code!=="permission-denied")throw error}));
+    await Promise.all(updates);campaignMessage("Apelido salvo e atualizado nas campanhas.","success");
+  }catch(error){campaignMessage(firebaseError(error),"error")}
+}
+function setCharacterSaveStatus(message,type=""){$id("characterSaveStatus").textContent=message;$id("characterSaveStatus").style.color=type==="error"?"#8b3026":type==="success"?"#386044":""}
+function updateCharacterManager(){
+  const select=$id("characterSelect"),selected=activeCharacterId;select.replaceChildren(new Option("Selecione uma ficha…",""));
+  characterDocs.forEach(character=>select.add(new Option(character.name||"Personagem",character.id)));
+  select.value=selected&&characterDocs.some(item=>item.id===selected)?selected:"";
+  const count=characterDocs.length;$id("characterLimitLabel").textContent=`${count} de 5 fichas`;
+  $id("createCharacterButton").disabled=count>=5;
+  $id("createCharacterButton").title=count>=5?"Limite de cinco personagens atingido":"Criar outra personagem";
+  $id("deleteCharacterButton").disabled=!select.value;
+}
+function resetCharacterForm(){
+  document.querySelectorAll("[data-k]").forEach(field=>{if(field.type==="checkbox")field.checked=field.defaultChecked;else field.value=field.defaultValue});
+  document.querySelectorAll("[data-ant]").forEach(field=>field.value="0");
+  document.querySelectorAll("[data-antnote]").forEach(field=>field.value="");
+  document.querySelectorAll("[data-skill]").forEach(field=>field.checked=false);
+  window._inventory=[];window._moneyHistory=[];window._levelPvBonusRolls={};window._physicalPvTotal=undefined;window._pvRolled=false;window._lastFisico=undefined;
+  document.getElementById("charImage").innerHTML="<span>Nenhuma imagem selecionada</span>";document.getElementById("charFile").value="";
+  window._characterImage="";setDeadState(false);renderInventory();recalc();updateSkillsCount();
+}
+async function loadCharacterList(preferredId=""){
+  if(!currentUser)return;
+  const snapshot=await sdk.getDocs(sdk.query(sdk.collection(db,"users",currentUser.uid,"characters"),sdk.orderBy("updatedAt","desc")));
+  characterDocs=snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));updateCharacterManager();
+  const target=preferredId&&characterDocs.some(item=>item.id===preferredId)?preferredId:characterDocs[0]?.id||"";
+  if(target)await switchCharacter(target,false);
+  else{activeCharacterId=null;resetCharacterForm();setCharacterSaveStatus("Crie sua primeira ficha para começar.");updateCharacterManager()}
+}
+async function switchCharacter(characterId,saveBefore=true){
+  if(!currentUser||!characterId)return;
+  if(saveBefore&&activeCharacterId&&activeCharacterId!==characterId){clearTimeout(characterSaveTimer);await saveActiveCharacter(true)}
+  try{
+    const snapshot=await sdk.getDoc(sdk.doc(db,"users",currentUser.uid,"characters",characterId));
+    if(!snapshot.exists()){setCharacterSaveStatus("Essa ficha não foi encontrada.","error");return}
+    if(!snapshot.data().sheet||typeof snapshot.data().sheet!=="object"){setCharacterSaveStatus("Os dados da ficha estão inválidos.","error");return}
+    activeCharacterId=characterId;resetCharacterForm();apply(snapshot.data().sheet);window._moneyHistory=snapshot.data().moneyHistory||[];setDeadState(Boolean(snapshot.data().sheet.morta));
+    activeCharacterId=characterId;
+    if(snapshot.data().image){renderCharacterImage(snapshot.data().image)}
+    $id("characterSelect").value=characterId;$id("deleteCharacterButton").disabled=false;
+    setCharacterSaveStatus(`Ficha “${snapshot.data().name||"Personagem"}” carregada.`,"success");
+  }catch(error){setCharacterSaveStatus(firebaseError(error),"error")}
+}
+async function createCharacter(first=false){
+  if(!currentUser)return;
+  if(characterDocs.length>=5){setCharacterSaveStatus("Você já atingiu o limite de cinco fichas.","error");return}
+  if(activeCharacterId)await saveActiveCharacter(true);
+  clearTimeout(characterSaveTimer);activeCharacterId=null;
+  try{
+    const idRef=sdk.doc(sdk.collection(db,"users",currentUser.uid,"characters"));
+    await sdk.runTransaction(db,async transaction=>{
+      const countRef=sdk.doc(db,"users",currentUser.uid,"characterMeta","slots"),countSnap=await transaction.get(countRef),count=countSnap.exists()?Number(countSnap.data().count)||0:0;
+      if(count>=5)throw new Error("Você já atingiu o limite de cinco fichas.");
+      resetCharacterForm();const sheet=window.collect();sheet.morta=false;
+      transaction.set(countRef,{count:count+1,lastOperation:"create",characterId:idRef.id,updatedAt:sdk.serverTimestamp()});
+      transaction.set(idRef,{ownerUid:currentUser.uid,name:`Personagem ${count+1}`,sheet,moneyHistory:[],createdAt:sdk.serverTimestamp(),updatedAt:sdk.serverTimestamp()});
+    });
+    activeCharacterId=idRef.id;await loadCharacterList(activeCharacterId);setCharacterSaveStatus(first?"Conta pronta. Sua primeira ficha foi criada.":"Nova ficha criada.","success");
+  }catch(error){setCharacterSaveStatus(error.message||firebaseError(error),"error")}
+}
+async function deleteCurrentCharacter(){
+  if(!currentUser||!activeCharacterId)return;
+  if(!window.confirm("Excluir esta ficha permanentemente? Esta ação não pode ser desfeita."))return;
+  const removingId=activeCharacterId;clearTimeout(characterSaveTimer);activeCharacterId=null;
+  try{
+    await sdk.runTransaction(db,async transaction=>{
+      const countRef=sdk.doc(db,"users",currentUser.uid,"characterMeta","slots"),characterRef=sdk.doc(db,"users",currentUser.uid,"characters",removingId),[countSnapshot,characterSnapshot]=await Promise.all([transaction.get(countRef),transaction.get(characterRef)]);
+      if(!characterSnapshot.exists())throw new Error("A ficha já foi excluída.");
+      const count=Number(countSnapshot.data()?.count)||0;
+      transaction.delete(characterRef);transaction.set(countRef,{count:Math.max(0,count-1),lastOperation:"delete",characterId:removingId,updatedAt:sdk.serverTimestamp()});
+    });
+    activeCharacterId=null;await loadCharacterList();setCharacterSaveStatus("Ficha excluída.","success");
+  }catch(error){activeCharacterId=removingId;setCharacterSaveStatus(firebaseError(error),"error")}
+}
+function loadActiveCharacter(){if(activeCharacterId)void switchCharacter(activeCharacterId);else if(characterDocs[0])void switchCharacter(characterDocs[0].id);else setCharacterSaveStatus("Crie uma ficha primeiro.")}
+async function saveActiveCharacter(silent=false){
+  if(!currentUser||!activeCharacterId)return false;
+  const id=activeCharacterId,existing=characterDocs.find(item=>item.id===id),sheet=window.collect();sheet.morta=Boolean(window._sheetDead);
+  const name=(sheet.nome||existing?.name||"Personagem sem nome").trim().slice(0,60)||"Personagem sem nome";
+  try{
+    await sdk.setDoc(sdk.doc(db,"users",currentUser.uid,"characters",id),{ownerUid:currentUser.uid,name,sheet,moneyHistory:window._moneyHistory||[],updatedAt:sdk.serverTimestamp()}, {merge:true});
+    const card=characterDocs.find(item=>item.id===id);if(card)card.name=name;updateCharacterManager();
+    if(!silent)setCharacterSaveStatus(`Salvo às ${new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})}.`,"success");
+    return true;
+  }catch(error){if(!silent)setCharacterSaveStatus(firebaseError(error),"error");return false}
+}
+function queueCharacterSave(){
+  if(!currentUser||!activeCharacterId)return;
+  setCharacterSaveStatus("Salvando…");clearTimeout(characterSaveTimer);characterSaveTimer=setTimeout(()=>{void saveActiveCharacter(true)},700);
+}
+function resetActiveCharacter(){resetCharacterForm();if(currentUser&&activeCharacterId)void saveActiveCharacter();}
+window.switchCharacter=switchCharacter;window.createCharacter=createCharacter;window.deleteCurrentCharacter=deleteCurrentCharacter;
+window.loadActiveCharacter=loadActiveCharacter;window.saveActiveCharacter=saveActiveCharacter;window.queueActiveCharacterSave=queueCharacterSave;window.resetActiveCharacter=resetActiveCharacter;
+window.submitAccountGate=submitAccountGate;window.toggleAccountGateMode=toggleAccountGateMode;window.resetAccountGatePassword=resetAccountGatePassword;
+async function campaignResetPassword(){
+  const email=$id("campaignEmail").value.trim();if(!email){campaignMessage("Digite seu e-mail para receber o link de redefinição.","error");return}
+  try{await sdk.sendPasswordResetEmail(auth,email);campaignMessage("Se a conta existir, o Firebase enviará as instruções de redefinição.","success")}catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function campaignSignOut(){try{clearCampaignPanels();await sdk.signOut(auth);campaignMessage("Você saiu da conta.")}catch(error){campaignMessage(firebaseError(error),"error")}}
+function randomInviteCode(){const alphabet="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";const bytes=new Uint8Array(7);crypto.getRandomValues(bytes);return [...bytes].map(byte=>alphabet[byte%alphabet.length]).join("")}
+async function createCampaign(){
+  const name=$id("campaignName").value.trim();if(!name){campaignMessage("Escolha um nome para a campanha.","error");return}
+  if(!requirePublicNickname())return;
+  if(!currentUser||!db){campaignMessage("Entre na sua conta antes de criar uma campanha.","error");return}
+  const code=randomInviteCode(),campaignRef=sdk.doc(sdk.collection(db,"campaigns")),campaignId=campaignRef.id;
+  const batch=sdk.writeBatch(db),now=sdk.serverTimestamp();
+  batch.set(campaignRef,{name,ownerUid:currentUser.uid,inviteCode:code,createdAt:now,updatedAt:now});
+  batch.set(sdk.doc(db,"inviteCodes",code),{campaignId,createdBy:currentUser.uid,createdAt:now});
+  batch.set(sdk.doc(db,"campaigns",campaignId,"members",currentUser.uid),{uid:currentUser.uid,nickname:getPublicNickname(),role:"master",joinedAt:now});
+  batch.set(sdk.doc(db,"users",currentUser.uid,"campaigns",campaignId),{campaignId,name,role:"master",joinedAt:now});
+  try{await batch.commit();campaignMessage("Campanha criada. Compartilhe o código com os jogadores.","success");await refreshCampaignList(campaignId)}catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function joinCampaign(){
+  const code=$id("campaignJoinCode").value.trim().toUpperCase();if(!code){campaignMessage("Digite o código de convite.","error");return}
+  if(!requirePublicNickname())return;
+  try{
+    const invite=await sdk.getDoc(sdk.doc(db,"inviteCodes",code));if(!invite.exists()){campaignMessage("Código de convite inválido.","error");return}
+    const campaignId=invite.data().campaignId,campaignRef=sdk.doc(db,"campaigns",campaignId),campaign=await sdk.getDoc(campaignRef);
+    if(!campaign.exists()){campaignMessage("Essa campanha não existe mais.","error");return}
+    const existingMember=await sdk.getDoc(sdk.doc(db,"campaigns",campaignId,"members",currentUser.uid));
+    if(existingMember.exists()){campaignMessage("Você já participa desta campanha.","success");await refreshCampaignList(campaignId);return}
+    const data=campaign.data(),batch=sdk.writeBatch(db),now=sdk.serverTimestamp();
+    batch.set(sdk.doc(db,"campaigns",campaignId,"members",currentUser.uid),{uid:currentUser.uid,nickname:getPublicNickname(),role:"player",inviteCode:code,joinedAt:now});
+    batch.set(sdk.doc(db,"users",currentUser.uid,"campaigns",campaignId),{campaignId,name:data.name,role:"player",joinedAt:now});
+    await batch.commit();campaignMessage(`Você entrou em “${data.name}”.`,"success");$id("campaignJoinCode").value="";await refreshCampaignList(campaignId);
+  }catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function refreshCampaignList(selectId=""){
+  if(!currentUser)return;
+  try{
+    const snapshot=await sdk.getDocs(sdk.collection(db,"users",currentUser.uid,"campaigns"));
+    const select=$id("campaignMyCampaigns"),selected=selectId||select.value;select.replaceChildren(new Option("Selecione uma campanha…",""));campaignLinks.clear();
+    snapshot.forEach(document=>{const link={id:document.id,...document.data()};campaignLinks.set(link.id,link);select.add(new Option(`${link.name} • ${link.role==="master"?"Mestre":"Jogador"}`,link.id))});
+    $id("campaignSavedListPanel").classList.toggle("campaign-hidden",snapshot.empty);
+    if(selected&&campaignLinks.has(selected)){select.value=selected;await openSavedCampaign(selected)}
+    else if(!snapshot.empty&&!activeCampaign){select.value=snapshot.docs[0].id;await openSavedCampaign(select.value)}
+  }catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function openSavedCampaign(campaignId){
+  if(!campaignId||!currentUser)return;
+  const link=campaignLinks.get(campaignId);if(!link)return;
+  try{
+    const campaign=await sdk.getDoc(sdk.doc(db,"campaigns",campaignId));if(!campaign.exists()){campaignMessage("A campanha não foi encontrada.","error");return}
+    activeCampaign={id:campaignId,...campaign.data()};activeMembership=link;
+    $id("campaignCurrentTitle").textContent=activeCampaign.name;
+    $id("campaignCurrentCode").textContent=activeCampaign.inviteCode||"—";
+    $id("campaignCurrentRole").textContent=link.role==="master"?"Você é mestre desta mesa.":"Você participa desta campanha como jogador.";
+    $id("campaignCurrentPanel").classList.remove("campaign-hidden");
+    $id("campaignRosterPanel").classList.remove("campaign-hidden");
+    $id("campaignRollsPanel").classList.toggle("campaign-hidden",link.role!=="master");
+    $id("campaignCharacterPreview").classList.add("campaign-hidden");
+    subscribeCampaignData();
+    localStorage.setItem("somDasSeisCampanhaAtiva",campaignId);
+  }catch(error){campaignMessage(firebaseError(error),"error")}
+}
+function subscribeCampaignData(){
+  stopCampaignListeners();if(!activeCampaign)return;
+  const members=sdk.collection(db,"campaigns",activeCampaign.id,"members");
+  const renderRoster=snapshot=>{
+    const list=$id("campaignRoster");list.replaceChildren();
+    if(snapshot.empty){list.innerHTML='<li class="campaign-empty">Nenhum jogador entrou na mesa.</li>';return}
+    snapshot.forEach(memberDoc=>{
+      const member=memberDoc.data(),li=document.createElement("li"),details=document.createElement("span"),title=document.createElement("strong"),subtitle=document.createElement("small"),role=document.createElement("span");
+      li.className="campaign-member";details.style.display="grid";details.style.gap="4px";title.textContent=member.nickname||member.character?.nome||"Jogador";subtitle.textContent=member.character?`Personagem: ${member.character.nome||"Sem nome"} • nível ${member.character.nivel||1}`:"Ainda não enviou uma ficha";role.className="campaign-member-status";role.textContent=member.role==="master"?"Mestre":"Jogador";details.append(title,subtitle);li.append(details,role);
+      if(activeMembership?.role==="master"&&member.character){const preview=document.createElement("button");preview.type="button";preview.textContent="Ver ficha";preview.addEventListener("click",()=>showCampaignCharacter(member));li.append(preview)}
+      list.append(li);
+    });
+  };
+  if(activeMembership?.role==="master"){
+    stopRoster=sdk.onSnapshot(members,renderRoster,error=>campaignPublishMessage(firebaseError(error),"error"));
+  }else{
+    $id("campaignRosterPanel").querySelector("h2").textContent="Sua ficha na campanha";
+    stopRoster=sdk.onSnapshot(sdk.doc(db,"campaigns",activeCampaign.id,"members",currentUser.uid),member=>renderRoster({empty:!member.exists(),forEach:callback=>{if(member.exists())callback(member)}}),error=>campaignPublishMessage(firebaseError(error),"error"));
+  }
+  if(activeMembership?.role==="master"){
+    const rolls=sdk.query(sdk.collection(db,"campaigns",activeCampaign.id,"rolls"),sdk.orderBy("createdAt","desc"),sdk.limit(50));
+    stopRolls=sdk.onSnapshot(rolls,snapshot=>renderCampaignRolls(snapshot.docs.map(doc=>({id:doc.id,...doc.data()}))),error=>campaignMessage(firebaseError(error),"error"));
+  }
+}
+function renderCampaignRolls(entries){
+  const list=$id("campaignRollFeed");list.replaceChildren();$id("campaignRollCount").textContent=`${entries.length} ${entries.length===1?"rolagem":"rolagens"}`;
+  if(!entries.length){list.innerHTML='<li class="campaign-empty">Nenhuma rolagem na sessão ainda.</li>';return}
+  entries.forEach(entry=>{
+    const li=document.createElement("li"),head=document.createElement("div"),player=document.createElement("strong"),time=document.createElement("small"),values=document.createElement("div"),detail=document.createElement("div");
+    li.className="campaign-roll-card";head.className="campaign-roll-head";player.textContent=entry.nickname||entry.characterName||"Jogador";time.textContent=entry.createdAt?.toDate?.().toLocaleString("pt-BR")||"Agora";values.className="campaign-roll-values";values.textContent=`${entry.title}: ${(entry.dice||[]).join(" + ")} = ${entry.total}`;detail.className="campaign-roll-detail";detail.textContent=entry.detail||"";head.append(player,time);li.append(head,values);if(entry.detail)li.append(detail);list.append(li);
+  });
+}
+function showCampaignCharacter(member){
+  $id("campaignCharacterTitle").textContent=`Ficha • ${member.nickname||member.character?.nome||"Jogador"}`;
+  $id("campaignCharacterData").textContent=JSON.stringify(member.character||{},null,2);
+  $id("campaignCharacterPreview").classList.remove("campaign-hidden");
+}
+function closeCharacterPreview(){$id("campaignCharacterPreview").classList.add("campaign-hidden")}
+async function publishCharacterToCampaign(){
+  if(!activeCampaign||!currentUser){campaignPublishMessage("Entre numa campanha antes de enviar sua ficha.","error");return}
+  try{
+    const character=window.collect();character.morta=Boolean(window._sheetDead);
+    await sdk.updateDoc(sdk.doc(db,"campaigns",activeCampaign.id,"members",currentUser.uid),{character,updatedAt:sdk.serverTimestamp()});
+    campaignPublishMessage("Ficha enviada. O mestre já pode visualizá-la.","success");
+  }catch(error){campaignPublishMessage(firebaseError(error),"error")}
+}
+async function refreshCampaignCharacters(){if(activeCampaign)subscribeCampaignData()}
+async function leaveCampaign(){
+  if(!activeCampaign||!currentUser)return;
+  if(activeMembership?.role==="master"){campaignPublishMessage("O mestre não pode sair da própria campanha neste momento.","error");return}
+  const id=activeCampaign.id;try{
+    const batch=sdk.writeBatch(db);batch.delete(sdk.doc(db,"campaigns",id,"members",currentUser.uid));batch.delete(sdk.doc(db,"users",currentUser.uid,"campaigns",id));await batch.commit();
+    localStorage.removeItem("somDasSeisCampanhaAtiva");clearCampaignPanels();campaignMessage("Você saiu da campanha.","success");await refreshCampaignList();
+  }catch(error){campaignMessage(firebaseError(error),"error")}
+}
+async function copyCampaignCode(){
+  const code=$id("campaignCurrentCode").textContent;try{await navigator.clipboard.writeText(code);campaignPublishMessage("Código copiado.","success")}catch{campaignPublishMessage(`Código da campanha: ${code}`)}
+}
+async function recordCampaignRoll(event){
+  if(!activeCampaign||!currentUser)return;
+  try{
+    await sdk.addDoc(sdk.collection(db,"campaigns",activeCampaign.id,"rolls"),{uid:currentUser.uid,nickname:getPublicNickname(),characterName:$id("nome").value.trim()||"Personagem sem nome",title:event.detail.title,dice:event.detail.dice,total:event.detail.total,detail:event.detail.detail||"",createdAt:sdk.serverTimestamp()});
+  }catch(error){campaignMessage(`Rolagem local concluída; não foi possível transmiti-la: ${firebaseError(error)}`,"error")}
+}
+window.campaignSignUp=campaignSignUp;window.campaignSignIn=campaignSignIn;window.campaignResetPassword=campaignResetPassword;window.campaignSignOut=campaignSignOut;window.saveCampaignNickname=saveCampaignNickname;
+window.createCampaign=createCampaign;window.joinCampaign=joinCampaign;window.openSavedCampaign=openSavedCampaign;
+window.publishCharacterToCampaign=publishCharacterToCampaign;window.refreshCampaignCharacters=refreshCampaignCharacters;window.leaveCampaign=leaveCampaign;
+window.copyCampaignCode=copyCampaignCode;window.closeCharacterPreview=closeCharacterPreview;
+window.addEventListener("sheet-roll",event=>{void recordCampaignRoll(event)});
+async function initializeFirebaseCampaign(){
+  try{
+    const base="https://www.gstatic.com/firebasejs/11.6.1/";
+    const [appModule,authModule,firestoreModule]=await Promise.all([import(`${base}firebase-app.js`),import(`${base}firebase-auth.js`),import(`${base}firebase-firestore.js`)]);
+    sdk={...authModule,...firestoreModule,...appModule};
+    const app=sdk.initializeApp(firebaseConfig);auth=sdk.getAuth(app);db=sdk.getFirestore(app);
+    $id("campaignCloudStatus").textContent="Firebase conectado. Entre ou crie uma conta para continuar.";
+    [$id("accountGateSubmit"),$id("accountGateModeToggle"),$id("accountGateForgot")].forEach(button=>button.disabled=false);
+    setAccountGateMode("signup");accountGateMessage("Crie sua conta ou entre para acessar as fichas.");
+    sdk.onAuthStateChanged(auth,async user=>{
+      authResolved=true;currentUser=user;stopCampaignListeners();activeCampaign=null;activeMembership=null;
+      if(!user){
+        document.body.classList.remove("is-authenticated");$id("accountGate").hidden=false;$id("characterManager").hidden=true;
+        $id("campaignAuthPanel").classList.remove("campaign-hidden");$id("campaignUserPanel").classList.add("campaign-hidden");
+        setAccountGateMode("signup");accountGateMessage("Entre ou crie uma conta para continuar.");clearCampaignPanels();return;
+      }
+      if(!user.displayName?.trim()){
+        document.body.classList.remove("is-authenticated");$id("accountGate").hidden=false;setAccountGateMode("profile");accountGateMessage("Defina seu apelido público para continuar.");return;
+      }
+      try{await finishAccountSignIn(user);accountGateMessage("")}catch(error){document.body.classList.remove("is-authenticated");$id("accountGate").hidden=false;accountGateMessage(`Não foi possível carregar suas fichas: ${firebaseError(error)}`,"error")}
+    });
+  }catch(error){$id("campaignCloudStatus").textContent="Não foi possível iniciar o SDK Firebase.";$id("accountGateSubmit").disabled=true;accountGateMessage(`Não foi possível conectar ao Firebase. Abra o site pela URL HTTPS publicada. Detalhe: ${error.message}`,"error")}
+}
+void initializeFirebaseCampaign();
 </script>
 </body>
 </html>
