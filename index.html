@@ -2026,6 +2026,20 @@ body.system-auzover .auz-luck-card .luck-legend{font-size:10px;gap:8px}
 body.system-auzover .auz-resource-current-max label{font-size:11px;color:#cfaab7;letter-spacing:.04em;text-transform:uppercase}
 body.system-auzover .auz-resource-current-max input{width:100%;min-width:0;text-align:center;font-weight:700;font-size:18px}
 body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;background:#100a10}
+
+/* Correção robusta do modal de personalização: fora da ficha, sem recorte por overflow/transform. */
+.som-customizer-backdrop{position:fixed!important;inset:0!important;z-index:2147483000!important;display:flex;align-items:center!important;justify-content:center!important;overflow-y:auto!important;overflow-x:hidden!important;padding:12px!important;background:rgba(8,5,8,.84)!important;backdrop-filter:blur(5px);}
+.som-customizer-backdrop[hidden]{display:none!important}
+.som-customizer-window{position:relative!important;flex:0 0 auto;width:min(1180px,100%)!important;max-height:calc(100vh - 24px)!important;max-height:calc(100dvh - 24px)!important;margin:auto!important;overflow:hidden!important;transform:none!important;}
+.som-customizer-header{position:relative!important;display:flex!important;align-items:flex-start!important;text-align:left!important;padding:18px 20px!important;min-height:0!important;overflow:visible!important;}
+.som-customizer-header::before,.som-customizer-header::after{display:none!important;content:none!important;animation:none!important;}
+.som-customizer-header h2{position:static!important;margin:4px 0 6px!important;letter-spacing:0!important;text-transform:none!important;animation:none!important;text-shadow:none!important;z-index:auto!important;}
+.som-customizer-header p{position:static!important;letter-spacing:0!important;z-index:auto!important;}
+.som-customizer-window button{transform:none;}
+.som-customizer-window button:hover{transform:translateY(-1px);}
+.som-customizer-body{overscroll-behavior:contain;}
+@media(max-width:760px){.som-customizer-backdrop{align-items:flex-start!important;padding:8px!important}.som-customizer-window{width:100%!important;max-height:calc(100vh - 16px)!important;max-height:calc(100dvh - 16px)!important;border-radius:12px!important}.som-customizer-body{max-height:calc(100dvh - 150px);overflow-y:auto!important}.som-customizer-header{padding:14px!important}}
+
 </style>
 
 <style id="auzover-final-polish">
@@ -2198,9 +2212,6 @@ body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-
   <p>★ FICHA ONLINE DO AUZOVER NO FAROESTE ★</p>
 </header>
 <div class="toolbar">
-  <button onclick="saveSheet()">Salvar ficha</button>
-  <button onclick="loadActiveCharacter()">Carregar ficha</button>
-  <button onclick="window.print()">Imprimir / PDF</button>
   <button type="button" onclick="toggleSomCustomizer(true)">🎨 Personalizar Som das Seis</button>
   <button class="danger" onclick="newSheet()">Limpar ficha</button>
   <span id="sheetStatus" class="sheet-status" role="status" aria-live="polite">Ficha pronta.</span>
@@ -2650,7 +2661,7 @@ body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-
   </section>
 </section>
 </main>
-<footer>★ Ficha online inspirada em "O Som das Seis" ★ Use "Salvar ficha" para guardar uma cópia no navegador ★</footer>
+<footer>★ Ficha online inspirada em "O Som das Seis" ★ Salvamento automático ativado ★</footer>
 </div></div>
 
 
@@ -2746,7 +2757,7 @@ body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-
       <div class="auzover-section-heading"><span>06</span><div><h2>História</h2><p>Passado, motivações, vínculos e acontecimentos marcantes.</p></div></div>
       <div class="auzover-field auzover-writing-field"><label for="auzHistoria">História</label><textarea id="auzHistoria" placeholder="Conte a história do personagem..."></textarea></div>
     </section>
-    <div class="auzover-actions"><button type="button" onclick="saveAuzoverLocal()">✦ Salvar ficha</button><button type="button" onclick="window.print()">☾ Imprimir / PDF</button><p class="auzover-save-note" id="auzSaveStatus" role="status" aria-live="polite">Os dados desta ficha ficam salvos localmente neste navegador.</p></div>
+    <div class="auzover-actions"><p class="auzover-save-note" id="auzSaveStatus" role="status" aria-live="polite">Salvamento automático ativado neste navegador.</p></div>
   </div>
 </section>
 <div class="death-overlay" id="deathOverlay" hidden role="alertdialog" aria-modal="true" aria-labelledby="deathTitle" aria-describedby="deathMessage">
@@ -3172,16 +3183,16 @@ document.addEventListener("input",e=>{
   if(e.target.id==="moneyInput")updateInventoryMoney();
   if(e.target.dataset.k==="reputacao")updateReputation(e.target.value);
   if(e.target.classList.contains("attr") || e.target.classList.contains("ant") || e.target.dataset.k==="nivel") recalc();
-  window.queueActiveCharacterSave?.();
+  queueSomSheetLocalSave();
 });
 document.addEventListener("change",e=>{
-  if(!e.target.matches("[data-skill]")){window.queueActiveCharacterSave?.();return}
+  if(!e.target.matches("[data-skill]")){queueSomSheetLocalSave();return}
   if(e.target.checked&&document.querySelectorAll("[data-skill]:checked").length>skillAllowance()){
     e.target.checked=false;
     showRoll(`Limite de habilidades neste nível: ${skillAllowance()}.`);
   }
   updateSkillsCount();
-  window.queueActiveCharacterSave?.();
+  queueSomSheetLocalSave();
 });
 function roll(n){return Math.floor(Math.random()*n)+1}
 function showRoll(t){document.getElementById("sheetStatus").textContent=t}
@@ -3514,6 +3525,11 @@ function apply(d){
   updateReputation(rep);
   updateSkillsCount();
 }
+const SOM_LOCAL_SHEET_KEY='somDasSeisFichaAutoBackupV1';
+let somLocalSaveTimer=null;
+function saveSomSheetLocal(){try{const data=window.collect();data.morta=Boolean(window._sheetDead);localStorage.setItem(SOM_LOCAL_SHEET_KEY,JSON.stringify(data));const status=document.getElementById('sheetStatus');if(status)status.textContent='Salvo automaticamente neste navegador.'}catch(e){const status=document.getElementById('sheetStatus');if(status)status.textContent='Não foi possível salvar localmente. Verifique o espaço do navegador.'}}
+function queueSomSheetLocalSave(){clearTimeout(somLocalSaveTimer);somLocalSaveTimer=setTimeout(saveSomSheetLocal,450);window.queueActiveCharacterSave?.()}
+function loadSomSheetLocal(){try{const raw=localStorage.getItem(SOM_LOCAL_SHEET_KEY);if(!raw)return;const data=JSON.parse(raw);if(data&&typeof data==='object'&&typeof window.apply==='function'){window.apply(data);if(data.morta!==undefined)window._sheetDead=Boolean(data.morta)}}catch(e){console.warn('Backup local do Som das Seis não pôde ser carregado.',e)}}
 function saveSheet(){
   if(window.saveActiveCharacter)window.saveActiveCharacter();
   else showRoll("Entre na sua conta para salvar esta ficha.");
@@ -4203,11 +4219,13 @@ function rollLuck(targetId='luckResult'){
   const description=document.createElement('small');description.textContent=detail;
   el.append(icon,title,description);
 }
-function toggleSomCustomizer(force){const modal=document.getElementById('somCustomizerModal');if(!modal)return;const open=typeof force==='boolean'?force:modal.hidden;modal.hidden=!open;document.body.style.overflow=open?'hidden':'';if(open){updateSomLivePreview();setTimeout(()=>modal.querySelector('.som-modal-close')?.focus(),20)}}
+function ensureSomCustomizerOnBody(){const modal=document.getElementById('somCustomizerModal');if(modal&&modal.parentElement!==document.body)document.body.appendChild(modal);return modal}
+function toggleSomCustomizer(force){const modal=ensureSomCustomizerOnBody();if(!modal)return;const open=typeof force==='boolean'?force:modal.hidden;modal.hidden=!open;document.body.classList.toggle('som-customizer-open',open);document.body.style.overflow=open?'hidden':'';if(open){loadSomCustomizationControlsOnly();updateSomLivePreview();requestAnimationFrame(()=>modal.querySelector('.som-modal-close')?.focus())}}
+function loadSomCustomizationControlsOnly(){[['bg','somBgColor','somBgHex'],['card','somCardColor','somCardHex'],['text','somTextColor','somTextHex'],['accent','somAccentColor','somAccentHex'],['border','somBorderColor','somBorderHex']].forEach(([key,colorId,hexId])=>{const c=document.getElementById(colorId),h=document.getElementById(hexId);if(c)c.value=somCustomConfig[key];if(h)h.value=somCustomConfig[key]});} 
 function updateSomLivePreview(){const preview=document.querySelector('.som-preview-paper');if(!preview)return;preview.style.setProperty('--som-paper',somCustomConfig.bg);preview.style.setProperty('--som-card',somCustomConfig.card);preview.style.setProperty('--som-ink',somCustomConfig.text);preview.style.setProperty('--som-accent',somCustomConfig.accent);preview.style.setProperty('--som-border',somCustomConfig.border);preview.style.setProperty('--som-sheet-image',somCustomConfig.bgImage?`linear-gradient(#00000008,#00000008),url("${somCustomConfig.bgImage}")`:`linear-gradient(180deg,${somCustomConfig.bg},${somCustomConfig.bg})`);if(somCustomConfig.cardImage){preview.querySelectorAll('.som-preview-portrait,.som-preview-stats i').forEach(el=>{el.style.backgroundImage=`url("${somCustomConfig.cardImage}")`;el.style.backgroundSize='cover';el.style.backgroundPosition='center'})}else{preview.querySelectorAll('.som-preview-portrait,.som-preview-stats i').forEach(el=>el.style.backgroundImage='')}const die=preview.querySelector('.som-preview-die'),f=somCustomConfig.faces[6];if(die&&f){die.style.backgroundColor=f.color||'#fff4d8';die.style.color=f.text||'#402719';die.style.borderColor=f.border||'#d3b576';die.style.backgroundImage=f.image?`url("${f.image}")`:'none';die.textContent=f.image?'':'6'}else if(die){die.style.backgroundImage='none';die.style.backgroundColor='#fff4d8';die.style.color='#402719';die.style.borderColor='#d3b576';die.textContent='6'}}
 function validHex(v){return /^#[0-9a-fA-F]{6}$/.test(v)}
 function applySomCustomization(){const app=document.querySelector('.app');if(!app)return;app.classList.add('som-customized');const sh=app.style;sh.setProperty('--som-paper',somCustomConfig.bg);sh.setProperty('--som-card',somCustomConfig.card);sh.setProperty('--som-ink',somCustomConfig.text);sh.setProperty('--som-accent',somCustomConfig.accent);sh.setProperty('--som-border',somCustomConfig.border);sh.setProperty('--som-sheet-image',somCustomConfig.bgImage?`linear-gradient(#00000008,#00000008),url("${somCustomConfig.bgImage}")`:`linear-gradient(180deg,${somCustomConfig.bg},${somCustomConfig.bg})`);if(somCustomConfig.cardImage){sh.setProperty('--som-card-image',`url("${somCustomConfig.cardImage}")`);document.querySelectorAll('.app .sheet .card').forEach(e=>{e.style.backgroundImage=`linear-gradient(#ffffff12,#ffffff12),url("${somCustomConfig.cardImage}")`;e.style.backgroundSize='cover';e.style.backgroundPosition='center'})}else{document.querySelectorAll('.app .sheet .card').forEach(e=>{e.style.backgroundImage='';e.style.backgroundSize='';e.style.backgroundPosition=''})}document.querySelectorAll('.roll-die').forEach(d=>{const f=somCustomConfig.faces[d.textContent];if(f){d.style.setProperty('--die-paper',f.color||'#fff4d8');d.style.setProperty('--die-ink',f.text||'#402719');d.style.setProperty('--die-border',f.border||'#d3b576');d.style.setProperty('--die-image',f.image?`url("${f.image}")`:'none')}});updateSomLivePreview();}
-function saveSomCustomization(){try{localStorage.setItem('somSixVisualCustomization',JSON.stringify(somCustomConfig))}catch(e){alert('Não foi possível salvar. Talvez as imagens sejam grandes demais; tente imagens menores.')}}
+function saveSomCustomization(){try{localStorage.setItem('somSixVisualCustomization',JSON.stringify(somCustomConfig))}catch(e){const status=document.getElementById('sheetStatus');if(status)status.textContent='Personalização aplicada, mas não foi possível salvar: remova ou reduza as imagens.'}}
 function loadSomCustomization(){try{const saved=JSON.parse(localStorage.getItem('somSixVisualCustomization')||'null');if(saved)somCustomConfig={...SOM_CUSTOM_DEFAULTS,...saved,faces:saved.faces||{}};window.somCustomConfig=somCustomConfig}catch(e){};[['bg','somBgColor','somBgHex'],['card','somCardColor','somCardHex'],['text','somTextColor','somTextHex'],['accent','somAccentColor','somAccentHex'],['border','somBorderColor','somBorderHex']].forEach(([key,colorId,hexId])=>{document.getElementById(colorId).value=somCustomConfig[key];document.getElementById(hexId).value=somCustomConfig[key]});buildSomFaceSettings();applySomCustomization()}
 function setSomColor(key,value){if(!validHex(value))return;somCustomConfig[key]=value;const map={bg:['somBgColor','somBgHex'],card:['somCardColor','somCardHex'],text:['somTextColor','somTextHex'],accent:['somAccentColor','somAccentHex'],border:['somBorderColor','somBorderHex']};const ids=map[key];document.getElementById(ids[0]).value=value;document.getElementById(ids[1]).value=value;applySomCustomization();saveSomCustomization()}
 function readLocalImage(file,callback){if(!file)return;if(file.size>2*1024*1024){alert('Escolha uma imagem de até 2 MB para não exceder o armazenamento do navegador.');return}const reader=new FileReader();reader.onload=()=>callback(reader.result);reader.readAsDataURL(file)}
@@ -4215,8 +4233,16 @@ function buildSomFaceSettings(){const host=document.getElementById('somDiceFaceS
 function updateFace(n,f,preview){somCustomConfig.faces[n]=f;preview.style.backgroundColor=f.color;preview.style.color=f.text;preview.style.borderColor=f.border;preview.style.backgroundImage=f.image?`url("${f.image}")`:'';preview.textContent=f.image?'':n;applySomCustomization();saveSomCustomization()}
 function resetSomCustomization(){if(!confirm('Restaurar todas as cores e imagens padrão do Som das Seis?'))return;somCustomConfig={...SOM_CUSTOM_DEFAULTS,faces:{}};window.somCustomConfig=somCustomConfig;try{localStorage.removeItem('somSixVisualCustomization')}catch(e){};document.querySelectorAll('#somCustomizerModal input[type=file]').forEach(i=>i.value='');loadSomCustomization()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('somCustomizerModal')?.hidden)toggleSomCustomizer(false)});
-document.addEventListener('DOMContentLoaded',()=>{[['bg','somBgColor','somBgHex'],['card','somCardColor','somCardHex'],['text','somTextColor','somTextHex'],['accent','somAccentColor','somAccentHex'],['border','somBorderColor','somBorderHex']].forEach(([key,colorId,hexId])=>{document.getElementById(colorId)?.addEventListener('input',e=>setSomColor(key,e.target.value));document.getElementById(hexId)?.addEventListener('change',e=>{if(validHex(e.target.value))setSomColor(key,e.target.value);else e.target.value=somCustomConfig[key]})});document.getElementById('somBgImage')?.addEventListener('change',e=>readLocalImage(e.target.files[0],data=>{somCustomConfig.bgImage=data;applySomCustomization();saveSomCustomization()}));document.getElementById('somCardImage')?.addEventListener('change',e=>readLocalImage(e.target.files[0],data=>{somCustomConfig.cardImage=data;applySomCustomization();saveSomCustomization()}));loadSomCustomization()});
+document.addEventListener('DOMContentLoaded',()=>{ensureSomCustomizerOnBody();loadSomSheetLocal();[['bg','somBgColor','somBgHex'],['card','somCardColor','somCardHex'],['text','somTextColor','somTextHex'],['accent','somAccentColor','somAccentHex'],['border','somBorderColor','somBorderHex']].forEach(([key,colorId,hexId])=>{document.getElementById(colorId)?.addEventListener('input',e=>setSomColor(key,e.target.value));document.getElementById(hexId)?.addEventListener('change',e=>{if(validHex(e.target.value))setSomColor(key,e.target.value);else e.target.value=somCustomConfig[key]})});document.getElementById('somBgImage')?.addEventListener('change',e=>readLocalImage(e.target.files[0],data=>{somCustomConfig.bgImage=data;applySomCustomization();saveSomCustomization()}));document.getElementById('somCardImage')?.addEventListener('change',e=>readLocalImage(e.target.files[0],data=>{somCustomConfig.cardImage=data;applySomCustomization();saveSomCustomization()}));loadSomCustomization()});
 </script>
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const root=document.getElementById('auzoverSheet');if(!root)return;
+  let timer;
+  const schedule=()=>{clearTimeout(timer);const status=document.getElementById('auzSaveStatus');if(status)status.textContent='Salvando automaticamente…';timer=setTimeout(()=>{if(typeof saveAuzoverLocal==='function')saveAuzoverLocal()},500)};
+  root.addEventListener('input',schedule);root.addEventListener('change',schedule);
+});
 
 <!-- Script Aura: troca números terminados em 67 por uma expressão com “aura” no texto visível. Não altera campos, código nem dados salvos. -->
 <script>
