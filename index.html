@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ficha do Auzover — O Som das Seis</title>
+<title>Fichas de RPG</title>
 <link rel="icon" type="image/png" href="Imagen/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1798,9 +1798,368 @@ footer{
     animation:none !important;
   }
 }
+
+/* Seletor inicial de sistemas */
+.system-picker{position:fixed;inset:0;z-index:20000;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 0%,#6b4a30,#1b100a 68%);color:#f8ecd0}
+.system-picker[hidden]{display:none}
+.system-picker-card{width:min(900px,100%);padding:clamp(24px,5vw,48px);border:3px double #d4a860;border-radius:12px;background:linear-gradient(145deg,rgba(54,31,19,.98),rgba(20,12,8,.98));box-shadow:0 24px 70px #0009;text-align:center}
+.system-picker-kicker{font:12px "Special Elite",serif;letter-spacing:4px;color:#d4a860}
+.system-picker h1{font:clamp(28px,5vw,46px) "Rye",serif;color:#f8e7bd;margin:12px 0}
+.system-picker p{color:#d7c5a4}
+.system-picker-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
+.system-choice{min-height:190px;border:2px solid #a88553;border-radius:9px;padding:24px 18px;background:linear-gradient(180deg,#f0d89c,#b98545);color:#2a1a0c;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:transform .2s,filter .2s}
+.system-choice:hover{transform:translateY(-4px);filter:brightness(1.08)}
+.system-choice strong{font:clamp(18px,3vw,26px) "Rye",serif}
+.system-choice span{font:13px "Special Elite",serif}
+#auzoverSheet{display:none;width:min(1440px,100%);margin:0 auto;padding:clamp(12px,3vw,34px);color:#f5edf0}
+body.is-authenticated.system-auzover #auzoverSheet{display:block}
+body.is-authenticated.system-auzover .app{display:none}
+/* Sistema Auzover: tema gótico vermelho/preto aplicado à página inteira */
+body.system-auzover{--ink:#f4e9ed;--ink-soft:#d6c1ca;--paper:#171116;--paper-2:#21171e;--paper-3:#2c1a25;--brown:#120c11;--brown-deep:#080609;--leather:#52182a;--leather-dark:#2b101a;--red:#a7193f;--red-bright:#e33c61;--gold:#c66b83;--gold-bright:#f1a2b4;--line:#59303f;--line-strong:#8c344e;--muted:#c4a9b3;--shadow-sm:0 2px 8px #0005;--shadow-md:0 8px 24px #0008;--shadow-lg:0 18px 48px #000b;--ease:cubic-bezier(.2,.7,.2,1);--dur:.22s;background:#080609;color:#f4e9ed;font-family:'Lora',Georgia,serif}
+body.system-auzover::before{background:radial-gradient(ellipse at 50% -10%,#48101f 0%,#1b0b14 42%,#080609 78%);animation:none;filter:none}
+body.system-auzover::after{height:100vh;background:radial-gradient(ellipse at 15% 90%,#260a16 0%,transparent 45%),radial-gradient(ellipse at 90% 10%,#200b14 0%,transparent 40%);animation:none}
+body.system-auzover .dust-layer,body.system-auzover .sheriff-star-float,body.system-auzover .app::before{display:none!important}
+body.system-auzover button,body.system-auzover input,body.system-auzover select,body.system-auzover textarea{transition:background-color .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease!important}
+body.system-auzover button{border-color:#783047;background:linear-gradient(145deg,#7d1835,#3c1020);color:#fff0f4;box-shadow:0 4px 14px #0005}
+body.system-auzover button:hover{filter:brightness(1.12);transform:translateY(-1px)}
+body.system-auzover input,body.system-auzover textarea,body.system-auzover select{background:#120d12!important;color:#f8edf1!important;border:1px solid #633044!important;border-radius:8px;box-shadow:inset 0 1px 3px #0008}
+body.system-auzover input:focus,body.system-auzover textarea:focus,body.system-auzover select:focus{outline:2px solid #c43a5c;outline-offset:1px;border-color:#e34a6b!important}
+body.system-auzover .account-gate-card,body.system-auzover .modal,body.system-auzover .campaign-card,body.system-auzover .panel,body.system-auzover .card{background:#160f16!important;color:#f4e9ed!important;border-color:#592538!important;box-shadow:0 14px 42px #0009}
+body.system-auzover .account-gate h1,body.system-auzover h1,body.system-auzover h2,body.system-auzover h3{color:#ffeaf0}
+body.system-auzover .account-gate-copy,body.system-auzover .account-gate p{color:#d0b7c0}
+.auzover-paper{background:linear-gradient(145deg,#171017,#0e0a0f 75%);border:1px solid #6e2a40;border-radius:16px;overflow:hidden;box-shadow:0 24px 70px #000b;position:relative}
+.auzover-paper::before{content:'✦';position:absolute;right:22px;top:16px;color:#8e2b48;font-size:34px;opacity:.45;pointer-events:none}
+.auzover-head{padding:clamp(22px,4vw,38px);background:linear-gradient(120deg,#30101e,#170e17 70%);border-bottom:1px solid #6e2a40;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.auzover-head h1{margin:0;color:#fff0f4;font:clamp(27px,4vw,38px) 'UnifrakturCook','Special Elite',serif;letter-spacing:.5px;text-shadow:0 2px 18px #a7193f55}
+.auzover-head p{margin:8px 0 0;color:#c9a8b4}
+.auzover-back{background:#2a1420!important;color:#ffeef2;border-color:#743047!important}
+.auzover-tabs{display:flex;gap:8px;padding:12px;background:#0d090e;border-bottom:1px solid #572337;overflow-x:auto}
+.auzover-tab{flex:1;min-width:120px;padding:14px 18px;border:1px solid transparent!important;border-radius:9px!important;background:transparent!important;color:#c8adb7!important;font:15px 'Special Elite',serif;box-shadow:none!important;white-space:nowrap}
+.auzover-tab::before{display:none}
+.auzover-tab.active{background:linear-gradient(135deg,#8f1c3d,#4b1228)!important;color:#fff!important;border-color:#c74b69!important;box-shadow:0 5px 18px #8f1c3d35!important}
+.auzover-panel{padding:clamp(16px,3vw,30px);display:block;animation:auz-panel-in .22s ease both}
+.auzover-panel[hidden]{display:none}
+@keyframes auz-panel-in{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.auzover-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.auzover-field{min-width:0;padding:15px;border:1px solid #3f202e;border-radius:11px;background:linear-gradient(145deg,#1b121a,#130d13);box-shadow:0 5px 18px #0003}
+.auzover-field label{display:block;margin:0 0 8px;color:#e9c9d3;font:13px 'Special Elite',serif;letter-spacing:.7px;text-transform:uppercase}
+.auzover-field input,.auzover-field textarea{width:100%;max-width:100%;padding:11px 12px;font:14px 'Lora',serif}
+.auzover-field input[type=file]{font-size:12px;padding:8px}
+.auzover-field textarea{min-height:145px;resize:vertical;line-height:1.6}
+.auzover-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.auzover-stats .auzover-field{position:relative;overflow:hidden}
+.auzover-stats .auzover-field::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#71152f,#d33b5e,#71152f)}
+.auzover-stats input{font-size:20px;font-weight:700;text-align:center;padding:13px 8px}
+.auzover-photo{width:min(100%,190px);aspect-ratio:1/1;height:auto;margin-top:12px;border:1px dashed #9c405b;border-radius:10px;display:grid;place-items:center;color:#c7aab5;background:radial-gradient(circle,#2b1420,#100b10);overflow:hidden}
+.auzover-photo img{width:100%;height:100%;object-fit:cover}
+.auzover-save-note{color:#bda1ac;font-size:12px;margin-top:16px}
+#auzoverSheet .auzover-actions{display:flex;gap:10px;flex-wrap:wrap;padding:0 clamp(16px,3vw,30px) clamp(18px,3vw,30px)}
+#auzoverSheet .auzover-actions button{min-height:44px}
+body.system-auzover .system-picker{background:radial-gradient(ellipse at 50% 0%,#551126,#120910 65%,#070508);color:#ffedf2}
+body.system-auzover .system-picker-card{border:1px solid #9b3453;border-radius:16px;background:linear-gradient(145deg,#21111b,#0c080d);box-shadow:0 28px 90px #000c}
+body.system-auzover .system-picker-kicker{color:#ef8199}
+body.system-auzover .system-picker h1{font-family:'UnifrakturCook','Special Elite',serif;color:#fff0f4}
+body.system-auzover .system-choice{border-color:#8d2a47;border-radius:12px;background:linear-gradient(145deg,#50142b,#210d19);color:#fff0f4}
+body.system-auzover .system-choice:hover{filter:brightness(1.1);transform:translateY(-2px)}
+@media(max-width:760px){#auzoverSheet{padding:10px}.auzover-grid{grid-template-columns:1fr}.auzover-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.auzover-head h1{font-size:28px}.auzover-panel{padding:14px}.auzover-tabs{gap:5px;padding:8px}.auzover-tab{min-width:95px;padding:12px 10px;font-size:13px}}
+@media(max-width:420px){.auzover-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.auzover-stats .auzover-field{padding:10px}.auzover-field{padding:12px}.auzover-head{padding:20px}}
+@media(prefers-reduced-motion:reduce){body.system-auzover *,body.system-auzover *::before,body.system-auzover *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media print{body.system-auzover{background:#fff!important;color:#111!important}body.system-auzover::before,body.system-auzover::after{display:none!important}body.system-auzover #auzoverSheet{display:block!important;padding:0!important}.auzover-paper{box-shadow:none!important;border:1px solid #555!important}.auzover-tabs,.auzover-back,#auzoverSheet .auzover-actions{display:none!important}.auzover-panel[hidden]{display:block!important}.auzover-field{break-inside:avoid;background:#fff!important;color:#111!important;border:1px solid #bbb!important}.auzover-field label{color:#222!important}body.system-auzover input,body.system-auzover textarea{background:#fff!important;color:#111!important}}
+@media(max-width:600px){.system-picker-options{grid-template-columns:1fr}}
+
+/* Refinamento visual e organização da ficha Auzover */
+body.system-auzover{scroll-behavior:smooth; background-color:#080609!important;}
+body.system-auzover::before{background-image:radial-gradient(ellipse at 50% 0%,rgba(111,16,43,.42),transparent 52%),radial-gradient(circle at 8% 22%,rgba(94,12,32,.14),transparent 28%);}
+body.system-auzover #auzoverSheet{max-width:1500px;padding:clamp(12px,2.5vw,36px);}
+body.system-auzover .auzover-paper{border-color:#6d2038;border-radius:18px;background:linear-gradient(145deg,#140e14 0%,#0b080d 100%);box-shadow:0 28px 90px rgba(0,0,0,.65),0 0 0 1px rgba(173,35,72,.08);}
+body.system-auzover .auzover-paper::before{content:'☾';font-size:clamp(38px,5vw,64px);right:clamp(18px,3vw,42px);top:18px;color:#d22e58;opacity:.22;transform:rotate(-16deg)}
+body.system-auzover .auzover-head{position:relative;isolation:isolate;overflow:hidden;padding:clamp(24px,4vw,44px);background:linear-gradient(115deg,#3c0c20 0%,#1b0d17 48%,#100b11 100%);}
+body.system-auzover .auzover-head::after{content:'';position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,transparent,rgba(190,25,66,.09),transparent);pointer-events:none}
+body.system-auzover .auzover-head h1{letter-spacing:1.5px;text-shadow:0 0 26px rgba(202,28,72,.28);}
+body.system-auzover .auzover-head p{max-width:620px;line-height:1.6;}
+body.system-auzover .auzover-tabs{position:sticky;top:0;z-index:5;padding:10px clamp(10px,2vw,22px);background:rgba(12,8,13,.94);backdrop-filter:blur(12px);border-bottom-color:#602037;}
+body.system-auzover .auzover-tab{position:relative;min-height:48px;border-radius:8px!important;transition:background-color .24s ease,color .24s ease,border-color .24s ease,transform .24s ease!important;}
+body.system-auzover .auzover-tab.active{background:linear-gradient(135deg,#9f1d43,#4a1027)!important;box-shadow:inset 0 1px rgba(255,255,255,.12),0 5px 16px rgba(108,14,44,.22)!important;}
+body.system-auzover .auzover-panel{padding:clamp(16px,3vw,34px);animation:auz-panel-in .28s cubic-bezier(.2,.7,.2,1) both;}
+body.system-auzover .auzover-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+body.system-auzover #auz-ficha .auzover-grid:first-child{grid-template-columns:minmax(0,1.5fr) minmax(220px,.7fr);align-items:stretch;}
+body.system-auzover .auzover-field{padding:clamp(14px,2vw,20px);border-color:#45202e;border-radius:12px;background:linear-gradient(145deg,rgba(32,19,29,.96),rgba(17,11,17,.98));box-shadow:0 7px 20px rgba(0,0,0,.16);transition:border-color .24s ease,background-color .24s ease,box-shadow .24s ease;}
+body.system-auzover .auzover-field:focus-within{border-color:#a52d4d;box-shadow:0 0 0 1px rgba(190,43,79,.12),0 8px 24px rgba(0,0,0,.2);}
+body.system-auzover .auzover-field label{font-size:12px;letter-spacing:1.1px;color:#e7b9c7;}
+body.system-auzover .auzover-field input,body.system-auzover .auzover-field textarea{box-sizing:border-box;min-height:44px;line-height:1.5;}
+body.system-auzover .auzover-field textarea{min-height:180px;}
+body.system-auzover .auzover-stats{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:24px;}
+body.system-auzover .auzover-stats::before{content:'Recursos e atributos';grid-column:1/-1;color:#f0c2ce;font:14px 'Special Elite',serif;letter-spacing:1.5px;text-transform:uppercase;padding:0 0 2px;border-bottom:1px solid #4c1c2e;}
+body.system-auzover .auzover-stats .auzover-field{padding:13px 12px;}
+body.system-auzover .auzover-stats .auzover-field::after{height:2px;opacity:.85;}
+body.system-auzover .auzover-stats input{min-height:50px;font-size:clamp(19px,2vw,25px);font-variant-numeric:tabular-nums;}
+body.system-auzover #auz-ficha .auzover-grid[style*="margin-top"]::before{content:'Capacidades e condição';grid-column:1/-1;color:#f0c2ce;font:14px 'Special Elite',serif;letter-spacing:1.5px;text-transform:uppercase;padding:0 0 2px;border-bottom:1px solid #4c1c2e;}
+body.system-auzover .auzover-photo{width:100%;max-width:260px;min-height:190px;aspect-ratio:4/3;margin:14px auto 0;border:1px dashed #a43a59;border-radius:12px;background:radial-gradient(ellipse at 50% 35%,#351322,#100a10 75%);transition:border-color .25s ease,background-color .25s ease;}
+body.system-auzover .auzover-photo img{object-fit:contain;background:#090609;}
+body.system-auzover #auzoverSheet .auzover-actions{align-items:center;border-top:1px solid #371725;padding-top:18px;}
+body.system-auzover #auzoverSheet .auzover-actions button{min-height:46px;padding-inline:20px;}
+body.system-auzover .auzover-save-note{flex:1 1 240px;line-height:1.5;margin:0 0 0 4px;}
+body.system-auzover .auzover-back{background:rgba(18,9,15,.65)!important;}
+body.system-auzover button:hover{filter:brightness(1.07);transform:translateY(-1px);}
+body.system-auzover button:active{transform:translateY(0);}
+body.system-auzover input,body.system-auzover textarea,body.system-auzover select{transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease!important;}
+body.system-auzover .app,body.system-auzover .account-gate,body.system-auzover #auzoverSheet{animation:auz-soft-in .32s ease both;}
+@keyframes auz-soft-in{from{opacity:.0}to{opacity:1}}
+@media(max-width:1050px){body.system-auzover .auzover-stats{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media(max-width:760px){body.system-auzover #auz-ficha .auzover-grid:first-child{grid-template-columns:1fr;}body.system-auzover .auzover-photo{max-width:220px;min-height:160px;}body.system-auzover .auzover-stats{grid-template-columns:repeat(2,minmax(0,1fr));}body.system-auzover .auzover-tabs{position:static;}body.system-auzover .auzover-field textarea{min-height:150px;}}
+@media(max-width:420px){body.system-auzover .auzover-head{align-items:flex-start;}body.system-auzover .auzover-head .auzover-back{width:100%;}body.system-auzover .auzover-stats{gap:8px;}body.system-auzover .auzover-stats .auzover-field{padding:10px;}body.system-auzover .auzover-tab{min-width:90px;padding:11px 8px;}}
+@media(prefers-reduced-motion:reduce){body.system-auzover .auzover-panel,body.system-auzover #auzoverSheet,body.system-auzover .app,body.system-auzover .account-gate{animation:none!important;}}
+
+
+/* Auzover: acabamento gótico/Halloween, hierarquia visual e transições leves */
+body.system-auzover{color-scheme:dark;min-height:100vh;background:#080609!important;color:#f4e9ed!important;font-family:'Lora',Georgia,serif;transition:background-color .28s ease,color .28s ease}
+body.system-auzover::before{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% -15%,rgba(126,15,44,.34),transparent 55%),radial-gradient(ellipse at 4% 70%,rgba(74,10,29,.18),transparent 42%),linear-gradient(180deg,#0b070b,#080609 65%)!important;opacity:1!important;animation:none!important}
+body.system-auzover::after{position:fixed;pointer-events:none;opacity:.35;background:radial-gradient(circle at 85% 20%,rgba(131,18,48,.12),transparent 32%)!important;animation:none!important}
+body.system-auzover :focus-visible{outline:2px solid #ed6885!important;outline-offset:3px}
+body.system-auzover .account-gate{background:radial-gradient(ellipse at 50% 0%,#4a1024 0%,transparent 56%),radial-gradient(ellipse at 50% 100%,#240b17 0%,transparent 60%),#080609!important;backdrop-filter:none;animation:auz-soft-in .28s ease both}
+body.system-auzover .account-gate-card{border:1px solid #743047!important;border-radius:16px!important;background:linear-gradient(145deg,#21121b,#100b11)!important;box-shadow:0 22px 65px #000b,0 0 0 1px #a52a4a22!important;color:#f4e9ed!important}
+body.system-auzover .account-brand-mark{border-color:#9d3652;background:radial-gradient(circle at 30% 30%,#671a34,#260d1a);color:#ffdce5;box-shadow:0 5px 18px #0008!important;animation:none!important}
+body.system-auzover .account-eyebrow{color:#e58aa0!important}
+body.system-auzover .account-gate-card h1{color:#fff0f4!important;text-shadow:none!important}
+body.system-auzover .account-gate-copy,body.system-auzover .account-gate-status,body.system-auzover .account-gate-switch{color:#d0b7c0!important}
+body.system-auzover .account-gate-form label{color:#efcbd5!important}
+body.system-auzover .account-gate-link,body.system-auzover .account-gate-switch button{color:#f09ab0!important}
+body.system-auzover .app,body.system-auzover .app *{scrollbar-color:#67263d #100b10}
+body.system-auzover .auzover-paper{isolation:isolate}
+body.system-auzover .auzover-head{min-height:150px;padding:clamp(24px,4vw,46px);gap:22px;background:radial-gradient(ellipse at 90% 0%,rgba(153,22,59,.24),transparent 38%),linear-gradient(115deg,#310c1d,#170d16 58%,#0d090f)!important}
+body.system-auzover .auzover-head h1{font-size:clamp(30px,4vw,44px);line-height:1.12;max-width:760px}
+body.system-auzover .auzover-head p{font-size:14px;letter-spacing:.15px}
+body.system-auzover .auzover-back{min-height:44px;border-radius:9px!important;white-space:nowrap}
+body.system-auzover .auzover-tabs{gap:8px;box-shadow:0 8px 22px #0002}
+body.system-auzover .auzover-tab{flex:1 1 0;min-width:110px;font-weight:700;letter-spacing:.4px}
+body.system-auzover .auzover-tab:not(.active):hover{background:#24121c!important;color:#fff0f4!important;border-color:#552137!important;transform:translateY(-1px)}
+body.system-auzover .auzover-panel{animation:auz-panel-in .2s ease both}
+body.system-auzover .auzover-section-heading{display:flex;align-items:center;gap:14px;margin:0 0 18px;padding:2px 0 14px;border-bottom:1px solid #45202e}
+body.system-auzover .auzover-section-heading>span{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border:1px solid #8e2a48;border-radius:10px;background:linear-gradient(145deg,#551329,#210d18);color:#ffb7c8;font:14px 'Special Elite',serif;box-shadow:inset 0 1px #ffffff12}
+body.system-auzover .auzover-section-heading h2{margin:0;color:#ffeaf0;font:clamp(16px,2vw,20px) 'Special Elite',serif;letter-spacing:.35px}
+body.system-auzover .auzover-section-heading p{margin:5px 0 0;color:#bfa2ad;font-size:12px;line-height:1.5}
+body.system-auzover .auzover-section-heading-spaced{margin-top:30px}
+body.system-auzover .auzover-identity{grid-template-columns:minmax(0,1.6fr) minmax(230px,.8fr);align-items:stretch}
+body.system-auzover .auzover-identity>.auzover-field:first-child input{min-height:54px;font-size:17px}
+body.system-auzover .auzover-identity>.auzover-field:nth-child(2){display:flex;flex-direction:column;align-items:flex-start}
+body.system-auzover .auzover-photo{width:100%;max-width:none;min-height:210px;aspect-ratio:4/3;margin:10px 0 0;flex:1}
+body.system-auzover .auzover-photo:empty::after{content:'✦\A Retrato do personagem';white-space:pre;text-align:center;line-height:1.8;color:#a98594;font:13px 'Special Elite',serif}
+body.system-auzover .auzover-stats{margin-top:0!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+body.system-auzover .auzover-stats::before{margin-bottom:2px}
+body.system-auzover .auzover-stats .auzover-field{min-height:115px;display:flex;flex-direction:column;justify-content:space-between}
+body.system-auzover .auzover-stats input{width:100%;border-radius:8px!important}
+body.system-auzover .auzover-capabilities{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+body.system-auzover .auzover-capabilities .auzover-field:last-child{grid-column:1/-1}
+body.system-auzover .auzover-field{transition:border-color .2s ease,box-shadow .2s ease,background .2s ease!important}
+body.system-auzover .auzover-field:hover{border-color:#673047}
+body.system-auzover .auzover-field input,body.system-auzover .auzover-field textarea{border-radius:8px!important;min-width:0}
+body.system-auzover .auzover-field textarea{min-height:175px;resize:vertical}
+body.system-auzover .auzover-writing-field textarea{min-height:clamp(260px,40vh,520px);font-size:15px;line-height:1.8}
+body.system-auzover .auzover-actions{gap:10px;background:linear-gradient(180deg,transparent,#0c080d);}
+body.system-auzover .auzover-actions button{transition:transform .18s ease,filter .18s ease,box-shadow .18s ease!important}
+body.system-auzover .auzover-actions button:hover{box-shadow:0 7px 18px #0006!important}
+body.system-auzover button,body.system-auzover input,body.system-auzover textarea,body.system-auzover select{transition-duration:.18s!important}
+body.system-auzover :where(input,textarea,select){accent-color:#bc3156}
+@keyframes auz-panel-in{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@keyframes auz-soft-in{from{opacity:0}to{opacity:1}}
+@media(max-width:900px){body.system-auzover .auzover-identity{grid-template-columns:minmax(0,1.2fr) minmax(200px,.8fr)}body.system-auzover .auzover-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){body.system-auzover .auzover-head{align-items:flex-start}body.system-auzover .auzover-head .auzover-back{width:auto}body.system-auzover .auzover-identity,body.system-auzover .auzover-capabilities{grid-template-columns:1fr}body.system-auzover .auzover-capabilities .auzover-field:last-child{grid-column:auto}body.system-auzover .auzover-photo{max-width:300px;min-height:190px;align-self:center}body.system-auzover .auzover-stats{grid-template-columns:repeat(2,minmax(0,1fr))}body.system-auzover .auzover-stats .auzover-field{min-height:105px}body.system-auzover .auzover-section-heading-spaced{margin-top:24px}body.system-auzover .auzover-writing-field textarea{min-height:300px}}
+@media(max-width:420px){body.system-auzover #auzoverSheet{padding:8px}body.system-auzover .auzover-head{padding:22px 17px}body.system-auzover .auzover-head .auzover-back{width:100%}body.system-auzover .auzover-panel{padding:15px 12px}body.system-auzover .auzover-tabs{padding:8px}body.system-auzover .auzover-tab{min-width:0;padding:12px 7px;font-size:12px}body.system-auzover .auzover-section-heading{gap:10px}body.system-auzover .auzover-section-heading>span{flex-basis:32px;width:32px;height:32px}}
+@media(prefers-reduced-motion:reduce){body.system-auzover *,body.system-auzover *::before,body.system-auzover *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Rolagem de sorte e personalização visual do Som das Seis */
+.luck-card{text-align:center}.luck-result{display:flex;flex-direction:column;align-items:center;gap:5px;padding:20px 12px;margin:12px 0;border:2px solid currentColor;border-radius:12px;transition:all .25s ease}.luck-result strong{font: bold 25px "Rye",serif}.luck-result small{font-size:12px}.luck-symbol{font-size:28px}.luck-disaster{color:#8d0808}.luck-failure{color:#d34a37}.luck-neutral-text{color:#8a765d}.luck-success{color:#24884e}.luck-extreme{color:#792bd1}.luck-disaster-bg{background:linear-gradient(135deg,#310707,#a20f16);color:#fff0f0;box-shadow:0 0 16px #b10d1d66}.luck-failure-bg{background:linear-gradient(135deg,#671c16,#ef634d);color:#fff7f4}.luck-neutral{background:linear-gradient(135deg,#e7dfd0,#c9bda9);color:#4a4035}.luck-success-bg{background:linear-gradient(120deg,#a9f5a6,#53d9c3,#8cdbff);color:#073d30;box-shadow:0 0 16px #45dca766}.luck-secret-good{background:linear-gradient(120deg,#fff7a8,#a5ffd6,#a8d9ff,#e4a8ff);background-size:250% 250%;color:#23103a;border-color:#fff4a3;box-shadow:0 0 28px #fff08c,0 0 52px #d58cff;animation:luck-secret-glow 1.2s ease-in-out infinite alternate}.luck-secret-bad{background:repeating-linear-gradient(135deg,#190005,#190005 10px,#54000b 10px,#54000b 20px);color:#fff0f0;border-color:#ff1e3c;box-shadow:0 0 28px #ff002f99;animation:luck-secret-shake .22s linear 3}@keyframes luck-secret-glow{from{background-position:0% 50%;filter:brightness(1)}to{background-position:100% 50%;filter:brightness(1.2)}}@keyframes luck-secret-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+.luck-extreme-bg{background:linear-gradient(120deg,#ffdd55,#ff75cf,#9c72ff,#5ee7ff);background-size:220% 220%;color:#28103e;box-shadow:0 0 24px #d96bff88;animation:luck-shimmer 2s ease infinite}@keyframes luck-shimmer{50%{background-position:100% 100%}}.luck-roll-button{width:100%;margin-bottom:10px}.luck-legend{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-size:11px;font-weight:bold}.som-customizer[hidden]{display:none}.som-customizer h3{margin-top:20px}.customizer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.customizer-grid>label{display:flex;flex-direction:column;gap:7px;padding:10px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.22)}.color-controls{display:flex;gap:8px}.color-controls input[type=color]{width:52px;height:40px;padding:3px;cursor:pointer}.color-controls input[type=text]{min-width:0;flex:1;text-transform:uppercase}.dice-face-settings{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.dice-face-setting{padding:10px;border:1px solid var(--line);border-radius:8px;display:grid;grid-template-columns:42px 1fr;gap:8px;align-items:center}.dice-face-preview{height:42px;border:2px solid #d3b576;border-radius:8px;display:grid;place-items:center;font: bold 23px Rye,serif;background:#fff4d8;color:#402719;background-size:cover;background-position:center}.dice-face-setting label{font-size:11px;display:flex;flex-direction:column;gap:4px}.dice-face-setting input[type=color]{width:100%;height:28px}.dice-face-setting input[type=text]{width:100%;font-size:12px}.dice-face-setting input[type=file]{width:100%;font-size:10px}.customizer-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+/* As cores configuradas afetam a ficha Som das Seis, sem alterar o Sistema Auzover. */
+.app.som-customized .sheet{background-color:var(--som-paper)!important;background-image:var(--som-sheet-image,linear-gradient(180deg,var(--som-paper),var(--som-paper)))!important;border-color:var(--som-border)!important}
+.app.som-customized .card,.app.som-customized .metric,.app.som-customized .skill-group,.app.som-customized .selected-skills,.app.som-customized .notice{background-color:var(--som-card)!important;color:var(--som-ink)!important}
+.app.som-customized .sheet h1,.app.som-customized .sheet h2,.app.som-customized .sheet h3,.app.som-customized .sheet label,.app.som-customized .sheet p,.app.som-customized .sheet small,.app.som-customized .sheet b,.app.som-customized .sheet span,.app.som-customized .sheet td,.app.som-customized .sheet th{color:var(--som-ink)}
+.app.som-customized .sheet h1,.app.som-customized .sheet h2,.app.som-customized .sheet h3,.app.som-customized .sheet .skill b,.app.som-customized .sheet .sheet-tab.active{color:var(--som-accent)!important}
+.app.som-customized .sheet input,.app.som-customized .sheet textarea,.app.som-customized .sheet select{color:var(--som-ink);border-color:var(--som-border)}
+.app.som-customized .sheet .card{border-color:var(--som-border)}.app.som-customized .sheet .roll-die{color:var(--die-ink,#402719)!important;border-color:var(--die-border,#d3b576)!important;background-color:var(--die-paper,#fff4d8)!important;background-image:var(--die-image,none)!important;background-size:cover!important;background-position:center!important}
+@media(max-width:600px){.luck-legend{gap:7px}.customizer-grid{grid-template-columns:1fr}.dice-face-settings{grid-template-columns:1fr}}
+
+/* Rolagem de Sorte na ficha Auzover e modal de personalização do Som das Seis */
+body.system-auzover .auz-luck-card{margin-top:16px;border-color:#7e2945;background:linear-gradient(145deg,#21101a,#100a10);padding:14px;min-width:0}
+body.system-auzover .auz-luck-heading{display:flex;align-items:flex-start;gap:10px}
+body.system-auzover .auz-luck-heading>span{font-size:26px}
+body.system-auzover .auz-luck-heading h2{margin:0;color:#ffeaf0;font:18px 'Special Elite',serif}
+body.system-auzover .auz-luck-heading p{margin:5px 0 0;color:#bfa2ad;font-size:12px;line-height:1.5}
+body.system-auzover .auz-luck-card .luck-result{min-height:100px;justify-content:center}
+body.system-auzover .auz-luck-roll-button{width:100%;min-height:43px;border:1px solid #a43a59;border-radius:8px;background:linear-gradient(135deg,#721b38,#3b1023);color:#fff0f4;font-weight:800;cursor:pointer;margin:0 0 12px}
+body.system-auzover .auz-luck-card .luck-legend{font-size:10px;gap:8px}
+.som-customizer-backdrop{z-index:10000;overflow:auto;align-items:flex-start;padding:clamp(8px,2vw,24px)}
+.som-customizer-window{width:min(1180px,100%);max-height:calc(100dvh - 32px);display:flex;flex-direction:column;overflow:hidden;background:#171018;color:#f8eaf0;border:1px solid #81405b;border-radius:16px;box-shadow:0 28px 90px #000b,0 0 0 5px #180b12;animation:modal-in .25s ease both;text-align:left}
+.som-customizer-header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:20px 22px;border-bottom:1px solid #54253b;background:radial-gradient(ellipse at top left,#482033,#1a1018 70%)}
+.som-customizer-header h2{margin:4px 0 6px;font:clamp(20px,3vw,28px) 'Special Elite',serif;color:#ffe8ef}
+.som-customizer-header p{margin:0;color:#c9aab8;font-size:13px;line-height:1.5}
+.som-modal-kicker{font-size:10px;letter-spacing:2px;color:#e7789b;font-weight:800}
+.som-modal-close{flex:0 0 38px;width:38px;height:38px;border:1px solid #78405a;border-radius:9px;background:#281420;color:#ffeaf0;font-size:18px;cursor:pointer}
+.som-customizer-body{display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.6fr);gap:20px;padding:18px;overflow:auto;min-height:0}
+.som-live-preview{position:sticky;top:0;align-self:start;padding:12px;border:1px solid #4b293b;border-radius:12px;background:#0f0a10}
+.som-preview-paper{position:relative;padding:16px 13px 12px;border:2px solid var(--som-border,#a88553);border-radius:5px;background-color:var(--som-paper,#e8d4a8);background-image:var(--som-sheet-image,linear-gradient(180deg,#e8d4a8,#e8d4a8));color:var(--som-ink,#1e1410);box-shadow:0 8px 20px #0006;font-family:Georgia,serif;min-height:360px;overflow:hidden}
+.som-preview-topline,.som-preview-footer{text-align:center;font-size:9px;letter-spacing:1.3px;color:var(--som-accent,#8a2b1c);font-weight:bold}
+.som-preview-paper h3{text-align:center;margin:12px 0 7px;font-size:22px;line-height:1.1;color:var(--som-accent,#8a2b1c)}
+.som-preview-rule{height:2px;background:var(--som-border,#a88553);margin-bottom:13px}
+.som-preview-portrait{float:left;width:74px;height:83px;margin:0 10px 8px 0;border:2px solid var(--som-border,#a88553);background:var(--som-card,#f5e6c4);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:32px;color:var(--som-accent,#8a2b1c)}
+.som-preview-portrait small{font-size:8px;letter-spacing:1px}
+.som-preview-lines{display:grid;gap:7px;font-size:9px;color:var(--som-ink,#1e1410)}.som-preview-lines>span{font-weight:bold;color:var(--som-accent,#8a2b1c);letter-spacing:.6px}.som-preview-lines>b{font-size:11px;overflow:hidden;white-space:nowrap}
+.som-preview-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.som-preview-stats i{font-style:normal;text-align:center;padding:8px 2px;background:var(--som-card,#f5e6c4);border:1px solid var(--som-border,#a88553);font-size:7px}
+.som-preview-die{width:43px;height:43px;display:grid;place-items:center;margin:0 auto;border:2px solid var(--die-border,#d3b576);border-radius:10px;background:var(--die-paper,#fff4d8);color:var(--die-ink,#402719);font:bold 24px Georgia,serif;background-image:var(--die-image,none);background-size:cover;background-position:center}
+.som-preview-footer{clear:both;padding-top:15px;font-size:8px}.som-preview-caption{text-align:center;color:#bda4b1;font-size:11px;margin:10px 0 0}
+.som-customizer-controls{min-width:0}.som-customizer-controls .notice{color:#c9b4bf;background:#21131d;border-color:#543044}
+.som-customizer-controls h3{margin:22px 0 12px;color:#ffe8ef;font:17px 'Special Elite',serif}
+.som-customizer-controls .customizer-grid>label{background:#21151e;border-color:#4c2a3a;color:#f5dfe8}
+.som-customizer-controls input[type=text]{background:#100b10;color:#fff0f5;border-color:#5e3448;border-radius:6px;padding:8px}
+.som-customizer-controls input[type=file]{max-width:100%;font-size:11px}
+.som-customizer-controls .dice-face-setting{background:#21151e;border-color:#4c2a3a}.som-customizer-controls .dice-face-setting strong{color:#ffe8ef}
+.som-customizer-controls .dice-face-setting label{color:#d8bdca}.som-customizer-controls .dice-face-setting input[type=text]{padding:5px}
+.som-customizer-window .customizer-actions{padding:14px 18px;margin:0;border-top:1px solid #54253b;background:#1b1119;justify-content:flex-end}
+.som-customizer-window .customizer-actions button{min-height:40px;border:1px solid #74415a;border-radius:8px;padding:9px 14px;background:#2b1723;color:#ffeaf0;cursor:pointer;font-weight:700}
+.som-customizer-window .customizer-actions .som-modal-done{background:linear-gradient(135deg,#9b3155,#5c1e3a);border-color:#d35c85}
+@media(max-width:760px){.som-customizer-window{max-height:calc(100dvh - 16px)}.som-customizer-body{grid-template-columns:1fr;padding:12px;gap:14px}.som-live-preview{position:static;max-width:380px;width:100%;margin:0 auto}.som-preview-paper{min-height:300px}.som-customizer-header{padding:16px}.som-customizer-window .customizer-actions{padding:12px}}
+
+
+.auz-resource-current-max{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:8px}
+.auz-resource-current-max>div{min-width:0;display:flex;flex-direction:column;gap:5px}
+body.system-auzover .auz-resource-current-max label{font-size:11px;color:#cfaab7;letter-spacing:.04em;text-transform:uppercase}
+body.system-auzover .auz-resource-current-max input{width:100%;min-width:0;text-align:center;font-weight:700;font-size:18px}
+body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;background:#100a10}
 </style>
+
+<style id="auzover-final-polish">
+/* Acabamento final: identidade Halloween, consistência e responsividade */
+:root{scrollbar-gutter:stable}
+html{scroll-behavior:smooth}
+body.system-auzover{overflow-x:hidden;isolation:isolate}
+body.system-auzover #auzoverSheet{position:relative;z-index:1}
+body.system-auzover #auzoverSheet:before{content:"☠";position:fixed;right:clamp(10px,2vw,28px);bottom:8px;z-index:-1;color:#8f1538;opacity:.07;font:clamp(90px,16vw,220px) Georgia,serif;pointer-events:none;line-height:1}
+body.system-auzover .auzover-paper{border:1px solid #67213a;box-shadow:0 24px 70px #0009,0 0 36px #5b0c2412}
+body.system-auzover .auzover-head{position:relative;overflow:hidden;border-bottom:1px solid #7c2440}
+body.system-auzover .auzover-head:after{content:"✦  ☾  ✦";position:absolute;right:clamp(16px,4vw,54px);bottom:8px;color:#f06a8a;opacity:.12;font:clamp(30px,5vw,58px) Georgia,serif;letter-spacing:10px;pointer-events:none}
+body.system-auzover .auzover-section-heading{scroll-margin-top:84px}
+body.system-auzover .auzover-section-heading>span{box-shadow:0 4px 14px #0005,inset 0 1px #ffffff12}
+body.system-auzover .auzover-field{min-width:0}
+body.system-auzover .auzover-field label{line-height:1.4}
+body.system-auzover .auzover-field input::placeholder,body.system-auzover .auzover-field textarea::placeholder{color:#8f7882;opacity:1}
+body.system-auzover .auzover-field input:focus,body.system-auzover .auzover-field textarea:focus{outline:none;border-color:#c23a60!important;box-shadow:0 0 0 3px #b52c501c,inset 0 1px 3px #0007!important}
+body.system-auzover .auzover-photo{position:relative;min-height:190px}
+body.system-auzover .auzover-photo img{display:block;width:100%;height:100%;min-height:190px;object-fit:contain}
+body.system-auzover .auzover-tabs{border-bottom:1px solid #6b2039}
+body.system-auzover .auzover-tab{min-height:48px}
+body.system-auzover .auzover-tab:focus-visible,body.system-auzover .auzover-back:focus-visible,body.system-auzover .auzover-actions button:focus-visible{outline:2px solid #ff8da8!important;outline-offset:3px}
+body.system-auzover .auzover-actions{position:relative;z-index:1}
+body.system-auzover .auzover-actions button{border-radius:9px!important}
+body.system-auzover .auzover-actions button:first-child{background:linear-gradient(135deg,#a52248,#5b112c)!important;border-color:#d34c70!important}
+body.system-auzover .auzover-save-note{color:#c5a8b3}
+body.system-auzover .auzover-save-note[role=status]{transition:color .18s ease}
+body.system-auzover .account-gate-card{backdrop-filter:none!important}
+body.system-auzover .system-picker-card{position:relative;overflow:hidden}
+body.system-auzover .system-picker-card:after{content:"☾  ✦  ☠  ✦  ☽";display:block;margin-top:22px;color:#e35a7c;opacity:.32;font-size:20px;letter-spacing:8px}
+body.system-auzover .system-choice{transition:transform .18s ease,border-color .18s ease,filter .18s ease,box-shadow .18s ease}
+body.system-auzover .system-choice:hover{box-shadow:0 12px 28px #0008;border-color:#e15a7c}
+body.system-auzover button{transition:transform .18s ease,filter .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease!important}
+body.system-auzover button:active{filter:brightness(.96)}
+@media(max-width:680px){body.system-auzover #auzoverSheet:before{display:none}body.system-auzover .auzover-head:after{right:10px;bottom:3px;font-size:28px;letter-spacing:4px}body.system-auzover .auzover-actions button{flex:1 1 100%}body.system-auzover .auzover-save-note{flex-basis:100%}}
+@media(max-width:420px){body.system-auzover .auzover-stats{grid-template-columns:repeat(2,minmax(0,1fr))}body.system-auzover .auzover-tabs{gap:4px}body.system-auzover .auzover-tab{min-width:0;flex:1 1 0;padding-inline:7px;font-size:12px}body.system-auzover .auzover-field input,body.system-auzover .auzover-field textarea{font-size:16px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}body.system-auzover *,body.system-auzover *:before,body.system-auzover *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{body.system-auzover #auzoverSheet:before,body.system-auzover .auzover-head:after{display:none!important}body.system-auzover .auzover-paper{background:#fff!important;color:#111!important}body.system-auzover .auzover-section-heading h2{color:#111!important}body.system-auzover .auzover-section-heading p{color:#444!important}}
+</style>
+
+
+<style id="auzover-profile-fantasy-injuries">
+body.system-auzover .auz-profile-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:20px;align-items:start}
+body.system-auzover .auz-profile-left,body.system-auzover .auz-profile-right{display:grid;gap:14px;min-width:0}
+body.system-auzover .auz-profile-left>.auzover-field{margin:0}
+body.system-auzover .auz-resource-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+body.system-auzover .auz-resource{border-color:#792440;background:linear-gradient(145deg,#2a101d,#160b12)}
+body.system-auzover .auz-resource input{font-size:clamp(22px,3vw,30px);font-weight:800;text-align:center;color:#fff0f4}
+body.system-auzover .auz-attributes{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0!important}
+body.system-auzover .auz-attributes::before{display:none}
+body.system-auzover .auz-attributes .auzover-field{min-height:0}
+body.system-auzover .auz-photo-field{height:100%;display:flex;flex-direction:column}
+body.system-auzover .auzover-photo{flex:1;min-height:240px!important;aspect-ratio:4/3}
+body.system-auzover .auz-fantasies-card{border-color:#7e2945;background:linear-gradient(145deg,#21101a,#100a10)}
+body.system-auzover .auz-fantasy-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+body.system-auzover .auz-fantasy-heading label{margin:0;color:#ffe5ed;font:17px 'Special Elite',serif;letter-spacing:1px}
+body.system-auzover .auz-fantasy-heading p{margin:5px 0 0;color:#bfa1ad;font-size:12px;line-height:1.5}
+body.system-auzover .auz-fantasy-heading>span{font-size:32px;color:#e65b7d;opacity:.8}
+body.system-auzover .auz-fantasy-form{display:grid;gap:7px}
+body.system-auzover .auz-fantasy-form>label{margin-top:5px;font-size:11px}
+body.system-auzover .auz-fantasy-form textarea{min-height:86px}
+body.system-auzover .auz-add-fantasy,body.system-auzover .auz-clear-injuries{min-height:42px;border:1px solid #a43a59;border-radius:8px;background:linear-gradient(135deg,#721b38,#3b1023);color:#fff0f4;font-weight:700;cursor:pointer;padding:10px 13px;transition:filter .18s ease,transform .18s ease}
+body.system-auzover .auz-add-fantasy:hover,body.system-auzover .auz-clear-injuries:hover{filter:brightness(1.12)}
+body.system-auzover .auz-fantasy-list{display:grid;gap:9px;margin-top:13px}
+body.system-auzover .auz-fantasy-item{border:1px solid #5c2338;border-left:3px solid #d34b70;border-radius:8px;padding:11px 12px;background:#120b11}
+body.system-auzover .auz-fantasy-item h3{font:15px 'Special Elite',serif;color:#ffdce6;margin:0 0 6px}
+body.system-auzover .auz-fantasy-item p{margin:0;color:#d6bdc6;font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+body.system-auzover .auz-fantasy-item button{margin-top:8px;border:1px solid #633044;background:#21101a;color:#eeb8c8;border-radius:6px;padding:5px 8px;cursor:pointer}
+body.system-auzover .auz-empty-fantasy{margin:0;color:#9f8490;font-size:12px;font-style:italic;line-height:1.5}
+body.system-auzover .auz-injury-layout{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.2fr);gap:16px;align-items:start}
+body.system-auzover .auz-body-card{display:grid;place-items:center;padding:14px;border:1px solid #4b2233;border-radius:12px;background:radial-gradient(ellipse at 50% 25%,#28131e,#100a10 72%)}
+body.system-auzover .auz-body-map{display:block;width:100%;max-width:280px;height:auto;overflow:visible}
+body.system-auzover .auz-body-part{cursor:pointer;outline:none;transition:fill .16s ease,filter .16s ease,stroke .16s ease}
+body.system-auzover .auz-body-part:hover,body.system-auzover .auz-body-part:focus{filter:drop-shadow(0 0 5px #ff7197);stroke:#fff0f4;stroke-width:2.5}
+body.system-auzover .auz-body-part.is-injured{fill:#c51e4a!important;stroke:#ff9ab5!important;filter:drop-shadow(0 0 7px #d21d4e)}
+body.system-auzover .auz-body-hint{margin:4px 0 0;color:#b99aa6;font-size:11px;text-align:center}
+body.system-auzover .auz-injury-details{display:grid;gap:12px;min-width:0}
+body.system-auzover .auz-injury-chips{display:flex;flex-wrap:wrap;gap:7px;min-height:28px}
+body.system-auzover .auz-injury-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid #a53a59;border-radius:999px;background:#401323;color:#ffe8ef;padding:6px 10px;font-size:12px}
+body.system-auzover .auz-no-injury{color:#9f8490;font-size:12px;font-style:italic}
+body.system-auzover .auz-clear-injuries{background:#1c1018;border-color:#5b3041;color:#e5c5cf}
+@media(max-width:900px){body.system-auzover .auz-profile-layout{grid-template-columns:minmax(0,1fr) minmax(260px,.9fr)}body.system-auzover .auz-injury-layout{grid-template-columns:minmax(210px,.8fr) minmax(0,1.2fr)}}
+@media(max-width:680px){body.system-auzover .auz-profile-layout,body.system-auzover .auz-injury-layout{grid-template-columns:1fr}body.system-auzover .auz-profile-right{grid-row:2}body.system-auzover .auzover-photo{min-height:210px!important;max-width:none}body.system-auzover .auz-body-map{max-width:240px}body.system-auzover .auz-attributes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{body.system-auzover .auz-fantasy-form,body.system-auzover .auz-clear-injuries,body.system-auzover .auz-fantasy-item button{display:none!important}body.system-auzover .auz-profile-layout,body.system-auzover .auz-injury-layout{grid-template-columns:1fr 1fr}body.system-auzover .auz-body-part.is-injured{fill:#999!important;filter:none!important}}
+
+.auz-fantasy-select{display:block;width:100%;min-height:44px;padding:11px 13px;border:1px solid rgba(190,35,55,.55);border-radius:10px;background:#160d12;color:#f8e9ec;font:inherit;margin:8px 0 12px}
+.auz-fantasy-select:focus{outline:2px solid #a52a40;outline-offset:2px}
+.auz-fantasy-select:disabled{opacity:.7;cursor:not-allowed}
+.auz-fantasy-help{font-size:.85rem;line-height:1.5;opacity:.8;margin:10px 0 14px}
+.auz-fantasy-custom{border-top:1px solid rgba(190,35,55,.3);padding-top:12px;margin-top:14px}
+.auz-fantasy-custom summary{cursor:pointer;color:#e6a0ad;font-weight:600;padding:5px 0 12px}
+
+.auz-regra-recurso {
+  display: block;
+  margin-top: 6px;
+  color: #c18b8b;
+  font-size: 11px;
+  line-height: 1.45;
+  font-style: italic;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+</style>
+
+
+<style id="auzover-injury-automatic-effects">
+body.system-auzover .auz-injury-effects{display:grid;gap:8px}
+body.system-auzover .auz-injury-effect{display:flex;align-items:flex-start;gap:8px;padding:9px 11px;border:1px solid #6c2a40;border-radius:8px;background:linear-gradient(120deg,#2c1420,#171018);color:#f6dce4;font-size:13px;line-height:1.45}
+body.system-auzover .auz-injury-effect strong{color:#ff9bb4}
+body.system-auzover .auz-injury-effect.is-confusion{border-color:#9d5bba;background:linear-gradient(120deg,#32183e,#171018)}
+body.system-auzover .auz-injury-effect.is-confusion strong{color:#d9a0ff}
+body.system-auzover .auz-injury-note{margin:10px 0 0;color:#b99aa6;font-size:11px;line-height:1.5}
+body.system-auzover .auz-effective-attributes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+body.system-auzover .auz-effective-stat{padding:9px;border:1px solid #54263a;border-radius:8px;background:#100b11;font-size:12px;color:#d9bec8}
+body.system-auzover .auz-effective-stat strong{display:block;color:#fff0f4;font-size:18px;margin-top:3px}
+body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-size:11px}
+</style>
+
 </head>
+
 <body>
+<section class="system-picker" id="systemPicker" aria-labelledby="systemPickerTitle">
+  <div class="system-picker-card">
+    <div class="system-picker-kicker">AUZOVER RPG • SELEÇÃO DE SISTEMA</div>
+    <h1 id="systemPickerTitle">Qual ficha vamos abrir?</h1>
+    <p>Escolha um sistema para acessar sua ficha e suas abas.</p>
+    <div class="system-picker-options">
+      <button class="system-choice" type="button" onclick="chooseSystem('som')"><strong>★ Som das Seis ★</strong><span>Faroeste • ficha original com todas as abas</span></button>
+      <button class="system-choice" type="button" onclick="chooseSystem('auzover')"><strong>✦ Sistema Auzover ✦</strong><span>Ficha baseada no PDF enviado</span></button>
+    </div>
+  </div>
+</section>
+
 
 <div class="dust-layer" aria-hidden="true"></div>
 <svg class="sheriff-star-float" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
@@ -1842,6 +2201,7 @@ footer{
   <button onclick="saveSheet()">Salvar ficha</button>
   <button onclick="loadActiveCharacter()">Carregar ficha</button>
   <button onclick="window.print()">Imprimir / PDF</button>
+  <button type="button" onclick="toggleSomCustomizer(true)">🎨 Personalizar Som das Seis</button>
   <button class="danger" onclick="newSheet()">Limpar ficha</button>
   <span id="sheetStatus" class="sheet-status" role="status" aria-live="polite">Ficha pronta.</span>
 </div>
@@ -1941,6 +2301,33 @@ footer{
     </div>
     <p class="points">Pontos de atributos: <b id="attrTotal">0</b> / <span id="attrAllowance">4</span> • Pontos de Antecedente disponíveis: <b id="antTotal">5</b></p>
   </div>
+
+<div class="modal-backdrop som-customizer-backdrop" id="somCustomizerModal" hidden onclick="if(event.target===this)toggleSomCustomizer(false)">
+  <section class="som-customizer-window" role="dialog" aria-modal="true" aria-labelledby="somCustomizerTitle">
+    <header class="som-customizer-header"><div><span class="som-modal-kicker">OFICINA DO XERIFE</span><h2 id="somCustomizerTitle">🎨 Personalizar o visual</h2><p>Altere o visual da ficha Som das Seis e acompanhe a prévia em tempo real.</p></div><button class="som-modal-close" type="button" aria-label="Fechar personalização" onclick="toggleSomCustomizer(false)">✕</button></header>
+    <div class="som-customizer-body">
+      <aside class="som-live-preview" id="somLivePreview" aria-label="Prévia do visual da ficha">
+        <div class="som-preview-paper"><div class="som-preview-topline">✦ FICHA DE PERSONAGEM ✦</div><h3>O Som das Seis</h3><div class="som-preview-rule"></div><div class="som-preview-portrait">♙<small>RETRATO</small></div><div class="som-preview-lines"><span>NOME DO PERSONAGEM</span><b>________________________________</b><span>ATRIBUTOS</span><div class="som-preview-stats"><i>FÍSICO</i><i>MENTE</i><i>AGILIDADE</i></div><span>ROLAGEM DE DADOS</span><div class="som-preview-die">6</div></div><p class="som-preview-footer">★ A FRONTEIRA ESPERA ★</p></div>
+        <p class="som-preview-caption">Prévia aproximada da aparência da ficha</p>
+      </aside>
+      <div class="som-customizer-controls">
+        <p class="notice">Use a roda de cores, digite um código hexadecimal ou escolha imagens do seu aparelho. As mudanças são aplicadas à ficha e salvas neste navegador.</p>
+        <div class="customizer-grid">
+          <label>Fundo da ficha <span class="color-controls"><input type="color" id="somBgColor" value="#e8d4a8" aria-label="Cor do fundo"><input type="text" id="somBgHex" value="#e8d4a8" maxlength="7" aria-label="Hexadecimal do fundo"></span></label>
+          <label>Fundo dos cartões <span class="color-controls"><input type="color" id="somCardColor" value="#f5e6c4" aria-label="Cor dos cartões"><input type="text" id="somCardHex" value="#f5e6c4" maxlength="7" aria-label="Hexadecimal dos cartões"></span></label>
+          <label>Cor das letras <span class="color-controls"><input type="color" id="somTextColor" value="#1e1410" aria-label="Cor das letras"><input type="text" id="somTextHex" value="#1e1410" maxlength="7" aria-label="Hexadecimal das letras"></span></label>
+          <label>Títulos e destaques <span class="color-controls"><input type="color" id="somAccentColor" value="#8a2b1c" aria-label="Cor de destaque"><input type="text" id="somAccentHex" value="#8a2b1c" maxlength="7" aria-label="Hexadecimal do destaque"></span></label>
+          <label>Bordas <span class="color-controls"><input type="color" id="somBorderColor" value="#a88553" aria-label="Cor das bordas"><input type="text" id="somBorderHex" value="#a88553" maxlength="7" aria-label="Hexadecimal das bordas"></span></label>
+          <label>Imagem de fundo da ficha <input type="file" id="somBgImage" accept="image/*"></label>
+          <label>Imagem de fundo dos cartões <input type="file" id="somCardImage" accept="image/*"></label>
+        </div>
+        <h3>Personalizar cada face do dado (1 a 6)</h3>
+        <div id="somDiceFaceSettings" class="dice-face-settings"></div>
+      </div>
+    </div>
+    <footer class="customizer-actions"><button type="button" onclick="resetSomCustomization()">Restaurar padrão</button><button type="button" class="som-modal-done" onclick="toggleSomCustomizer(false)">Concluir</button></footer>
+  </section>
+</div>
 
 <section class="card resource-card">
     <h2>Recursos</h2>
@@ -2266,6 +2653,102 @@ footer{
 <footer>★ Ficha online inspirada em "O Som das Seis" ★ Use "Salvar ficha" para guardar uma cópia no navegador ★</footer>
 </div></div>
 
+
+<section id="auzoverSheet" aria-label="Ficha do Sistema Auzover">
+  <div class="auzover-paper">
+    <header class="auzover-head">
+      <div><h1>Sistema Auzover</h1><p>Ficha de personagem • edição gótica</p></div>
+      <button class="auzover-back" type="button" onclick="backToSystems()">Trocar sistema</button>
+    </header>
+    <nav class="auzover-tabs" role="tablist" aria-label="Abas da ficha Auzover">
+      <button class="auzover-tab active" role="tab" aria-selected="true" data-auz-tab="auz-ficha" onclick="activateAuzTab('auz-ficha',this)">Ficha</button>
+      <button class="auzover-tab" role="tab" aria-selected="false" data-auz-tab="auz-inventario" onclick="activateAuzTab('auz-inventario',this)">Inventário</button>
+      <button class="auzover-tab" role="tab" aria-selected="false" data-auz-tab="auz-historia" onclick="activateAuzTab('auz-historia',this)">História</button>
+    </nav>
+    <section class="auzover-panel" id="auz-ficha" role="tabpanel">
+      <div class="auzover-section-heading"><span>01</span><div><h2>Identidade do personagem</h2><p>Nome, recursos e retrato em uma única área.</p></div></div>
+      <div class="auz-profile-layout">
+        <div class="auz-profile-left">
+          <div class="auzover-field"><label for="auzNome">Nome do personagem</label><input id="auzNome" placeholder="Nome do personagem" autocomplete="off"></div>
+          <div class="auz-resource-row">
+            <div class="auzover-field auz-resource"><label>PV</label><div class="auz-resource-current-max"><div><label for="auzPVCurrent">Atual</label><input id="auzPVCurrent" type="number" min="0" value="3" step="1" aria-label="PV atuais"></div><div><label for="auzPVMax">Máximo</label><input id="auzPVMax" type="number" min="3" value="3" readonly aria-label="PV máximos"></div></div><small id="auzPvFormula" class="auz-regra-recurso">Máximo: 3 PV iniciais + 1 a cada 2 pontos de Força (Físico). Atual pode ser editado.</small></div>
+            <div class="auzover-field auz-resource"><label>Mana</label><div class="auz-resource-current-max"><div><label for="auzManaCurrent">Atual</label><input id="auzManaCurrent" type="number" min="0" value="1" step="1" aria-label="Mana atual"></div><div><label for="auzManaMax">Máximo</label><input id="auzManaMax" type="number" min="1" value="1" readonly aria-label="Mana máxima"></div></div><small id="auzManaFormula" class="auz-regra-recurso">Máximo: 1 de Mana inicial + 2 a cada 2 pontos de Intelecto (Inteligência). Atual pode ser editado.</small></div>
+          </div>
+          <div class="auzover-section-heading auzover-section-heading-spaced"><span>02</span><div><h2>Atributos</h2><p>Valores básicos da personagem.</p></div></div>
+          <div class="auzover-stats auz-attributes">
+            <div class="auzover-field"><label for="auzForca">Força</label><input id="auzForca" type="number" min="0" step="1" value="0"></div>
+            <div class="auzover-field"><label for="auzDestreza">Destreza</label><input id="auzDestreza" type="number" min="0" step="1" value="0"></div>
+            <div class="auzover-field"><label for="auzIntelecto">Intelecto</label><input id="auzIntelecto" type="number" min="0" step="1" value="0"></div>
+            <div class="auzover-field"><label for="auzCarisma">Carisma</label><input id="auzCarisma" type="number" min="0" step="1" value="0"></div>
+          </div>
+          <section class="auzover-field auz-luck-card" aria-labelledby="luckTitle">
+            <div class="auz-luck-heading"><span aria-hidden="true">🎲</span><div><h2 id="luckTitle">Rolagem de Sorte</h2><p>Teste a sorte do personagem. Quanto melhor o resultado, mais vivo e colorido será o efeito.</p></div></div>
+            <div id="luckResult" class="luck-result luck-neutral" aria-live="polite"><span class="luck-symbol">✦</span><strong>Neutro</strong><small>Pronto para testar sua sorte</small></div>
+            <button type="button" class="auz-luck-roll-button" onclick="rollLuck()">Rolar sorte (1d5)</button>
+            <div class="luck-legend"><span class="luck-disaster">Desastre</span><span class="luck-failure">Falha</span><span class="luck-neutral-text">Neutro</span><span class="luck-success">Sucesso</span><span class="luck-extreme">Extremo</span></div>
+          </section>
+        </div>
+        <div class="auz-profile-right">
+          <div class="auzover-field auz-photo-field"><label for="auzFoto">Retrato do personagem</label><input id="auzFoto" type="file" accept="image/*" onchange="previewAuzPhoto(event)"><div class="auzover-photo" id="auzPhotoPreview">✦ Retrato do personagem</div></div>
+          <section class="auzover-field auz-fantasies-card" aria-labelledby="auzFantasiaHeading">
+            <div class="auz-fantasy-heading"><div><label id="auzFantasiaHeading">Fantasias</label><p>Escolha uma das fantasias cadastradas no código. Cada fantasia concede as habilidades descritas abaixo do nome.</p></div><span aria-hidden="true">☾</span></div>
+            <div class="auz-fantasy-form">
+              <label for="auzFantasyCatalog">Escolher uma fantasia disponível</label>
+              <select id="auzFantasyCatalog" class="auz-fantasy-select">
+                <option value="">Carregando fantasias do código...</option>
+              </select>
+              <button type="button" class="auz-add-fantasy" onclick="selectAuzFantasyFromCode()">✦ Escolher fantasia</button>
+              <p class="auz-fantasy-help">Escolha uma adiciona a fantasia à ficha do personagem.</p>
+            </div>
+            <div id="auzFantasyList" class="auz-fantasy-list" aria-live="polite"><p class="auz-empty-fantasy">Nenhuma fantasia adicionada ainda.</p></div>
+          </section>
+        </div>
+      </div>
+      <div class="auzover-section-heading auzover-section-heading-spaced"><span>03</span><div><h2>Capacidades e condições</h2><p>Habilidades gerais, desvantagens e anotações.</p></div></div>
+      <div class="auzover-grid auzover-capabilities" style="margin-top:18px">
+        <div class="auzover-field"><label for="auzHabilidades">Habilidades gerais</label><textarea id="auzHabilidades" placeholder="Descreva habilidades que não vêm de uma fantasia..."></textarea></div>
+        <div class="auzover-field"><label for="auzDesvantagens">Desvantagens</label><textarea id="auzDesvantagens" placeholder="Descreva as desvantagens..."></textarea></div>
+      </div>
+      <div class="auzover-section-heading auzover-section-heading-spaced"><span>04</span><div><h2>Mapa de ferimentos</h2><p>Selecione uma ou mais partes do corpo para marcar onde a personagem está machucada. Clique novamente para desmarcar.</p></div></div>
+      <div class="auz-injury-layout">
+        <div class="auz-body-card">
+          <svg id="auzBodyMap" class="auz-body-map" viewBox="0 0 300 440" role="group" aria-label="Silhueta interativa para marcar ferimentos">
+            <defs><linearGradient id="auzBodyFill" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f0d7df"/><stop offset="1" stop-color="#9f7d8a"/></linearGradient></defs>
+            <g class="auz-body-silhouette" fill="url(#auzBodyFill)" stroke="#f0c6d2" stroke-width="1.5">
+              <circle cx="150" cy="47" r="29" data-part="Cabeça" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar cabeça"/>
+              <path d="M128 79 Q150 89 172 79 L181 101 L195 169 L177 188 L173 143 L174 213 L126 213 L126 143 L123 188 L105 169 L119 101 Z" data-part="Busto" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar busto"/>
+              <path d="M120 99 L102 108 L76 175 L88 181 L119 132 L130 113 Z" data-part="Braço esquerdo" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar braço esquerdo"/>
+              <path d="M180 99 L198 108 L224 175 L212 181 L181 132 L170 113 Z" data-part="Braço direito" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar braço direito"/>
+              <path d="M76 175 Q69 184 78 194 L90 187 L88 181 Z" data-part="Mão esquerda" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar mão esquerda"/>
+              <path d="M224 175 Q231 184 222 194 L210 187 L212 181 Z" data-part="Mão direita" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar mão direita"/>
+              <path d="M128 211 L149 211 L145 318 L127 318 L119 246 Z" data-part="Perna esquerda" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar perna esquerda"/>
+              <path d="M151 211 L172 211 L181 246 L173 318 L155 318 Z" data-part="Perna direita" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar perna direita"/>
+              <path d="M127 315 L145 315 L143 358 L117 365 Q108 365 113 356 Z" data-part="Pé esquerdo" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar pé esquerdo"/>
+              <path d="M155 315 L173 315 L187 356 Q192 365 183 365 L157 358 Z" data-part="Pé direito" class="auz-body-part" tabindex="0" role="button" aria-label="Marcar pé direito"/>
+            </g>
+            <g class="auz-body-guides" fill="none" stroke="#6e293f" stroke-width="1" stroke-dasharray="3 5" opacity=".75"><path d="M150 78 V210"/><path d="M124 210 H176"/></g>
+          </svg>
+          <p class="auz-body-hint">Toque ou clique nas partes do desenho.</p>
+        </div>
+        <div class="auz-injury-details">
+          <div class="auzover-field"><label>Partes machucadas</label><div id="auzInjuryChips" class="auz-injury-chips"><span class="auz-no-injury">Nenhum ferimento marcado.</span></div></div>
+          <div class="auzover-field auz-injury-effects-field"><label>Desvantagens automáticas dos ferimentos</label><div id="auzInjuryEffects" class="auz-injury-effects" aria-live="polite"><span class="auz-no-injury">Nenhuma desvantagem ativa.</span></div><p class="auz-injury-note">Os valores dos atributos originais não são apagados. Os valores efetivos abaixo consideram os ferimentos marcados.</p></div>
+          <div class="auzover-field"><label for="auzDanos">Detalhes dos danos e ferimentos</label><textarea id="auzDanos" placeholder="Descreva a gravidade, sangramento, efeitos ou tratamento..." rows="7"></textarea></div>
+          <button type="button" class="auz-clear-injuries" onclick="clearAuzInjuries()">Limpar marcações do corpo</button>
+        </div>
+      </div>
+    </section>
+    <section class="auzover-panel" id="auz-inventario" role="tabpanel" hidden>
+      <div class="auzover-section-heading"><span>05</span><div><h2>Inventário</h2><p>Equipamentos, objetos importantes e recursos carregados.</p></div></div>
+      <div class="auzover-field auzover-writing-field"><label for="auzInventario">Inventário</label><textarea id="auzInventario" placeholder="Itens, equipamentos e recursos..."></textarea></div>
+    </section>
+    <section class="auzover-panel" id="auz-historia" role="tabpanel" hidden>
+      <div class="auzover-section-heading"><span>06</span><div><h2>História</h2><p>Passado, motivações, vínculos e acontecimentos marcantes.</p></div></div>
+      <div class="auzover-field auzover-writing-field"><label for="auzHistoria">História</label><textarea id="auzHistoria" placeholder="Conte a história do personagem..."></textarea></div>
+    </section>
+    <div class="auzover-actions"><button type="button" onclick="saveAuzoverLocal()">✦ Salvar ficha</button><button type="button" onclick="window.print()">☾ Imprimir / PDF</button><p class="auzover-save-note" id="auzSaveStatus" role="status" aria-live="polite">Os dados desta ficha ficam salvos localmente neste navegador.</p></div>
+  </div>
+</section>
 <div class="death-overlay" id="deathOverlay" hidden role="alertdialog" aria-modal="true" aria-labelledby="deathTitle" aria-describedby="deathMessage">
   <section class="death-panel">
     <div class="death-mark" aria-hidden="true">☠</div>
@@ -2706,7 +3189,7 @@ function showDiceResult(title,dice,total,detail=""){
   const box=document.getElementById("rollResult");box.replaceChildren();
   const label=document.createElement("span");label.className="roll-result-label";label.textContent="★ "+title+" ★";
   const diceRow=document.createElement("span");diceRow.className="roll-result-dice";
-  dice.forEach((value,index)=>{const die=document.createElement("span");die.className="roll-die";die.style.animationDelay=`${index*60}ms`;die.textContent=value;diceRow.append(die)});
+  dice.forEach((value,index)=>{const die=document.createElement("span");die.className="roll-die";die.style.animationDelay=`${index*60}ms`;die.textContent=value;const face=window.somCustomConfig?.faces?.[value];if(face){die.style.setProperty("--die-paper",face.color||"#fff4d8");die.style.setProperty("--die-ink",face.text||"#402719");die.style.setProperty("--die-border",face.border||"#d3b576");die.style.setProperty("--die-image",face.image?`url("${face.image}")`:"none")}diceRow.append(die)});
   const totalLabel=document.createElement("strong");totalLabel.className="roll-result-total";totalLabel.textContent=`Total: ${total}`;
   box.append(label,diceRow,totalLabel);
   if(detail){const extra=document.createElement("span");extra.className="roll-result-detail";extra.textContent=detail;box.append(extra)}
@@ -3483,5 +3966,299 @@ async function initializeFirebaseCampaign(){
 }
 void initializeFirebaseCampaign();
 </script>
+
+<script>
+let selectedRpgSystem = "som";
+function chooseSystem(system){
+  selectedRpgSystem=system;
+  document.body.classList.toggle("system-auzover",system==="auzover");
+  document.body.classList.toggle("system-som",system==="som");
+  document.getElementById("systemPicker").hidden=true;
+  const title=document.getElementById("accountGateTitle");
+  const eyebrow=document.querySelector(".account-eyebrow");
+  if(title) title.textContent=system==="auzover"?"Bem-vindo ao Sistema Auzover":"Bem-vindo ao Saloon";
+  if(eyebrow) eyebrow.textContent=system==="auzover"?"✦ SISTEMA AUZOVER • FICHA ONLINE ✦":"★ O SOM DAS SEIS ★ FICHA ONLINE ★";
+  document.title=system==="auzover"?"Sistema Auzover — Ficha RPG":"O Som das Seis — Ficha RPG";
+  if(system==="auzover"){
+    document.getElementById("auzSaveStatus").textContent="Ficha Auzover selecionada.";
+  }
+}
+function backToSystems(){
+  document.getElementById("systemPicker").hidden=false;
+}
+function activateAuzTab(id,button){
+  document.querySelectorAll(".auzover-tab").forEach(tab=>{
+    const active=tab===button;tab.classList.toggle("active",active);tab.setAttribute("aria-selected",String(active));
+  });
+  document.querySelectorAll(".auzover-panel").forEach(panel=>panel.hidden=panel.id!==id);
+}
+function previewAuzPhoto(event){
+  const file=event.target.files&&event.target.files[0];if(!file)return;
+  if(!file.type.startsWith("image/")){alert("Selecione um arquivo de imagem válido.");event.target.value="";return}
+  if(file.size>8*1024*1024){alert("Escolha uma imagem de até 8 MB.");event.target.value="";return}
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const source=new Image();
+    source.onload=()=>{
+      const max=1000,scale=Math.min(1,max/Math.max(source.width,source.height));
+      const canvas=document.createElement("canvas");canvas.width=Math.max(1,Math.round(source.width*scale));canvas.height=Math.max(1,Math.round(source.height*scale));
+      const ctx=canvas.getContext("2d");ctx.drawImage(source,0,0,canvas.width,canvas.height);
+      const optimized=canvas.toDataURL("image/jpeg",.76);window._auzPhoto=optimized;
+      const preview=document.getElementById("auzPhotoPreview");preview.replaceChildren();
+      const img=document.createElement("img");img.src=optimized;img.alt="Foto do personagem";preview.appendChild(img);
+      saveAuzoverLocal();
+    };
+    source.onerror=()=>{alert("Não foi possível abrir essa imagem.");};source.src=reader.result;
+  };reader.readAsDataURL(file);
+}
+// CATÁLOGO DE FANTASIAS DISPONÍVEIS PARA ESCOLHA:
+// Adicione ou edite fantasias neste array. Todas aparecem no menu da ficha.
+// A pessoa escolhe uma e clica em "Escolher fantasia" para adicioná-la à ficha.
+// Cada item precisa de nome e habilidades; separe os objetos por vírgula.
+const AUZOVER_FANTASIAS = [
+  // Fantasias abaixo são exemplos editáveis. Troque nomes e habilidades como quiser.
+  {nome: "Palhaço", habilidades: "1 vez a cada 2 rodadas, tem uma esquiva automática"}
+  ,{nome: "Peste Negra", habilidades: "-1 de dano de veneno"}
+  ,{nome: "Ryu", habilidades: "+2 de PV e 3x no dano crítico do soco"}
+  ,{nome: "Chapeleiro Maluco", habilidades: "+2 de Mana e pode usar 1 vez por cena a habilidade de confundir inimigos por 3 de mana"}
+];
+let auzFantasiasSelecionadas = [];
+let auzInjuries = [];
+function renderAuzFantasyCatalog(){
+  const select=document.getElementById("auzFantasyCatalog");if(!select)return;
+  const previous=select.value;select.replaceChildren();
+  const placeholder=document.createElement("option");placeholder.value="";
+  placeholder.textContent=AUZOVER_FANTASIAS.length?"Selecione uma fantasia...":"Nenhuma fantasia cadastrada no código";
+  select.appendChild(placeholder);
+  AUZOVER_FANTASIAS.forEach((fantasy,index)=>{
+    if(!fantasy||!fantasy.nome)return;
+    const option=document.createElement("option");option.value=String(index);option.textContent=fantasy.nome;select.appendChild(option);
+  });
+  if(previous && [...select.options].some(option=>option.value===previous))select.value=previous;
+  select.disabled=AUZOVER_FANTASIAS.filter(item=>item&&item.nome).length===0;
+}
+function selectAuzFantasyFromCode(){
+  const select=document.getElementById("auzFantasyCatalog");if(!select||select.value===""){alert("Escolha uma fantasia da lista primeiro.");return;}
+  const fantasy=AUZOVER_FANTASIAS[Number(select.value)];if(!fantasy||!fantasy.nome)return;
+  if(auzFantasiasSelecionadas.some(item=>item.nome===fantasy.nome)){alert("Essa fantasia já está na ficha.");return;}
+  auzFantasiasSelecionadas.push({nome:fantasy.nome,habilidades:fantasy.habilidades||""});
+  renderAuzFantasyList();saveAuzoverLocal();select.value="";
+}
+function renderAuzFantasyList(){
+  const host=document.getElementById("auzFantasyList");if(!host)return;host.replaceChildren();
+  if(!auzFantasiasSelecionadas.length){const p=document.createElement("p");p.className="auz-empty-fantasy";p.textContent="Nenhuma fantasia adicionada ainda.";host.appendChild(p);return}
+  auzFantasiasSelecionadas.forEach((fantasy,index)=>{
+    const card=document.createElement("article");card.className="auz-fantasy-item";
+    const h=document.createElement("h3");h.textContent=fantasy.nome;card.appendChild(h);
+    const desc=document.createElement("p");desc.textContent=fantasy.habilidades||"Nenhuma habilidade descrita.";card.appendChild(desc);
+    const remove=document.createElement("button");remove.type="button";remove.textContent="Remover fantasia";remove.onclick=()=>{auzFantasiasSelecionadas.splice(index,1);renderAuzFantasyList();saveAuzoverLocal()};card.appendChild(remove);host.appendChild(card);
+  });
+}
+function addAuzFantasy(){
+  const name=document.getElementById("auzFantasyName"),skills=document.getElementById("auzFantasySkills");
+  const nome=name.value.trim(),habilidades=skills.value.trim();
+  if(!nome){name.focus();name.setCustomValidity("Digite o nome da fantasia.");name.reportValidity();name.setCustomValidity("");return}
+  auzFantasiasSelecionadas.push({nome,habilidades});name.value="";skills.value="";renderAuzFantasyList();saveAuzoverLocal();
+}
+function toggleAuzInjury(part){
+  if(auzInjuries.includes(part))auzInjuries=auzInjuries.filter(item=>item!==part);else auzInjuries.push(part);
+  renderAuzInjuries();saveAuzoverLocal();
+}
+function renderAuzInjuries(){
+  document.querySelectorAll("#auzBodyMap [data-part]").forEach(el=>{const active=auzInjuries.includes(el.dataset.part);el.classList.toggle("is-injured",active);el.setAttribute("aria-pressed",String(active))});
+  const host=document.getElementById("auzInjuryChips");
+  if(host){host.replaceChildren();if(!auzInjuries.length){const span=document.createElement("span");span.className="auz-no-injury";span.textContent="Nenhum ferimento marcado.";host.appendChild(span)}else auzInjuries.forEach(part=>{const chip=document.createElement("span");chip.className="auz-injury-chip";chip.textContent="✕ "+part;host.appendChild(chip)})}
+  renderAuzInjuryEffects();
+}
+function renderAuzInjuryEffects(){
+  const host=document.getElementById("auzInjuryEffects");if(!host)return;host.replaceChildren();
+  // Cada parte marcada conta separadamente: mão esquerda + mão direita = −2 em Força.
+  const countParts=(prefix)=>auzInjuries.filter(part=>part.toLocaleLowerCase('pt-BR').startsWith(prefix)).length;
+  const hands=countParts('mão'),arms=countParts('braço'),feet=countParts('pé'),legs=countParts('perna');
+  const hasTorso=auzInjuries.includes('Busto'),hasHead=auzInjuries.includes('Cabeça');
+  const forcePenalty=hands*-1+arms*-2;
+  const agilityPenalty=feet*-1+legs*-2;
+  const allTestsPenalty=(hasTorso?-2:0)+(hasHead?-2:0);
+  const effects=[];
+  if(hands)effects.push({text:`Mãos (${hands} marcada${hands===1?'':'s'}): ${hands*-1} em Força no total.`,kind:''});
+  if(arms)effects.push({text:`Braços (${arms} marcado${arms===1?'':'s'}): ${arms*-2} em Força no total.`,kind:''});
+  if(feet)effects.push({text:`Pés (${feet} marcado${feet===1?'':'s'}): ${feet*-1} em Agilidade (Destreza) no total.`,kind:''});
+  if(legs)effects.push({text:`Pernas (${legs} marcada${legs===1?'':'s'}): ${legs*-2} em Agilidade (Destreza) no total.`,kind:''});
+  if(hasTorso)effects.push({text:'Busto: −2 em todos os testes.',kind:''});
+  if(hasHead)effects.push({text:'Cabeça: Confusão e −2 em todos os testes.',kind:'is-confusion'});
+  if(!effects.length){const span=document.createElement('span');span.className='auz-no-injury';span.textContent='Nenhuma desvantagem ativa.';host.appendChild(span)}
+  effects.forEach(effect=>{const row=document.createElement('div');row.className='auz-injury-effect '+effect.kind;const dot=document.createElement('span');dot.textContent='⚠';const text=document.createElement('span');text.textContent=effect.text;row.append(dot,text);host.appendChild(row)});
+  const baseForce=readAuzNumber('auzForca'),baseAgility=readAuzNumber('auzDestreza');
+  const stats=document.createElement('div');stats.className='auz-effective-attributes';
+  const makeStat=(label,base,penalty)=>{const box=document.createElement('div');box.className='auz-effective-stat';const title=document.createElement('span');title.textContent=label;const value=document.createElement('strong');value.textContent=String(Math.max(0,base+penalty));const detail=document.createElement('em');detail.textContent=penalty<0?`Base ${base} · penalidade acumulada ${penalty}`:`Sem penalidade`;box.append(title,value,detail);return box};
+  stats.append(makeStat('Força efetiva',baseForce,forcePenalty),makeStat('Agilidade efetiva',baseAgility,agilityPenalty));
+  host.appendChild(stats);
+  if(allTestsPenalty){const all=document.createElement('div');all.className='auz-injury-effect';const label=document.createElement('span');label.textContent=`Penalidade acumulada em todos os testes: ${allTestsPenalty}.`;all.appendChild(label);host.appendChild(all)}
+} 
+function clearAuzInjuries(){auzInjuries=[];renderAuzInjuries();saveAuzoverLocal()}
+function readAuzNumber(id){
+  const el=document.getElementById(id);if(!el)return 0;
+  const value=Number.parseInt(el.value,10);
+  return !Number.isFinite(value)||value<0?0:value;
+}
+function clampAuzNumber(id){
+  const el=document.getElementById(id);if(!el)return 0;
+  const value=readAuzNumber(id);el.value=String(value);return value;
+}
+function updateAuzResources(shouldSave=false){
+  const fisico=readAuzNumber("auzForca");
+  const intelecto=readAuzNumber("auzIntelecto");
+  const pvMax=3+Math.floor(fisico/2);
+  const manaMax=1+2*Math.floor(intelecto/2);
+  const pvField=document.getElementById("auzPVMax"),manaField=document.getElementById("auzManaMax");
+  const pvCurrent=document.getElementById("auzPVCurrent"),manaCurrent=document.getElementById("auzManaCurrent");
+  if(pvField)pvField.value=String(pvMax);
+  if(manaField)manaField.value=String(manaMax);
+  if(pvCurrent){const n=readAuzNumber("auzPVCurrent");pvCurrent.value=String(Math.min(n,pvMax));pvCurrent.max=String(pvMax)}
+  if(manaCurrent){const n=readAuzNumber("auzManaCurrent");manaCurrent.value=String(Math.min(n,manaMax));manaCurrent.max=String(manaMax)}
+  if(shouldSave)saveAuzoverLocal();
+}
+function enforceAuzNonNegative(event){
+  const el=event.currentTarget;
+  if(el.type==="number" && !["auzPVMax","auzManaMax"].includes(el.id)){
+    if(el.value!==""){const n=Number(el.value);if(!Number.isFinite(n)||n<0)el.value="0";}
+    if(el.id==="auzForca"||el.id==="auzIntelecto")updateAuzResources(false);
+    if(el.id==="auzForca"||el.id==="auzDestreza")renderAuzInjuryEffects();
+  }
+}
+function saveAuzoverLocal(){
+  const ids=["auzNome","auzPVCurrent","auzPVMax","auzManaCurrent","auzManaMax","auzForca","auzDestreza","auzIntelecto","auzCarisma","auzHabilidades","auzDesvantagens","auzDanos","auzInventario","auzHistoria"];
+  const data={};ids.forEach(id=>{const el=document.getElementById(id);if(el)data[id]=el.value});data.photo=window._auzPhoto||"";data.fantasias=auzFantasiasSelecionadas;data.ferimentos=auzInjuries;
+  try{localStorage.setItem("auzoverCharacterSheet",JSON.stringify(data));const status=document.getElementById("auzSaveStatus");if(status)status.textContent="Ficha salva neste navegador."}
+  catch(e){const status=document.getElementById("auzSaveStatus");if(status)status.textContent="Não foi possível salvar. Tente uma imagem menor."}
+}
+function loadAuzoverLocal(){
+  try{const data=JSON.parse(localStorage.getItem("auzoverCharacterSheet")||"null");
+    if(data){Object.keys(data).forEach(id=>{const el=document.getElementById(id);if(el&&typeof data[id]==="string")el.value=data[id]});
+      if(!Object.prototype.hasOwnProperty.call(data,"auzPVCurrent")){const f=document.getElementById("auzPVCurrent");if(f)f.value=data.auzPV||"3";}
+      if(!Object.prototype.hasOwnProperty.call(data,"auzManaCurrent")){const f=document.getElementById("auzManaCurrent");if(f)f.value=data.auzMana||"1";}
+      if(data.photo){window._auzPhoto=data.photo;const preview=document.getElementById("auzPhotoPreview");preview.replaceChildren();const img=document.createElement("img");img.src=data.photo;img.alt="Foto do personagem";preview.appendChild(img)}
+      auzFantasiasSelecionadas=Array.isArray(data.fantasias)?data.fantasias:[];auzInjuries=Array.isArray(data.ferimentos)?data.ferimentos:[];
+    }
+    renderAuzFantasyCatalog();renderAuzFantasyList();renderAuzInjuries();updateAuzResources(false);
+  }catch(e){renderAuzFantasyCatalog();renderAuzFantasyList();renderAuzInjuries();updateAuzResources(false)}
+}
+document.addEventListener("DOMContentLoaded",()=>{
+  renderAuzFantasyCatalog();
+  loadAuzoverLocal();
+  document.querySelectorAll("#auzBodyMap [data-part]").forEach(part=>{
+    part.addEventListener("click",()=>toggleAuzInjury(part.dataset.part));
+    part.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();toggleAuzInjury(part.dataset.part)}});
+  });
+  let auzAutosaveTimer;
+  document.querySelectorAll("#auzoverSheet input[type=number]").forEach(el=>{
+    if(el.id!=="auzPVMax"&&el.id!=="auzManaMax"){
+      el.addEventListener("input",enforceAuzNonNegative);
+      el.addEventListener("change",event=>{enforceAuzNonNegative(event);clampAuzNumber(el.id);updateAuzResources(true)});
+    }
+  });
+  document.querySelectorAll("#auzoverSheet input:not([type=file]),#auzoverSheet textarea").forEach(el=>{
+    el.addEventListener("input",()=>{
+      if(["auzForca","auzIntelecto","auzPVCurrent","auzManaCurrent"].includes(el.id))updateAuzResources(false);
+      if(["auzForca","auzDestreza"].includes(el.id))renderAuzInjuryEffects();
+      clearTimeout(auzAutosaveTimer);
+      const status=document.getElementById("auzSaveStatus");if(status)status.textContent="Salvando alterações…";
+      auzAutosaveTimer=setTimeout(saveAuzoverLocal,650);
+    });
+  });
+  updateAuzResources(false);
+});
+</script>
+
+
+<script>
+const SOM_CUSTOM_DEFAULTS={bg:'#e8d4a8',card:'#f5e6c4',text:'#1e1410',accent:'#8a2b1c',border:'#a88553',bgImage:'',cardImage:'',faces:{}};
+let somCustomConfig={...SOM_CUSTOM_DEFAULTS,faces:{}};window.somCustomConfig=somCustomConfig;
+function rollLuck(targetId='luckResult'){
+  const el=document.getElementById(targetId);if(!el)return;
+  // Easter eggs ocultos: cada um tem chance de 0,0001% (1 em 1.000.000).
+  // A primeira faixa é SORTE ABSURDA; a segunda é AZAR ABSOLUTO.
+  const secretRoll=Math.random();
+  let secret=null;
+  if(secretRoll<0.000001) secret='absurda';
+  else if(secretRoll<0.000002) secret='absoluto';
+  let label,css,symbol,detail;
+  if(secret==='absurda'){
+    label='SORTE ABSURDA';css='luck-secret-good';symbol='✦✧✦';
+    detail='EASTER EGG! Você ganhou uma habilidade ativa. Combine com o mestre qual habilidade será registrada na ficha.';
+  }else if(secret==='absoluto'){
+    label='AZAR ABSOLUTO';css='luck-secret-bad';symbol='☠';
+    detail='EASTER EGG! Você ganhou uma desvantagem. Combine com o mestre qual desvantagem será registrada na ficha.';
+  }else{
+    const n=Math.floor(Math.random()*5);
+    const labels=['Desastre','Falha','Neutro','Sucesso','Extremo'];
+    const classes=['luck-disaster-bg','luck-failure-bg','luck-neutral','luck-success-bg','luck-extreme-bg'];
+    const symbols=['☠','✕','✦','★','✧'];
+    const details=['A sorte virou contra você.','O resultado não favorece sua tentativa.','Nada muda: a sorte permanece equilibrada.','A sorte está ao seu lado.','Um resultado extraordinário!'];
+    label=labels[n];css=classes[n];symbol=symbols[n];detail=details[n];
+  }
+  el.className='luck-result '+css;el.replaceChildren();
+  const icon=document.createElement('span');icon.className='luck-symbol';icon.textContent=symbol;
+  const title=document.createElement('strong');title.textContent=label;
+  const description=document.createElement('small');description.textContent=detail;
+  el.append(icon,title,description);
+}
+function toggleSomCustomizer(force){const modal=document.getElementById('somCustomizerModal');if(!modal)return;const open=typeof force==='boolean'?force:modal.hidden;modal.hidden=!open;document.body.style.overflow=open?'hidden':'';if(open){updateSomLivePreview();setTimeout(()=>modal.querySelector('.som-modal-close')?.focus(),20)}}
+function updateSomLivePreview(){const preview=document.querySelector('.som-preview-paper');if(!preview)return;preview.style.setProperty('--som-paper',somCustomConfig.bg);preview.style.setProperty('--som-card',somCustomConfig.card);preview.style.setProperty('--som-ink',somCustomConfig.text);preview.style.setProperty('--som-accent',somCustomConfig.accent);preview.style.setProperty('--som-border',somCustomConfig.border);preview.style.setProperty('--som-sheet-image',somCustomConfig.bgImage?`linear-gradient(#00000008,#00000008),url("${somCustomConfig.bgImage}")`:`linear-gradient(180deg,${somCustomConfig.bg},${somCustomConfig.bg})`);if(somCustomConfig.cardImage){preview.querySelectorAll('.som-preview-portrait,.som-preview-stats i').forEach(el=>{el.style.backgroundImage=`url("${somCustomConfig.cardImage}")`;el.style.backgroundSize='cover';el.style.backgroundPosition='center'})}else{preview.querySelectorAll('.som-preview-portrait,.som-preview-stats i').forEach(el=>el.style.backgroundImage='')}const die=preview.querySelector('.som-preview-die'),f=somCustomConfig.faces[6];if(die&&f){die.style.backgroundColor=f.color||'#fff4d8';die.style.color=f.text||'#402719';die.style.borderColor=f.border||'#d3b576';die.style.backgroundImage=f.image?`url("${f.image}")`:'none';die.textContent=f.image?'':'6'}else if(die){die.style.backgroundImage='none';die.style.backgroundColor='#fff4d8';die.style.color='#402719';die.style.borderColor='#d3b576';die.textContent='6'}}
+function validHex(v){return /^#[0-9a-fA-F]{6}$/.test(v)}
+function applySomCustomization(){const app=document.querySelector('.app');if(!app)return;app.classList.add('som-customized');const sh=app.style;sh.setProperty('--som-paper',somCustomConfig.bg);sh.setProperty('--som-card',somCustomConfig.card);sh.setProperty('--som-ink',somCustomConfig.text);sh.setProperty('--som-accent',somCustomConfig.accent);sh.setProperty('--som-border',somCustomConfig.border);sh.setProperty('--som-sheet-image',somCustomConfig.bgImage?`linear-gradient(#00000008,#00000008),url("${somCustomConfig.bgImage}")`:`linear-gradient(180deg,${somCustomConfig.bg},${somCustomConfig.bg})`);if(somCustomConfig.cardImage){sh.setProperty('--som-card-image',`url("${somCustomConfig.cardImage}")`);document.querySelectorAll('.app .sheet .card').forEach(e=>{e.style.backgroundImage=`linear-gradient(#ffffff12,#ffffff12),url("${somCustomConfig.cardImage}")`;e.style.backgroundSize='cover';e.style.backgroundPosition='center'})}else{document.querySelectorAll('.app .sheet .card').forEach(e=>{e.style.backgroundImage='';e.style.backgroundSize='';e.style.backgroundPosition=''})}document.querySelectorAll('.roll-die').forEach(d=>{const f=somCustomConfig.faces[d.textContent];if(f){d.style.setProperty('--die-paper',f.color||'#fff4d8');d.style.setProperty('--die-ink',f.text||'#402719');d.style.setProperty('--die-border',f.border||'#d3b576');d.style.setProperty('--die-image',f.image?`url("${f.image}")`:'none')}});updateSomLivePreview();}
+function saveSomCustomization(){try{localStorage.setItem('somSixVisualCustomization',JSON.stringify(somCustomConfig))}catch(e){alert('Não foi possível salvar. Talvez as imagens sejam grandes demais; tente imagens menores.')}}
+function loadSomCustomization(){try{const saved=JSON.parse(localStorage.getItem('somSixVisualCustomization')||'null');if(saved)somCustomConfig={...SOM_CUSTOM_DEFAULTS,...saved,faces:saved.faces||{}};window.somCustomConfig=somCustomConfig}catch(e){};[['bg','somBgColor','somBgHex'],['card','somCardColor','somCardHex'],['text','somTextColor','somTextHex'],['accent','somAccentColor','somAccentHex'],['border','somBorderColor','somBorderHex']].forEach(([key,colorId,hexId])=>{document.getElementById(colorId).value=somCustomConfig[key];document.getElementById(hexId).value=somCustomConfig[key]});buildSomFaceSettings();applySomCustomization()}
+function setSomColor(key,value){if(!validHex(value))return;somCustomConfig[key]=value;const map={bg:['somBgColor','somBgHex'],card:['somCardColor','somCardHex'],text:['somTextColor','somTextHex'],accent:['somAccentColor','somAccentHex'],border:['somBorderColor','somBorderHex']};const ids=map[key];document.getElementById(ids[0]).value=value;document.getElementById(ids[1]).value=value;applySomCustomization();saveSomCustomization()}
+function readLocalImage(file,callback){if(!file)return;if(file.size>2*1024*1024){alert('Escolha uma imagem de até 2 MB para não exceder o armazenamento do navegador.');return}const reader=new FileReader();reader.onload=()=>callback(reader.result);reader.readAsDataURL(file)}
+function buildSomFaceSettings(){const host=document.getElementById('somDiceFaceSettings');if(!host)return;host.replaceChildren();for(let n=1;n<=6;n++){const f=somCustomConfig.faces[n]||{color:'#fff4d8',text:'#402719',border:'#d3b576',image:''};const box=document.createElement('div');box.className='dice-face-setting';const preview=document.createElement('div');preview.className='dice-face-preview';preview.textContent=n;preview.style.backgroundColor=f.color;preview.style.color=f.text;preview.style.borderColor=f.border;if(f.image){preview.style.backgroundImage=`url("${f.image}")`;preview.textContent=''}const controls=document.createElement('div');const label=document.createElement('strong');label.textContent='Face '+n;controls.append(label);[['Cor da face','color',f.color],['Cor do número','text',f.text],['Cor da borda','border',f.border]].forEach(([title,key,value])=>{const l=document.createElement('label');l.textContent=title;const row=document.createElement('div');row.className='color-controls';const picker=document.createElement('input');picker.type='color';picker.value=value;const hex=document.createElement('input');hex.type='text';hex.value=value;hex.maxLength=7;picker.addEventListener('input',()=>{f[key]=picker.value;hex.value=picker.value;updateFace(n,f,preview)});hex.addEventListener('change',()=>{if(validHex(hex.value)){f[key]=hex.value;picker.value=hex.value;updateFace(n,f,preview)}else hex.value=f[key]});row.append(picker,hex);l.append(row);controls.append(l)});const imageLabel=document.createElement('label');imageLabel.textContent='Imagem desta face';const file=document.createElement('input');file.type='file';file.accept='image/*';file.addEventListener('change',()=>readLocalImage(file.files[0],data=>{f.image=data;updateFace(n,f,preview)}));imageLabel.append(file);controls.append(imageLabel);box.append(preview,controls);host.append(box)}}
+function updateFace(n,f,preview){somCustomConfig.faces[n]=f;preview.style.backgroundColor=f.color;preview.style.color=f.text;preview.style.borderColor=f.border;preview.style.backgroundImage=f.image?`url("${f.image}")`:'';preview.textContent=f.image?'':n;applySomCustomization();saveSomCustomization()}
+function resetSomCustomization(){if(!confirm('Restaurar todas as cores e imagens padrão do Som das Seis?'))return;somCustomConfig={...SOM_CUSTOM_DEFAULTS,faces:{}};window.somCustomConfig=somCustomConfig;try{localStorage.removeItem('somSixVisualCustomization')}catch(e){};document.querySelectorAll('#somCustomizerModal input[type=file]').forEach(i=>i.value='');loadSomCustomization()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.getElementById('somCustomizerModal')?.hidden)toggleSomCustomizer(false)});
+document.addEventListener('DOMContentLoaded',()=>{[['bg','somBgColor','somBgHex'],['card','somCardColor','somCardHex'],['text','somTextColor','somTextHex'],['accent','somAccentColor','somAccentHex'],['border','somBorderColor','somBorderHex']].forEach(([key,colorId,hexId])=>{document.getElementById(colorId)?.addEventListener('input',e=>setSomColor(key,e.target.value));document.getElementById(hexId)?.addEventListener('change',e=>{if(validHex(e.target.value))setSomColor(key,e.target.value);else e.target.value=somCustomConfig[key]})});document.getElementById('somBgImage')?.addEventListener('change',e=>readLocalImage(e.target.files[0],data=>{somCustomConfig.bgImage=data;applySomCustomization();saveSomCustomization()}));document.getElementById('somCardImage')?.addEventListener('change',e=>readLocalImage(e.target.files[0],data=>{somCustomConfig.cardImage=data;applySomCustomization();saveSomCustomization()}));loadSomCustomization()});
+</script>
+
+<!-- Script Aura: troca números terminados em 67 por uma expressão com “aura” no texto visível. Não altera campos, código nem dados salvos. -->
+<script>
+(function installAura67EasterEgg(){
+  const SKIP_TAGS = new Set(['SCRIPT','STYLE','NOSCRIPT','TEXTAREA','INPUT','SELECT','OPTION','CODE','PRE','KBD','SAMP']);
+  function replaceAuraText(root){
+    if(!root) return;
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{
+      acceptNode(node){
+        const parent=node.parentElement;
+        if(!parent || SKIP_TAGS.has(parent.tagName) || parent.isContentEditable) return NodeFilter.FILTER_REJECT;
+        if(!/\b\d*67\b/.test(node.nodeValue||'')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    for(const node of nodes){
+      node.nodeValue=node.nodeValue.replace(/\b(\d*)67\b/g,(_,prefix)=>{
+        if(!prefix) return 'aura';
+        const hundreds=Number(prefix)*100;
+        return hundreds===0?'aura':`${hundreds} + aura`;
+      });
+    }
+  }
+  function start(){
+    replaceAuraText(document.body);
+    const observer=new MutationObserver(records=>{
+      for(const record of records){
+        if(record.type==='characterData') replaceAuraText(record.target.parentElement);
+        else for(const node of record.addedNodes){
+          if(node.nodeType===Node.TEXT_NODE) replaceAuraText(node.parentElement);
+          else if(node.nodeType===Node.ELEMENT_NODE) replaceAuraText(node);
+        }
+      }
+    });
+    observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true});
+  else start();
+})();
+</script>
+
 </body>
 </html>
