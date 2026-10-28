@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fichas RPG — Som das Seis | Sistema Auzover</title>
+<title>Site do Auzover</title>
 <link rel="icon" type="image/png" href="Imagen/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2154,8 +2154,8 @@ body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-
     <h1 id="systemPickerTitle">Qual ficha vamos abrir?</h1>
     <p>Escolha um sistema para acessar sua ficha e suas abas.</p>
     <div class="system-picker-options">
-      <button class="system-choice" type="button" onclick="chooseSystem('som')"><strong>★ Som das Seis ★</strong><span>Faroeste • ficha original com todas as abas</span></button>
-      <button class="system-choice" type="button" onclick="chooseSystem('auzover')"><strong>✦ Sistema Auzover ✦</strong><span>Ficha baseada no PDF enviado</span></button>
+      <button class="system-choice" type="button" onclick="chooseSystem('som')"><strong>★ Som das Seis ★</strong><span>Faroeste • baseado na ficha original</span></button>
+      <button class="system-choice" type="button" onclick="chooseSystem('auzover')"><strong>✦ Sistema Auzover ✦</strong><span>Ficha baseada no PDF do sistema</span></button>
     </div>
   </div>
 </section>
@@ -2684,7 +2684,7 @@ body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-
           <section class="auzover-field auz-luck-card" aria-labelledby="luckTitle">
             <div class="auz-luck-heading"><span aria-hidden="true">🎲</span><div><h2 id="luckTitle">Rolagem de Sorte</h2><p>Teste a sorte do personagem. Quanto melhor o resultado, mais vivo e colorido será o efeito.</p></div></div>
             <div id="luckResult" class="luck-result luck-neutral" aria-live="polite"><span class="luck-symbol">✦</span><strong>Neutro</strong><small>Pronto para testar sua sorte</small></div>
-            <button type="button" class="auz-luck-roll-button" onclick="rollLuck()">Rolar sorte (1d5)</button>
+            <button type="button" class="auz-luck-roll-button" onclick="rollLuck()">Rolar sorte</button>
             <div class="luck-legend"><span class="luck-disaster">Desastre</span><span class="luck-failure">Falha</span><span class="luck-neutral-text">Neutro</span><span class="luck-success">Sucesso</span><span class="luck-extreme">Extremo</span></div>
           </section>
         </div>
@@ -2695,7 +2695,7 @@ body.system-auzover .auz-effective-stat em{font-style:normal;color:#ff8ba8;font-
             <div class="auz-fantasy-form">
               <label for="auzFantasyCatalog">Escolher uma fantasia disponível</label>
               <select id="auzFantasyCatalog" class="auz-fantasy-select">
-                <option value="">Carregando fantasias do código...</option>
+                <option value="">Carregando fantasias...</option>
               </select>
               <button type="button" class="auz-add-fantasy" onclick="selectAuzFantasyFromCode()">✦ Escolher fantasia</button>
               <p class="auz-fantasy-help">Escolha uma adiciona a fantasia à ficha do personagem.</p>
