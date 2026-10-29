@@ -189,6 +189,8 @@ body.system-som .mobile-tab-option-icon{display:grid;place-items:center;width:28
 body.system-som .mobile-tab-option.is-active .mobile-tab-option-icon{background:var(--red);color:#fff4df}
 @media(max-width:650px){.sheet-navigation{display:none!important}main.tab-content{padding-bottom:90px}}
 
+@media(min-width:651px){body.system-som .mobile-tabs-fab,body.system-som .mobile-tabs-menu{display:none!important}}
+
 /* REPUTAÇÃO */
 .reputation-card .rep{position:relative;height:38px;margin:18px 0 14px;display:flex;align-items:center}
 .reputation-card .rep input[type=range]{width:100%;height:10px;padding:0;border-radius:99px;background:linear-gradient(90deg,#8a2b1c 0%,#b23a26 20%,#d4a860 45%,#a8b89a 55%,#4f8a55 80%,#3f6445 100%);-webkit-appearance:none;appearance:none;box-shadow:inset 0 2px 4px rgba(0,0,0,.3);border:2px solid #7a5a32;cursor:pointer}
@@ -264,6 +266,13 @@ body.system-som .mobile-tab-option.is-active .mobile-tab-option-icon{background:
 .inventory-total{display:flex;justify-content:flex-end;gap:8px;padding:12px 14px;color:#5a3a1e;font-size:12px;font-family:"Special Elite",serif}
 .inventory-total strong{color:var(--brown-deep);font-family:"Rye",serif}
 .money-ledger{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;padding:16px 18px;border:3px double var(--gold);border-radius:6px;background:radial-gradient(circle at 50% 50%,rgba(240,200,120,.15) 0%,transparent 70%),linear-gradient(120deg,#d4a860 0%,#f0d89c 100%);color:var(--brown-deep);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 3px 10px rgba(30,20,16,.2)}
+.inventory-money-top{width:min(100%,420px);margin:0 auto 16px 0;justify-self:start;justify-content:flex-start;gap:18px;padding:12px 16px}
+.inventory-money-top strong{font-size:22px}
+.floating-inventory-money{position:fixed;top:calc(14px + env(safe-area-inset-top));left:14px;z-index:1200;display:flex;align-items:center;gap:7px;padding:9px 14px;border:2px solid #d9bd82;border-radius:999px;background:linear-gradient(145deg,#f3d99b,#d4a860);color:#3a2114;box-shadow:0 4px 14px rgba(25,15,8,.32),inset 0 1px 0 rgba(255,255,255,.7);font-family:"Rye",serif;font-size:16px;pointer-events:none}
+.floating-inventory-money[hidden]{display:none!important}
+.floating-inventory-money>span{font-size:14px;color:#5a3a1e}
+.floating-inventory-money strong{font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(max-width:520px){.floating-inventory-money{top:calc(10px + env(safe-area-inset-top));left:10px;padding:7px 11px;font-size:14px}.floating-inventory-money strong{font-size:15px}}
 .money-ledger span{font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;font-family:"Rye",serif;text-shadow:0 1px 0 rgba(255,255,255,.5)}
 .money-ledger strong{color:var(--red);font-size:26px;font-variant-numeric:tabular-nums;font-family:"Rye",serif;text-shadow:0 2px 0 rgba(255,255,255,.5),0 3px 6px rgba(120,40,20,.3)}
 .money-control{min-width:0}
@@ -359,7 +368,36 @@ body.system-som .mobile-tab-option.is-active .mobile-tab-option-icon{background:
 .character-manager-controls .character-delete-button{background:linear-gradient(145deg,#c44a30,#8a2b1c);color:#fff4d8;border-color:#5a1a10}
 .character-manager-controls .character-delete-button:disabled{opacity:.48;cursor:not-allowed;transform:none;box-shadow:none}
 
+
+/* Seletor de sistemas mantém identidade neutra, independente do sistema anterior. */
+.system-picker{background:#030608!important;color:#e5fcff!important}
+.system-picker-card{border:1px solid #fe3867!important;border-radius:18px!important;background:linear-gradient(145deg,#0a1117,#05090d)!important;box-shadow:0 24px 80px #000c!important}
+.system-picker-kicker{color:#fe3867!important;font:700 10px ui-monospace,monospace!important;letter-spacing:2px!important}
+.system-picker h1{font:700 clamp(28px,5vw,40px) ui-sans-serif,system-ui,sans-serif!important;color:#e7fcff!important}
+.system-picker p{color:#9bbac1!important}
+.system-choice{min-height:150px;border:1px solid #fe3867!important;border-radius:12px!important;background:linear-gradient(145deg,#0d2229,#071116)!important;color:#dffcff!important;font-family:ui-sans-serif,system-ui,sans-serif!important}
+.system-choice strong{font:700 clamp(17px,3vw,22px) ui-sans-serif,system-ui,sans-serif!important;color:#e7fcff!important}
+.system-choice span{font:13px ui-sans-serif,system-ui,sans-serif!important;color:#9bbac1!important}
+.system-choice:hover{border-color:#fe3867!important;box-shadow:0 0 24px #00d9ff15!important}
+
 /* ACCOUNT GATE */
+/* Login neutro: a identidade visual só é aplicada depois da escolha do sistema. */
+body:not(.system-auzover):not(.system-som) {background:#030608;color:#dffcff;color-scheme:dark}
+body:not(.system-auzover):not(.system-som)::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,rgba(0,225,255,.10),transparent 48%),linear-gradient(145deg,#05090d,#020304 65%)}
+body:not(.system-auzover):not(.system-som) .account-gate{background:radial-gradient(ellipse at 50% 0%,rgba(0,225,255,.10),transparent 58%),#030608!important;backdrop-filter:none}
+body:not(.system-auzover):not(.system-som) .account-gate-card{width:min(100%,440px);padding:clamp(26px,5vw,40px);border:1px solid #fe3867;border-radius:18px;background:linear-gradient(145deg,#0a1117,#05090d)!important;box-shadow:0 24px 80px #000c,0 0 32px #00d9ff0b!important;color:#fe3867!important;text-align:left}
+body:not(.system-auzover):not(.system-som) .account-brand-mark{width:54px;height:54px;margin:0 0 20px;border:1px solid #fe3867;border-radius:14px;background:#07171d;color:#00e5ff;box-shadow:0 0 24px #00d9ff20;animation:none}
+body:not(.system-auzover):not(.system-som) .account-eyebrow{color:#fe3867;font:700 10px ui-monospace,monospace;letter-spacing:2px}
+body:not(.system-auzover):not(.system-som) .account-gate-card h1{color:#e7fcff;font:700 clamp(25px,5vw,32px) ui-sans-serif,system-ui,sans-serif;letter-spacing:-.7px;text-shadow:none}
+body:not(.system-auzover):not(.system-som) .account-gate-copy,body:not(.system-auzover):not(.system-som) .account-gate-status,body:not(.system-auzover):not(.system-som) .account-gate-switch{color:#9bbac1;font-family:ui-sans-serif,system-ui,sans-serif}
+body:not(.system-auzover):not(.system-som) .account-gate-form label{display:block;color:#b8e8ee;font:600 12px ui-sans-serif,system-ui,sans-serif;margin-bottom:7px}
+body:not(.system-auzover):not(.system-som) .account-gate-form input{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #19414a!important;border-radius:9px!important;background:#050b10!important;color:#eaffff!important;font:14px ui-sans-serif,system-ui,sans-serif;box-shadow:inset 0 1px 3px #0008}
+body:not(.system-auzover):not(.system-som) .account-gate-form input:focus{outline:2px solid #fe3867;outline-offset:1px;border-color:#fe3867!important}
+body:not(.system-auzover):not(.system-som) .account-gate-submit{border:1px solid #fe3867;border-radius:9px;background:linear-gradient(135deg,#ff4AB0,#fe3867);color:#001015;font:800 13px ui-sans-serif,system-ui,sans-serif;letter-spacing:.6px}
+body:not(.system-auzover):not(.system-som) .account-gate-submit:disabled{opacity:.45}
+body:not(.system-auzover):not(.system-som) .account-gate-link,body:not(.system-auzover):not(.system-som) .account-gate-switch button{color:#fe3867;font-family:ui-sans-serif,system-ui,sans-serif}
+body.awaiting-system .app,body.awaiting-system #auzoverSheet{display:none!important}
+.system-picker[hidden]{display:none!important}
 .account-gate{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;overflow:auto;padding:22px;background:radial-gradient(ellipse at 50% 0%,#6b4a30 0%,transparent 55%),radial-gradient(ellipse at 50% 100%,#2a1e18 0%,transparent 60%),repeating-linear-gradient(90deg,transparent 0 80px,rgba(0,0,0,.1) 80px 82px),#1c1511;animation:backdrop-in .6s var(--ease) both}
 .account-gate[hidden]{display:none}
 .app{display:none}
@@ -675,7 +713,7 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 <body>
 
 <!-- Seletor de sistema -->
-<section class="system-picker" id="systemPicker" aria-labelledby="systemPickerTitle">
+<section class="system-picker" id="systemPicker" aria-labelledby="systemPickerTitle" hidden>
   <div class="system-picker-card">
     <div class="system-picker-kicker">AUZOVER RPG • SELEÇÃO DE SISTEMA</div>
     <h1 id="systemPickerTitle">Qual ficha vamos abrir?</h1>
@@ -697,8 +735,8 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 <section id="accountGate" class="account-gate" aria-labelledby="accountGateTitle">
   <div class="account-gate-card">
     <div class="account-brand-mark" aria-hidden="true">★</div>
-    <p class="account-eyebrow">★ O SOM DAS SEIS ★ FICHA ONLINE ★</p>
-    <h1 id="accountGateTitle">Bem-vindo ao Saloon</h1>
+    <p class="account-eyebrow">★ FICHA ONLINE ★</p>
+    <h1 id="accountGateTitle">Bem-vinde ao site do auzover</h1>
     <p id="accountGateDescription" class="account-gate-copy">Crie uma conta ou entre para criar e guardar suas personagens.</p>
     <form id="accountGateForm" class="account-gate-form" onsubmit="event.preventDefault();submitAccountGate()">
       <div id="accountGateNicknameField"><label for="accountGateNickname">Apelido público</label><input id="accountGateNickname" type="text" maxlength="32" autocomplete="nickname" placeholder="Ex.: Corvo Vermelho" required></div>
@@ -756,6 +794,11 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
   <button class="sheet-tab" id="tab-campaign" type="button" role="tab" aria-selected="false" aria-controls="panel-campaign" tabindex="-1" data-tab="panel-campaign">Campanha</button>
 </nav>
 <button id="deadToggle" class="dead-toggle" type="button" aria-pressed="false" onclick="toggleDead()">MORTO</button>
+</div>
+
+<!-- Saldo flutuante: aparece somente na aba Inventário & Loja -->
+<div id="floatingInventoryMoney" class="floating-inventory-money" hidden aria-live="polite" aria-label="Dinheiro atual">
+  <span aria-hidden="true">$</span><strong id="floatingMoneyValue">250</strong>
 </div>
 
 <!-- FAB ABAS - fixo canto inferior direito -->
@@ -919,7 +962,7 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 
 <section class="card equipment-card">
   <h2>Arsenal de armas</h2>
-  <p class="notice equipment-intro">Registre seu arsenal e consulte as opções por tipo. Clique em uma arma para adicioná-la à ficha.</p>
+  <p class="notice equipment-intro">Registre seu arsenal e consulte as opções por tipo. Consulte preço, capacidade, munição, recarga e dano. Use Comprar para registrar o item no inventário.</p>
   <div class="equipment-basics">
     <div><label>Armas da personagem</label><textarea id="weaponList" data-k="armas" placeholder="Selecione no arsenal abaixo ou escreva aqui..."></textarea></div>
     <div><label>Roupas</label><textarea data-k="roupas" placeholder="Roupas e proteção..."></textarea></div>
@@ -927,7 +970,7 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
   </div>
   <p class="weapon-status" id="weaponStatus" aria-live="polite">O arsenal mantém as armas da personagem em uma lista simples.</p>
   <details class="equipment-drawer" open>
-    <summary><span>📜 Arsenal do Velho Oeste</span><small>16 itens • custo, munição, recarga e dano</small></summary>
+    <summary><span>Arsenal do Velho Oeste</span><small>16 armas e equipamentos • preço, munição, recarga e dano</small></summary>
     <div class="weapon-grid" id="weaponGrid"></div>
   </details>
 </section>
@@ -936,7 +979,6 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
   <h2>Inventário &amp; Loja</h2>
   <div class="equipment-heading">
     <div><label>Catálogo de viagem</label><p>Adicione suprimentos ou registre qualquer outro item.</p></div>
-    <span class="catalog-stamp">BOTICA &amp; ARMAZÉM</span>
   </div>
   <div class="shop-catalog-tools">
     <label for="shopSearch">Buscar no catálogo</label>
@@ -954,7 +996,6 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
     <button type="button" onclick="addCustomItem()">Adicionar</button>
   </div>
   <p class="item-status" id="itemStatus" aria-live="polite">Compras descontam o saldo; diminuir quantidade ou remover representa consumo/perda e não devolve dinheiro.</p>
-  <div class="money-ledger"><span>★ Dinheiro disponível</span><strong id="inventoryMoney">$ 0,00</strong></div>
   <label class="inventory-label">Inventário da personagem <span>O custo dos itens é descontado automaticamente do dinheiro.</span></label>
   <div id="inventorySections" class="inventory-category-list" aria-label="Inventário separado por categoria"></div>
   <p class="inventory-total"><span>Total de itens:</span><strong id="inventoryCount">0</strong></p>
@@ -1001,7 +1042,7 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 <section class="tab-panel" id="panel-dice" role="tabpanel" aria-labelledby="tab-dice" hidden>
   <section class="card dice-card">
     <h2>Dados de jogo</h2>
-    <p class="notice">Cada d6 sorteia um inteiro de 1 a 6. Em 2d6, dois d6 são rolados separadamente e somados.</p>
+    <p class="notice">Cada d6 sorteia um inteiro de 1 a 6. Em 2d6, dois d6 são rolados separadamente e somados, essa lógica se aplica a outros dados, como 3d6 ou 5d6.</p>
     <div class="dice-buttons">
       <button type="button" onclick="rollD6()">Rolar 1d6</button>
       <button type="button" onclick="rollD3()">Rolar 1d3</button>
@@ -1112,7 +1153,7 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 <section id="auzoverSheet" aria-label="Ficha do Sistema Auzover">
   <div class="auzover-paper">
     <header class="auzover-head">
-      <div><h1>Sistema Auzover</h1><p>Ficha de personagem • edição gótica</p></div>
+      <div><h1>Sistema Auzover</h1><p>Ficha de personagem</p></div>
       <button class="auzover-back" type="button" onclick="backToSystems()">Trocar sistema</button>
     </header>
     <nav class="auzover-tabs" role="tablist" aria-label="Abas da ficha Auzover">
@@ -1124,10 +1165,10 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
       <div class="auzover-section-heading"><span>01</span><div><h2>Identidade do personagem</h2><p>Nome, recursos e retrato em uma única área.</p></div></div>
       <div class="auz-profile-layout">
         <div class="auz-profile-left">
-          <div class="auzover-field"><label for="auzNome">Nome do personagem</label><input id="auzNome" placeholder="Nome do personagem" autocomplete="off"></div>
+          <div class="auzover-field"><label for="auzNome">Nome do personagem</label><input id="auzNome" placeholder="Nome do personagem" autocomplete="on"></div>
           <div class="auz-resource-row">
-            <div class="auzover-field auz-resource"><label>PV</label><div class="auz-resource-current-max"><div><label for="auzPVCurrent">Atual</label><input id="auzPVCurrent" type="number" min="0" value="3" step="1" aria-label="PV atuais"></div><div><label for="auzPVMax">Máximo</label><input id="auzPVMax" type="number" min="3" value="3" readonly aria-label="PV máximos"></div></div><small id="auzPvFormula" class="auz-regra-recurso">Máximo: 3 PV iniciais + 1 a cada 2 pontos de Força (Físico). Atual pode ser editado.</small></div>
-            <div class="auzover-field auz-resource"><label>Mana</label><div class="auz-resource-current-max"><div><label for="auzManaCurrent">Atual</label><input id="auzManaCurrent" type="number" min="0" value="1" step="1" aria-label="Mana atual"></div><div><label for="auzManaMax">Máximo</label><input id="auzManaMax" type="number" min="1" value="1" readonly aria-label="Mana máxima"></div></div><small id="auzManaFormula" class="auz-regra-recurso">Máximo: 1 de Mana inicial + 2 a cada 2 pontos de Intelecto (Inteligência). Atual pode ser editado.</small></div>
+            <div class="auzover-field auz-resource"><label>PV</label><div class="auz-resource-current-max"><div><label for="auzPVCurrent">Atual</label><input id="auzPVCurrent" type="number" min="0" value="3" step="1" aria-label="PV atuais"></div><div><label for="auzPVMax">Máximo</label><input id="auzPVMax" type="number" min="3" value="3" readonly aria-label="PV máximos"></div></div><small id="auzPvFormula" class="auz-regra-recurso">Máximo: 3 PV iniciais + 1,5 × Força, arredondado para cima. Atual ainda pode ser editado.</small></div>
+            <div class="auzover-field auz-resource"><label>Mana</label><div class="auz-resource-current-max"><div><label for="auzManaCurrent">Atual</label><input id="auzManaCurrent" type="number" min="0" value="1" step="1" aria-label="Mana atual"></div><div><label for="auzManaMax">Máximo</label><input id="auzManaMax" type="number" min="1" value="1" readonly aria-label="Mana máxima"></div></div><small id="auzManaFormula" class="auz-regra-recurso">Máximo: 1 de Mana inicial + 2 x pontos de Inteligência. Atual ainda pode ser editado.</small></div>
           </div>
           <div class="auzover-section-heading auzover-section-heading-spaced"><span>02</span><div><h2>Atributos</h2><p>Valores básicos da personagem.</p></div></div>
           <div class="auzover-stats auz-attributes">
@@ -1641,7 +1682,7 @@ function randomTormento(){const t=T[Math.floor(Math.random()*T.length)];set("tor
 
 window._inventory=[];
 function formatMoney(amount){return "$ "+(Number(amount)||0).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
-function updateInventoryMoney(){const money=+document.getElementById("moneyInput").value||0;document.getElementById("inventoryMoney").textContent=formatMoney(money);}
+function updateInventoryMoney(){const money=+document.getElementById("moneyInput").value||0;const formatted=formatMoney(money);const ledger=document.getElementById("inventoryMoney");if(ledger)ledger.textContent=formatted;const floating=document.getElementById("floatingMoneyValue");if(floating)floating.textContent=formatted.replace(/^\$\s*/,"");}
 
 let moneyAdjustmentMode="gain";
 function openMoneyAdjustment(mode){
@@ -1775,22 +1816,22 @@ function addWeaponToSheet(weapon,cost=0,ammo="",reload="",damage=""){
 
 // ARSENAL — Cards
 const WEAPON_DATA=[
-  {name:'Coldre de munição',cost:4,ammo:'—',reload:'—',desc:'Até 16 balas de rifle ou escopeta.'},
-  {name:'Cinturão de revólver',cost:3,ammo:'—',reload:'—',desc:'Até 24 balas de revólver.'},
-  {name:'Revólver',cost:6,ammo:'6 balas',reload:'2 ações',desc:'1d6 perto e longe.'},
-  {name:'Espingarda',cost:20,ammo:'9 balas',reload:'2 ações',desc:'2d6+3 perto e longe.'},
-  {name:'Escopeta',cost:4,ammo:'2 balas',reload:'3 ações',desc:'2d6 perto; 1d6 longe.'},
-  {name:'Metralhadora montada',cost:5000,ammo:'1 saraivada',reload:'1 turno',desc:'3d6 em área.'},
-  {name:'Rifle de precisão',cost:30,ammo:'1 bala',reload:'1 ação',desc:'2d6+3; +2 para acertar de perto.'},
-  {name:'Faca',cost:2,ammo:'—',reload:'—',desc:'1d6.'},
-  {name:'Sabre',cost:5,ammo:'—',reload:'—',desc:'1d6.'},
-  {name:'Tomahawk',cost:1,ammo:'—',reload:'—',desc:'1d6+1.'},
-  {name:'Lança',cost:4,ammo:'—',reload:'—',desc:'1d6+2.'},
-  {name:'Arco e flecha',cost:5,ammo:'—',reload:'—',desc:'1d6.'},
-  {name:'Chicote',cost:5,ammo:'—',reload:'—',desc:'1d6+1.'},
-  {name:'Canhão montado',cost:2000,ammo:'1 bala',reload:'1 turno',desc:'5d6 em área.'},
-  {name:'Molotov',cost:2,ammo:'—',reload:'—',desc:'3d6 em área.'},
-  {name:'Dinamite',cost:3,ammo:'—',reload:'—',desc:'4d6 em área.'}
+  {name:'Coldre de munição',cost:4,ammo:'—',reload:'—',desc:'Capacidade: até 16 balas de rifle ou escopeta.'},
+  {name:'Cinturão de revólver',cost:3,ammo:'—',reload:'—',desc:'Capacidade: até 24 balas de revólver.'},
+  {name:'Revólver',cost:6,ammo:'6 balas',reload:'2 ações',desc:'Dano: 1d6 perto e longe.'},
+  {name:'Espingarda',cost:20,ammo:'6 balas',reload:'2 ações',desc:'Dano: 2d6+3 perto e longe.'},
+  {name:'Escopeta',cost:15,ammo:'2 balas',reload:'3 ações',desc:'Dano: 2d6 perto; 1d6 longe.'},
+  {name:'Metralhadora montada',cost:1000,ammo:'1 saraivada',reload:'1 turno',desc:'Dano: 3d6 em área.'},
+  {name:'Rifle de precisão',cost:30,ammo:'1 bala',reload:'1 ação',desc:'Dano: 2d6+3; +2 para acertar de perto.'},
+  {name:'Faca',cost:2,ammo:'—',reload:'—',desc:'Dano: 1d6.'},
+  {name:'Sabre',cost:5,ammo:'—',reload:'—',desc:'Dano: 1d6.'},
+  {name:'Tomahawk',cost:1,ammo:'—',reload:'—',desc:'Dano: 1d6+1.'},
+  {name:'Lança',cost:5,ammo:'—',reload:'—',desc:'Dano: 1d6+2.'},
+  {name:'Arco e flecha',cost:5,ammo:'—',reload:'—',desc:'Dano: 1d6.'},
+  {name:'Chicote',cost:5,ammo:'—',reload:'—',desc:'Dano: 1d6+1.'},
+  {name:'Canhão montado',cost:3000,ammo:'1 bala',reload:'1 turno',desc:'Dano: 5d6 em área.'},
+  {name:'Molotov',cost:2,ammo:'—',reload:'—',desc:'Dano: 3d6 em área.'},
+  {name:'Dinamite',cost:3,ammo:'—',reload:'—',desc:'Dano: 4d6 em área.'}
 ];
 function renderWeaponGrid(){
   const host=document.getElementById('weaponGrid');if(!host)return;
@@ -1801,8 +1842,8 @@ function renderWeaponGrid(){
     const price=document.createElement('span');price.className='weapon-cost';price.textContent=`$ ${w.cost.toLocaleString('pt-BR')}`;
     head.append(title,price);
     const meta=document.createElement('div');meta.className='weapon-card-meta';
-    if(w.ammo!=='—')meta.append(Object.assign(document.createElement('span'),{textContent:`🔫 ${w.ammo}`}));
-    if(w.reload!=='—')meta.append(Object.assign(document.createElement('span'),{textContent:`⟳ ${w.reload}`}));
+    if(w.ammo!=='—')meta.append(Object.assign(document.createElement('span'),{textContent:`Munição: ${w.ammo}`}));
+    if(w.reload!=='—')meta.append(Object.assign(document.createElement('span'),{textContent:`Recarga: ${w.reload}`}));
     const desc=document.createElement('p');desc.className='weapon-card-desc';desc.textContent=w.desc;
     const btn=document.createElement('button');btn.className='weapon-buy';btn.type='button';btn.textContent='＋ Comprar';
     btn.addEventListener('click',()=>addWeaponToSheet(w.name,w.cost,w.ammo,w.reload,`Dano: ${w.desc}`));
@@ -1859,6 +1900,8 @@ function activateTab(tab,moveFocus=false){
     item.tabIndex=active?0:-1;
   });
   document.querySelectorAll(".tab-panel").forEach(panel=>{panel.hidden=panel.id!==button.dataset.tab;});
+  const floatingMoney=document.getElementById("floatingInventoryMoney");
+  if(floatingMoney)floatingMoney.hidden=button.dataset.tab!=="panel-inventory";
   document.querySelectorAll(".mobile-tab-option").forEach(item=>{
     const active=item.dataset.mobileTab===button.dataset.tab;
     item.classList.toggle("is-active",active);
@@ -1906,7 +1949,7 @@ function initializeInventoryShopTab(){
   const panel=document.getElementById("inventoryShopContent"),oldEquipment=document.querySelector(".equipment-card"),shop=document.querySelector(".supply-card"),arsenal=document.querySelector(".equipment-drawer");
   if(!panel||!shop||!arsenal)return;
   shop.querySelector("h2").textContent="Inventário & Loja";
-  oldEquipment?.remove();
+  if(oldEquipment)panel.append(oldEquipment);
   panel.append(shop);
 }
 
@@ -1997,7 +2040,8 @@ async function finishAccountSignIn(user){
   accountFinishPromise=(async()=>{
     if(!user.displayName?.trim()){setAccountGateMode("profile");accountGateMessage("Defina um apelido para continuar.");return}
     currentUser=user;await loadCharacterList();
-    document.body.classList.add("is-authenticated");$id("accountGate").hidden=true;
+    document.body.classList.add("is-authenticated","awaiting-system");
+    $id("accountGate").hidden=true;$id("systemPicker").hidden=false;
     $id("characterManager").hidden=false;$id("sheetStatus").textContent=`Conectado como ${user.displayName}.`;
     if(!characterDocs.length){await createCharacter(true)}
     $id("campaignAuthPanel").classList.add("campaign-hidden");$id("campaignUserPanel").classList.remove("campaign-hidden");
@@ -2300,7 +2344,8 @@ async function initializeFirebaseCampaign(){
     sdk.onAuthStateChanged(auth,async user=>{
       authResolved=true;currentUser=user;stopCampaignListeners();activeCampaign=null;activeMembership=null;
       if(!user){
-        document.body.classList.remove("is-authenticated");$id("accountGate").hidden=false;$id("characterManager").hidden=true;
+        document.body.classList.remove("is-authenticated","awaiting-system","system-auzover","system-som");
+        $id("systemPicker").hidden=true;$id("accountGate").hidden=false;$id("characterManager").hidden=true;
         $id("campaignAuthPanel").classList.remove("campaign-hidden");$id("campaignUserPanel").classList.add("campaign-hidden");
         setAccountGateMode("signup");accountGateMessage("Entre ou crie uma conta para continuar.");clearCampaignPanels();return;
       }
@@ -2320,6 +2365,7 @@ let selectedRpgSystem="som";
 
 function chooseSystem(system){
   selectedRpgSystem=system;
+  document.body.classList.remove("awaiting-system");
   document.body.classList.toggle("system-auzover",system==="auzover");
   document.body.classList.toggle("system-som",system==="som");
   document.getElementById("systemPicker").hidden=true;
@@ -2330,7 +2376,10 @@ function chooseSystem(system){
   document.title=system==="auzover"?"Sistema Auzover — Ficha RPG":"O Som das Seis — Ficha RPG";
 }
 
-function backToSystems(){document.getElementById("systemPicker").hidden=false;}
+function backToSystems(){
+  document.body.classList.add("awaiting-system");
+  document.getElementById("systemPicker").hidden=false;
+}
 
 function activateAuzTab(id,button){
   document.querySelectorAll(".auzover-tab").forEach(tab=>{const active=tab===button;tab.classList.toggle("active",active);tab.setAttribute("aria-selected",String(active));});
@@ -2361,6 +2410,9 @@ const AUZOVER_FANTASIAS=[
   {nome:"Palhaço",habilidades:"1 vez a cada 2 rodadas, tem uma esquiva automática"},
   {nome:"Peste Negra",habilidades:"-1 de dano de veneno"},
   {nome:"Ryu",habilidades:"+2 de PV e 3x no dano crítico do soco"},
+  {nome:"Nekomimi",habilidades:"Pode gastar 1 de Mana para rerolar qualquer dado"},
+  {nome:"Doctor Who",habilidades:"Você tem um sexto sentido, facilitando as investigações"},
+  {nome:"Policial gostos*",habilidades:"+1 de defesa"},
   {nome:"Chapeleiro Maluco",habilidades:"+2 de Mana e pode usar 1 vez por cena a habilidade de confundir inimigos por 3 de mana"}
 ];
 
@@ -2446,8 +2498,8 @@ function clampAuzNumber(id){const el=document.getElementById(id);if(!el)return 0
 
 function updateAuzResources(shouldSave=false){
   const fisico=readAuzNumber("auzForca"),intelecto=readAuzNumber("auzIntelecto");
-  const pvMax=3+Math.floor(fisico/2);
-  const manaMax=1+2*Math.floor(intelecto/2);
+  const pvMax=Math.ceil(3+1.5*Math.floor(fisico));
+  const manaMax=1+2*Math.floor(intelecto);
   const pvField=document.getElementById("auzPVMax"),manaField=document.getElementById("auzManaMax");
   const pvCurrent=document.getElementById("auzPVCurrent"),manaCurrent=document.getElementById("auzManaCurrent");
   if(pvField)pvField.value=String(pvMax);
