@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site do Auzover</title>
+<title>Auzover</title>
 <link rel="icon" type="image/png" href="Imagen/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -787,7 +787,8 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
   <button class="sheet-tab is-active" id="tab-character" type="button" role="tab" aria-selected="true" aria-controls="panel-character" tabindex="0" data-tab="panel-character">Personagem</button>
   <button class="sheet-tab" id="tab-progression" type="button" role="tab" aria-selected="false" aria-controls="panel-progression" tabindex="-1" data-tab="panel-progression">Progressão</button>
   <button class="sheet-tab" id="tab-adventure" type="button" role="tab" aria-selected="false" aria-controls="panel-adventure" tabindex="-1" data-tab="panel-adventure">Jornada</button>
-  <button class="sheet-tab" id="tab-inventory" type="button" role="tab" aria-selected="false" aria-controls="panel-inventory" tabindex="-1" data-tab="panel-inventory">Inventário &amp; Loja</button>
+  <button class="sheet-tab" id="tab-inventory" type="button" role="tab" aria-selected="false" aria-controls="panel-inventory" tabindex="-1" data-tab="panel-inventory">Inventário</button>
+  <button class="sheet-tab" id="tab-shop" type="button" role="tab" aria-selected="false" aria-controls="panel-shop" tabindex="-1" data-tab="panel-shop">Loja</button>
   <button class="sheet-tab" id="tab-journal" type="button" role="tab" aria-selected="false" aria-controls="panel-journal" tabindex="-1" data-tab="panel-journal">Diário</button>
   <button class="sheet-tab" id="tab-bonuses" type="button" role="tab" aria-selected="false" aria-controls="panel-bonuses" tabindex="-1" data-tab="panel-bonuses">Bônus</button>
   <button class="sheet-tab" id="tab-dice" type="button" role="tab" aria-selected="false" aria-controls="panel-dice" tabindex="-1" data-tab="panel-dice">Rolar Dados</button>
@@ -796,7 +797,7 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 <button id="deadToggle" class="dead-toggle" type="button" aria-pressed="false" onclick="toggleDead()">MORTO</button>
 </div>
 
-<!-- Saldo flutuante: aparece somente na aba Inventário & Loja -->
+<!-- Saldo flutuante: aparece somente na aba Inventário -->
 <div id="floatingInventoryMoney" class="floating-inventory-money" hidden aria-live="polite" aria-label="Dinheiro atual">
   <span aria-hidden="true">$</span><strong id="floatingMoneyValue">250</strong>
 </div>
@@ -810,7 +811,8 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
   <button type="button" class="mobile-tab-option is-active" data-mobile-tab="panel-character" aria-current="page" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">♙</span>Personagem</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-progression" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">✦</span>Progressão</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-adventure" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">⚒</span>Jornada</button>
-  <button type="button" class="mobile-tab-option" data-mobile-tab="panel-inventory" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">▣</span>Inventário &amp; Loja</button>
+  <button type="button" class="mobile-tab-option" data-mobile-tab="panel-inventory" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">▣</span>Inventário</button>
+  <button type="button" class="mobile-tab-option" data-mobile-tab="panel-shop" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">💰</span>Loja</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-journal" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">✎</span>Diário</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-bonuses" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">★</span>Bônus</button>
   <button type="button" class="mobile-tab-option" data-mobile-tab="panel-dice" onclick="activateMobileTab(this)"><span class="mobile-tab-option-icon" aria-hidden="true">⚄</span>Rolar dados</button>
@@ -960,21 +962,6 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
   <textarea data-k="recompensa" placeholder="Valor, motivo da recompensa, procurado por..."></textarea>
 </section>
 
-<section class="card equipment-card">
-  <h2>Arsenal de armas</h2>
-  <p class="notice equipment-intro">Registre seu arsenal e consulte as opções por tipo. Consulte preço, capacidade, munição, recarga e dano. Use Comprar para registrar o item no inventário.</p>
-  <div class="equipment-basics">
-    <div><label>Armas da personagem</label><textarea id="weaponList" data-k="armas" placeholder="Selecione no arsenal abaixo ou escreva aqui..."></textarea></div>
-    <div><label>Roupas</label><textarea data-k="roupas" placeholder="Roupas e proteção..."></textarea></div>
-    <div><label>Munição / recarga</label><textarea data-k="municao" placeholder="Anote munição e recargas..."></textarea></div>
-  </div>
-  <p class="weapon-status" id="weaponStatus" aria-live="polite">O arsenal mantém as armas da personagem em uma lista simples.</p>
-  <details class="equipment-drawer" open>
-    <summary><span>Arsenal do Velho Oeste</span><small>16 armas e equipamentos • preço, munição, recarga e dano</small></summary>
-    <div class="weapon-grid" id="weaponGrid"></div>
-  </details>
-</section>
-
 <section class="card supply-card">
   <h2>Inventário &amp; Loja</h2>
   <div class="equipment-heading">
@@ -986,6 +973,14 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
     <span id="shopCatalogCount" class="shop-catalog-count" aria-live="polite">0 itens</span>
   </div>
   <div id="shopCatalog" aria-label="Catálogo de itens, serviços e transporte"></div>
+  <details class="equipment-drawer" open>
+    <summary><span>Arsenal do Velho Oeste</span><small>Armas, munição e equipamentos • preço, recarga e dano</small></summary>
+    <div class="equipment-basics">
+    </div>
+    <p class="weapon-status" id="weaponStatus" aria-live="polite">O arsenal mantém as armas da personagem em uma lista simples.</p>
+    <h3>Munição e Armas</h3>
+    <div class="weapon-grid" id="weaponGrid"></div>
+  </details>
   <div class="custom-item-row">
     <label for="customSheetItem">＋ Adicionar item personalizado</label>
     <input id="customSheetItem" type="text" placeholder="Nome do item" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomItem()}">
@@ -1017,6 +1012,10 @@ body.system-auzover .auz-resource-current-max input[readonly]{opacity:.8;backgro
 
 <section class="tab-panel" id="panel-inventory" role="tabpanel" aria-labelledby="tab-inventory" hidden>
   <div id="inventoryShopContent" class="inventory-shop-content"></div>
+</section>
+
+<section class="tab-panel" id="panel-shop" role="tabpanel" aria-labelledby="tab-shop" hidden>
+  <div id="shopContent" class="inventory-shop-content"></div>
 </section>
 
 <section class="tab-panel" id="panel-journal" role="tabpanel" aria-labelledby="tab-journal" hidden>
@@ -1624,8 +1623,9 @@ const SHOP_CATALOG=[
 
 function normalizeSearch(value){return value.toLocaleLowerCase("pt-BR").normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
 
-function renderShopCatalog(query=""){
-  const host=document.getElementById("shopCatalog"),term=normalizeSearch(query.trim());
+function renderShopCatalog(query="", targetId="shopCatalog"){
+  const host=document.getElementById(targetId),term=normalizeSearch(query.trim());
+  if(!host)return;
   let count=0;host.replaceChildren();
   SHOP_CATALOG.forEach(category=>{
     const matches=category.items.filter(item=>!term||normalizeSearch(`${item.name} ${item.description||""} ${category.category}`).includes(term));
@@ -1647,7 +1647,8 @@ function renderShopCatalog(query=""){
     });
     section.append(summary,grid);host.append(section);
   });
-  document.getElementById("shopCatalogCount").textContent=`${count} ${count===1?"opção":"opções"}`;
+  const countEl=document.getElementById(targetId==="shopCatalog"?"shopCatalogCount":"shopCount");
+  if(countEl)countEl.textContent=`${count} ${count===1?"opção":"opções"}`;
   if(!count){const empty=document.createElement("p");empty.className="shop-empty";empty.textContent="Nenhum item ou serviço encontrado.";host.append(empty)}
 }
 
@@ -1658,6 +1659,7 @@ function prepareCustomItem(name,price=0,range=null,category="use"){
   window._customItemRange=range;window._customItemCategory=category;
   document.getElementById("itemStatus").textContent=range?`Escolha um preço entre ${formatMoney(range[0])} e ${formatMoney(range[1])}, depois adicione o item.`:"Informe o preço e adicione o item ao inventário.";
   document.getElementById("customSheetItem").focus();
+  activateTab("panel-shop");
 }
 function chooseCatalogRange(item){
   if(item.service){
@@ -1738,6 +1740,7 @@ function addCustomItem(){
 
 function renderInventory(){
   const host=document.getElementById("inventorySections");
+  if(!host)return;
   const rows=window._inventory;
   host.replaceChildren();
   Object.entries(INVENTORY_CATEGORIES).forEach(([category,title])=>{
@@ -1946,11 +1949,20 @@ document.addEventListener("keydown",e=>{
 });
 
 function initializeInventoryShopTab(){
-  const panel=document.getElementById("inventoryShopContent"),oldEquipment=document.querySelector(".equipment-card"),shop=document.querySelector(".supply-card"),arsenal=document.querySelector(".equipment-drawer");
-  if(!panel||!shop||!arsenal)return;
-  shop.querySelector("h2").textContent="Inventário & Loja";
-  if(oldEquipment)panel.append(oldEquipment);
-  panel.append(shop);
+  const inventoryPanel=document.getElementById("inventoryShopContent"),
+        shopPanel=document.getElementById("shopContent"),
+        shopCard=document.querySelector(".supply-card"),
+        arsenal=document.querySelector(".equipment-drawer"),
+        inventoryLabel=shopCard.querySelector(".inventory-label"),
+        inventorySections=document.getElementById("inventorySections"),
+        inventoryTotal=shopCard.querySelector(".inventory-total"),
+        itemStatus=document.getElementById("itemStatus");
+
+  if(!inventoryPanel||!shopPanel||!shopCard||!arsenal)return;
+
+  shopCard.querySelector("h2").textContent="Loja";
+  inventoryPanel.replaceChildren(inventoryLabel, inventorySections, itemStatus, inventoryTotal);
+  shopPanel.append(shopCard);
 }
 
 build();recalc();renderShopCatalog();initializeInventoryShopTab();renderWeaponGrid();
