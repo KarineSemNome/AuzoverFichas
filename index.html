@@ -2598,5 +2598,189 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 </script>
 
+
+<!-- ============ SCRIPT: SUBSTITUIÇÕES AUTOMÁTICAS (67 → aura, 13 → ⭐️, 22 → 💩) ============ -->
+<script>
+(function(){
+  "use strict";
+  var MAP={"67":"aura","13":"⭐️","22":"💩"};
+  var RE=/67|13|22/g;
+  var swap=function(s){return s.replace(RE,function(m){return MAP[m]})};
+  // Elementos que o código da ficha lê como número: não podem ser alterados.
+  var SKIP_IDS={pvMax:1};
+  var SKIP_TAGS={SCRIPT:1,STYLE:1,NOSCRIPT:1,TEXTAREA:1};
+
+  function skipNode(node){
+    var el=node.nodeType===1?node:node.parentElement;
+    while(el){
+      if(SKIP_TAGS[el.tagName]||(el.id&&SKIP_IDS[el.id]))return true;
+      el=el.parentElement;
+    }
+    return false;
+  }
+
+  function fixTextNode(n){
+    if(RE.test(n.nodeValue)){RE.lastIndex=0;if(!skipNode(n))n.nodeValue=swap(n.nodeValue)}
+    RE.lastIndex=0;
+  }
+
+  function fixAttrs(el){
+    ["placeholder","title","aria-label"].forEach(function(a){
+      var v=el.getAttribute&&el.getAttribute(a);
+      if(v&&/67|13|22/.test(v))el.setAttribute(a,swap(v));
+    });
+  }
+
+  function isTextField(el){
+    if(!el||!el.tagName)return false;
+    if(el.closest&&el.closest("#accountGate"))return false;
+    if(el.hasAttribute&&el.hasAttribute("data-starnum"))return false;
+    if(el.tagName==="TEXTAREA")return true;
+    if(el.tagName!=="INPUT")return false;
+    var t=(el.getAttribute("type")||"text").toLowerCase();
+    return t==="text";
+  }
+
+  function fixField(el,keepCaret){
+    var v=el.value;
+    if(!v||!/67|13|22/.test(v))return false;
+    var nv=swap(v);
+    if(nv===v)return false;
+    var pos=null;
+    if(keepCaret&&el.selectionStart!=null){
+      pos=swap(v.slice(0,el.selectionStart)).length;
+    }
+    el.value=nv;
+    if(pos!=null){try{el.setSelectionRange(pos,pos)}catch(_){}}
+    return true;
+  }
+
+  function walk(root){
+    if(!root)return;
+    if(root.nodeType===3){fixTextNode(root);return}
+    if(root.nodeType!==1&&root.nodeType!==9&&root.nodeType!==11)return;
+    if(root.nodeType===1){fixAttrs(root);if(skipNode(root)&&root.tagName!=="TEXTAREA")return}
+    var tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);
+    var n,list=[];
+    while((n=tw.nextNode()))list.push(n);
+    list.forEach(fixTextNode);
+    if(root.querySelectorAll){
+      root.querySelectorAll("[placeholder],[title],[aria-label]").forEach(fixAttrs);
+    }
+  }
+
+  function sweepFields(){
+    document.querySelectorAll("input,textarea").forEach(function(el){
+      if(el===document.activeElement)return;
+      if(isTextField(el))fixField(el,false);
+    });
+  }
+
+  // Digitação: troca na hora (fase de captura, antes do salvamento automático).
+  document.addEventListener("input",function(e){
+    if(isTextField(e.target))fixField(e.target,true);
+  },true);
+
+  var obs=new MutationObserver(function(muts){
+    obs.disconnect();
+    try{
+      muts.forEach(function(m){
+        if(m.type==="characterData")fixTextNode(m.target);
+        else m.addedNodes.forEach(function(nd){walk(nd)});
+      });
+    }finally{start()}
+  });
+  function start(){obs.observe(document.body,{childList:true,characterData:true,subtree:true})}
+
+  function init(){
+    walk(document.body);
+    sweepFields();
+    start();
+    // Campos preenchidos por código (ao carregar/trocar de ficha) não geram evento.
+    setInterval(sweepFields,700);
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
+  else init();
+})();
+</script>
+
+
+<!-- ============ SCRIPT: CAMPOS NUMÉRICOS — 13 aparece como ⭐️ (valor real continua 13) ============ -->
+<script>
+(function(){
+  "use strict";
+  var STAR="\u2B50\uFE0F";
+  var STAR_RE=/\u2B50\uFE0F?/g;
+  var inputDesc=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value");
+  var nodeDesc=Object.getOwnPropertyDescriptor(Node.prototype,"textContent");
+
+  function toDisplay(v){
+    var s=(v==null?"":String(v));
+    return s.trim()==="13"?STAR:s;
+  }
+  function toReal(d){
+    return String(d).replace(STAR_RE,"13").replace(",",".");
+  }
+
+  function upgradeInput(el){
+    if(el.hasAttribute("data-starnum"))return;
+    var start=el.value;               // valor numérico nativo, antes de mudar o tipo
+    var min=parseFloat(el.getAttribute("min"));
+    el.setAttribute("data-starnum","1");
+    el.type="text";
+    if(!isNaN(min)&&min>=0)el.setAttribute("inputmode","decimal");
+    el.setAttribute("autocomplete","off");
+    Object.defineProperty(el,"value",{
+      configurable:true,
+      get:function(){return toReal(inputDesc.get.call(this))},
+      set:function(v){inputDesc.set.call(this,toDisplay(v))}
+    });
+    inputDesc.set.call(el,toDisplay(start));
+  }
+
+  function upgradePvMax(){
+    var b=document.getElementById("pvMax");
+    if(!b||b.__starPv)return;
+    b.__starPv=true;
+    var real=nodeDesc.get.call(b);
+    Object.defineProperty(b,"textContent",{
+      configurable:true,
+      get:function(){return real},
+      set:function(v){real=String(v);nodeDesc.set.call(this,toDisplay(real))}
+    });
+    nodeDesc.set.call(b,toDisplay(real));
+  }
+
+  // Digitação: aceita só dígitos, vírgula, ponto, sinal de menos e ⭐️.
+  document.addEventListener("input",function(e){
+    var el=e.target;
+    if(!el||!el.hasAttribute||!el.hasAttribute("data-starnum"))return;
+    var raw=inputDesc.get.call(el);
+    var real=raw.replace(STAR_RE,"13").replace(/[^0-9.,\-]/g,"");
+    var disp=real.trim()==="13"?STAR:real;
+    if(disp!==raw){
+      inputDesc.set.call(el,disp);
+      try{el.setSelectionRange(disp.length,disp.length)}catch(_){}
+    }
+  },true);
+
+  function scan(root){
+    if(!root||root.nodeType!==1&&root.nodeType!==9&&root.nodeType!==11)return;
+    if(root.nodeType===1&&root.tagName==="INPUT"&&(root.getAttribute("type")||"").toLowerCase()==="number")upgradeInput(root);
+    if(root.querySelectorAll)root.querySelectorAll('input[type="number"]').forEach(upgradeInput);
+    upgradePvMax();
+  }
+
+  function init(){
+    scan(document);
+    new MutationObserver(function(muts){
+      muts.forEach(function(m){m.addedNodes.forEach(scan)});
+    }).observe(document.body,{childList:true,subtree:true});
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);
+  else init();
+})();
+</script>
+
 </body>
 </html>
